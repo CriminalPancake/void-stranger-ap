@@ -15,20 +15,17 @@ class VoidStrangerLocationData(NamedTuple):
     region: str
     address: Optional[int] = None
 
-#done
 burden_location_data_table: Dict[str, VoidStrangerLocationData] = {
     LocationNames.burden_chest1: VoidStrangerLocationData("Void", void_stranger_base_id + 0),
     LocationNames.burden_chest2: VoidStrangerLocationData("Void", void_stranger_base_id + 1),
-    LocationNames.burden_chest3: VoidStrangerLocationData("Void", void_stranger_base_id + 93) #how tf did I forget this?
+    LocationNames.burden_chest3: VoidStrangerLocationData("Void", void_stranger_base_id + 93)
 }
 
-#done
 misc_location_data_table: Dict[str, VoidStrangerLocationData] = {
     LocationNames.endless_void_rod_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 2),
     LocationNames.interface_manip_hint: VoidStrangerLocationData("Void", void_stranger_base_id + 3)
 }
 
-#done
 mural_location_data_table: Dict[str, VoidStrangerLocationData] = {
     LocationNames.mural_add: VoidStrangerLocationData("Void", void_stranger_base_id + 4),
     LocationNames.mural_eus: VoidStrangerLocationData("Void", void_stranger_base_id + 5),
@@ -41,7 +38,6 @@ mural_location_data_table: Dict[str, VoidStrangerLocationData] = {
     LocationNames.mural_dis: VoidStrangerLocationData("Void", void_stranger_base_id + 12)
 }
 
-#done
 statue_location_data_table: Dict[str, VoidStrangerLocationData] = {
     LocationNames.statue_lover: VoidStrangerLocationData("Void", void_stranger_base_id + 13),
     LocationNames.statue_smiler: VoidStrangerLocationData("Void", void_stranger_base_id + 14),
@@ -51,7 +47,6 @@ statue_location_data_table: Dict[str, VoidStrangerLocationData] = {
     # LocationNames.statue_watcher: VoidStrangerLocationData("Void", void_stranger_base_id + 18),
 }
 
-#done
 shortcut_location_data_table: Dict[str, VoidStrangerLocationData] = {
     LocationNames.buy_shortcut1: VoidStrangerLocationData("Void", void_stranger_base_id + 19),
     LocationNames.buy_shortcut2: VoidStrangerLocationData("Void", void_stranger_base_id + 20),
