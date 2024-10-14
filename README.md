@@ -2,10 +2,34 @@
 Archipelago integration for Void Stranger
 
 ## How to install this
-Well for now its not actually done but if it were...
-
+For generation:
 Drop the voidstranger.apworld file into your Archipelago\custom_worlds folder
 
-At most this will let you generate multiworlds that include void stranger, not that you could play them since I havent finished modding the game. 
+For playing the game:
+Find the data.win file for Void Stranger at <YourSteamLibrary>\steamapps\common\Void Stranger, and patch it using either
+vsap.bdf (using https://www.romhacking.net/utilities/929/) 
+or 
+vsap.xdelta (using https://www.romhacking.net/utilities/598/)
 
-xdelta file coming soon...
+
+Make sure the output file is still named data.win
+
+## Connecting to a server
+
+If the game was patched successfully, you can open the connection menu by pushing F10. Press tab to enter data and 
+move to the next field. (you will have to hit tab a few extra times after the password field) The most recent event from
+the AP server is always shown in the top left. 
+
+## Known bugs
+
+1. Locust count might get a little wonky with repeated connections after collecting a large amount of them. I think I 
+fixed this already but let me know if anything strange happens with this
+
+2. During my test run I entered a room with Mon and their music started playing but they didnt properly spawn, and the 
+music continued in subsequent rooms. Likely related to not having enough Locusts.
+
+3. There is a bug with how UMT recompiles the game that can cause crashes when a textbox displays with different 
+dialogue sounds. I fixed all the ones needed to complete a run, but I'm sure there are other instance of this across the 
+game. If you run into this please provide the crash message so I can fix it.
+
+4. During the final RPG battle, the command menu text is squished together. Not sure why this is but it's purely visual.
