@@ -46,10 +46,10 @@ class VoidStrangerWorld(World):
 
         if self.options.locustsanity:
             location_count+= 67
-            gray_locusts: int = 41
+            gray_locusts: int = 42
             gray_triple_locusts: int = 26
             #for later
-            lillith_locusts: int = 39
+            lillith_locusts: int = 40
             lillith_triple_locusts: int = 29
 
             item_pool += [self.create_item(ItemNames.locust_idol) for _ in range(gray_locusts)]
