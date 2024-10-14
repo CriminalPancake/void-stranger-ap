@@ -43,7 +43,7 @@ the game. If you run into this please provide the crash message so I can fix it.
 ## General options/game info
 Game Spoilers ahead, read at your own risk
 
-The apworld assumes you play as Gray, playing as lillie will make certain locust chest locations uncheckable, and Cif 
+The apworld assumes you play as Gray, playing as Lillie will make certain locust chest locations uncheckable, and Cif 
 cannot goal. The only thing randomized by default is the burdens, making for a very small world. There are options for 
 randomizing normal chests, ability to use brands, certain statues existing, and the ability to use shortcuts. For now, 
 the only goal is the DIS ending, goal is sent after completing the final gameplay section before the ending sequence.
