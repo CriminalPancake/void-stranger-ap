@@ -38,7 +38,9 @@ music continued in subsequent rooms. Likely related to not having enough Locusts
 dialogue sounds. I fixed all the ones needed to complete a run, but I'm sure there are other instances of this across 
 the game. If you run into this please provide the crash message so I can fix it.
 
-4. During the final RPG battle, the command menu text is squished together. This is purely visual thankfully.
+4. if you plead guilty to hoarding locusts in court, chest locations get disabled
+
+5. During the final RPG battle, the command menu text is squished together. This is purely visual thankfully.
 
 ## General options/game info
 Game Spoilers ahead, read at your own risk
