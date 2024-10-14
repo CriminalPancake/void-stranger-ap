@@ -6,9 +6,12 @@ For generation:
 Drop the voidstranger.apworld file into your Archipelago\custom_worlds folder
 
 For playing the game:
-Find the data.win file for Void Stranger at <YourSteamLibrary>\steamapps\common\Void Stranger, and patch it using either
-vsap.bdf (using https://www.romhacking.net/utilities/929/) 
-or 
+Find the data.win file for Void Stranger at {YourSteamLibrary}\steamapps\common\Void Stranger, and patch it using either
+
+vsap.bdf (using https://www.romhacking.net/utilities/929/)
+
+or
+
 vsap.xdelta (using https://www.romhacking.net/utilities/598/)
 
 
