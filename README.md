@@ -35,4 +35,11 @@ music continued in subsequent rooms. Likely related to not having enough Locusts
 dialogue sounds. I fixed all the ones needed to complete a run, but I'm sure there are other instance of this across the 
 game. If you run into this please provide the crash message so I can fix it.
 
-4. During the final RPG battle, the command menu text is squished together. Not sure why this is but it's purely visual.
+4. During the final RPG battle, the command menu text is squished together. 
+
+## General options/game info
+Game Spoilers ahead, read at your own risk
+
+The only thing randomized by default is the burdens, making for a very small world. There are options for randomizing   
+normal chests, ability to use brands, certain statues existing, and the ability to use shortcuts. For now, the only goal 
+is the DIS ending, goal is sent after completing the final gameplay section before the ending sequence.

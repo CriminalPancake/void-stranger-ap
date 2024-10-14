@@ -63,8 +63,8 @@ Void Stranger:
 
   locustsanity:
     # When enabled, Locust Idols are shuffled into the item pool and their chests award checks. Each chest capable of
-    # tripling its contents adds an item worth 3 locusts to the pool. Using an atoner no longer sets your count to 0 but instead to
-    # the number received
+    # tripling its contents adds an item worth 3 locusts to the pool. Using an atoner no longer sets your count to 0 but
+    # instead to the number received
     'false': 50
     'true': 0
 
