@@ -35,7 +35,7 @@ fixed this already but let me know if anything strange happens with this
 music continued in subsequent rooms. Likely related to not having enough Locusts.
 
 3. There is a bug with how UMT recompiles the game that can cause crashes when a textbox displays with different 
-dialogue sounds. I fixed all the ones needed to complete a run, but I'm sure there are other instance of this across the 
+dialogue sounds. I fixed all the ones needed to complete a run, but I'm sure there are other instances of this across the 
 game. If you run into this please provide the crash message so I can fix it.
 
 4. During the final RPG battle, the command menu text is squished together. 
