@@ -15,7 +15,8 @@ or
 vsap.xdelta (using https://www.romhacking.net/utilities/598/)
 
 and replace the existing data.win file with the patched one, still named data.win. It might also be wise to keep a copy 
-of the original data.win file as a backup.
+of the original data.win file as a backup in case at any point you need to patch the game again (When I update the patch
+files with new content or a fix)
 
 Finally, be sure to add the gm-apclientpp.dll to the Void Stranger folder
 
