@@ -17,6 +17,8 @@ vsap.xdelta (using https://www.romhacking.net/utilities/598/)
 
 Make sure the output file is still named data.win
 
+Finally, be sure to add the gm-apclientpp.dll to the Void Stranger folder
+
 ## Connecting to a server
 
 If the game was patched successfully, you can open the connection menu by pushing F10. Press tab to enter data and 
