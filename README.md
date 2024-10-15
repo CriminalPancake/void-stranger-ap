@@ -48,3 +48,21 @@ The apworld assumes you play as Gray, playing as Lillie will make certain locust
 cannot goal. The only thing randomized by default is the burdens, making for a very small world. There are options for 
 randomizing normal chests, ability to use brands, certain statues existing, and the ability to use shortcuts. For now, 
 the only goal is the DIS ending, goal is sent after completing the final gameplay section before the ending sequence.
+
+## Future Plans
+
+1. Erase the Known bugs section (except maybe #5, that one isn't that bad)
+
+2. Support for characters other than Gray, more on that in #3
+
+3. More Goals, I'm thinking normal ending for all three characters. Perhaps Bee's Stinky Hole would be a good short 
+goal. Carcass ending seems like a pretty bad goal in my opinion, requires exactly one item and its annoying to reach 
+unless you play as Cif.
+
+4. MAYBE more locations, but many ideas I've seen (memento crystals mainly) have one big issue: there aren't any more 
+items left to place in those locations. Perhaps I could let the player choose locust chests or memento crystals as 
+locations, but not both. There are already way too many locust items in the pool as it is.
+
+5. Removing the constant network event debug message? At first, it was just a debug measure but as I played it sort of 
+grew on me? It provides a sort of reassurance that the communications are working properly. If enough people raise 
+complaints about it I'll get rid of it I suppose.
