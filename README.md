@@ -31,8 +31,7 @@ the AP server is always shown in the top left.
 1. Locust count might get a little wonky with repeated connections after collecting a large amount of them. I think I 
 fixed this already but let me know if anything strange happens with this
 
-2. During my test run I entered a room with Mon and their music started playing but they didnt properly spawn, and the 
-music continued in subsequent rooms. Likely related to not having enough Locusts.
+2. Mon unfortunately doesnt spawn if you fall short on the locust requirements, despite my best efforts. 
 
 3. There is a bug with how UMT recompiles the game that can cause crashes when a textbox displays with different 
 dialogue sounds. I fixed all the ones needed to complete a run, but I'm sure there are other instances of this across 
