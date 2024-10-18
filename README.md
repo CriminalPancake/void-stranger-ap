@@ -28,20 +28,15 @@ the AP server is always shown in the top left.
 
 ## Known bugs
 
-1. Locust count might get a little wonky with repeated connections after collecting a large amount of them. I think I 
-fixed this already but let me know if anything strange happens with this
-
-2. Mon will be invisible if your locust count isn't high enough. For now I have made it so they are standing on a locust 
+1. Mon will be invisible if your locust count isn't high enough. For now I have made it so they are standing on a locust 
 tile. Even after somebody else fixed this on their end, my game refuses to draw their sprite, so this issue might be 
 here to stay, unfortunately. 
 
-3. There is a bug with how UMT recompiles the game that can cause crashes when a textbox displays with different 
+2. There is a bug with how UMT recompiles the game that can cause crashes when a textbox displays with different 
 dialogue sounds. I fixed all the ones needed to complete a run, but I'm sure there are other instances of this across 
 the game. If you run into this please provide the crash message so I can fix it.
 
-4. if you plead guilty to hoarding locusts in court, chest locations get disabled
-
-5. During the final RPG battle, the command menu text is squished together. This is purely visual thankfully.
+3. During the final RPG battle, the command menu text is squished together. This is purely visual thankfully.
 
 ## General options/game info
 Game Spoilers ahead, read at your own risk
@@ -53,13 +48,14 @@ the only goal is the DIS ending, goal is sent after completing the final gamepla
 
 ## Future Plans
 
-1. Erase the Known bugs section (except maybe #5, that one isn't that bad)
+1. Adding traitor kills to the locations, and their seals being broken to the item pool. This will add a little bit more
+to the base game randomization. 
 
 2. Support for characters other than Gray, more on that in #3
 
-3. More Goals, I'm thinking normal ending for all three characters. Perhaps Bee's Stinky Hole would be a good short 
-goal. Carcass ending seems like a pretty bad goal in my opinion, requires exactly one item and its annoying to reach 
-unless you play as Cif.
+3. More Goals, I'm thinking the normal ending for all three characters. Perhaps Bee's Stinky Hole would be a good short 
+goal. Additionally, a MacGuffin oriented goal seems fitting. Carcass ending seems like a pretty bad goal in my opinion, 
+requires exactly one item and its annoying to reach unless you play as Cif.
 
 4. MAYBE more locations, but many ideas I've seen (memento crystals mainly) have one big issue: there aren't any more 
 items left to place in those locations. Perhaps I could let the player choose locust chests or memento crystals as 
