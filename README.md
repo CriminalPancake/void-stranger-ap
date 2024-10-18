@@ -31,7 +31,9 @@ the AP server is always shown in the top left.
 1. Locust count might get a little wonky with repeated connections after collecting a large amount of them. I think I 
 fixed this already but let me know if anything strange happens with this
 
-2. Mon unfortunately doesnt spawn if you fall short on the locust requirements, despite my best efforts. 
+2. Mon will be invisible if your locust count isn't high enough. For now I have made it so they are standing on a locust 
+tile. Even after somebody else fixed this on their end, my game refuses to draw their sprite, so this issue might be 
+here to stay, unfortunately. 
 
 3. There is a bug with how UMT recompiles the game that can cause crashes when a textbox displays with different 
 dialogue sounds. I fixed all the ones needed to complete a run, but I'm sure there are other instances of this across 
