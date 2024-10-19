@@ -53,7 +53,7 @@ Make sure to have the Void Memory for that check.
 
 There are options for the following:
 
-- Randomizing normal chests
+- Randomizing normal chests. When you connect, your locust count will be set to the total amount received so far 
 - Adding the ability to use brands to the item pool, with the murals having locations
 - Disabling Smilers, Lovers and Killers until finding their respective items. Adds locations for talking to them with
 the void memory
