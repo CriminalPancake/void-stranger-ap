@@ -1,5 +1,5 @@
 from typing import Dict, List
-from BaseClasses import ItemClassification, Location, Region, Tutorial
+from BaseClasses import Region
 from worlds.AutoWorld import WebWorld, World
 from .Items import VoidStrangerItem, burden_item_data_table, misc_item_data_table, brand_item_data_table, \
     statue_item_data_table, shortcut_item_data_table, locustItemTable, item_data_table, item_table
@@ -34,7 +34,7 @@ class VoidStrangerWorld(World):
     def create_items(self) -> None:
         item_pool: list[VoidStrangerItem] = []
 
-        location_count: int = 5
+        location_count: int = 7
 
         item_pool += [self.create_item(name)
                       for name in burden_item_data_table.keys()

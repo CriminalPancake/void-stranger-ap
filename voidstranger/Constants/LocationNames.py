@@ -6,6 +6,8 @@ burden_chest3 = "Burden Chest 3"
 #Miscellaneous
 endless_void_rod_chest = "Unseal the Key"
 interface_manip_hint = "Learn to Cheat"
+lust_slain = "Slay the Lord of Lust"
+sloth_slain = "Slay the Lord of Sloth"
 
 #Murals
 mural_add = "Mural of the Void"

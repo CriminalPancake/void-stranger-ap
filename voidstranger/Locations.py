@@ -23,7 +23,9 @@ burden_location_data_table: Dict[str, VoidStrangerLocationData] = {
 
 misc_location_data_table: Dict[str, VoidStrangerLocationData] = {
     LocationNames.endless_void_rod_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 2),
-    LocationNames.interface_manip_hint: VoidStrangerLocationData("Void", void_stranger_base_id + 3)
+    LocationNames.interface_manip_hint: VoidStrangerLocationData("Void", void_stranger_base_id + 3),
+    LocationNames.lust_slain: VoidStrangerLocationData("Void", void_stranger_base_id + 94),
+    LocationNames.sloth_slain: VoidStrangerLocationData("Void", void_stranger_base_id + 95)
 }
 
 mural_location_data_table: Dict[str, VoidStrangerLocationData] = {

@@ -6,6 +6,8 @@ void_sword = "Burden 3"
 #Miscellaneous
 endless_void_rod = "The Key"
 interface_manip = "Unlock Cheats"
+lust_seal = "Seal of Lust Broken"
+sloth_seal = "Seal of Sloth Broken"
 
 #Brands
 brand_add = "Sign of the Void"

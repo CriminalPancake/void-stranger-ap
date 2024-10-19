@@ -21,7 +21,9 @@ burden_item_data_table: Dict[str, VoidStrangerItemData] = {
 
 misc_item_data_table: Dict[str, VoidStrangerItemData] = {
     ItemNames.endless_void_rod: VoidStrangerItemData(void_stranger_base_id + 3, ItemClassification.progression),
-    ItemNames.interface_manip: VoidStrangerItemData(void_stranger_base_id + 4, ItemClassification.progression)
+    ItemNames.interface_manip: VoidStrangerItemData(void_stranger_base_id + 4, ItemClassification.progression),
+    ItemNames.lust_seal: VoidStrangerItemData(void_stranger_base_id + 27, ItemClassification.progression),
+    ItemNames.sloth_seal: VoidStrangerItemData(void_stranger_base_id + 28, ItemClassification.progression)
 }
 
 brand_item_data_table: Dict[str, VoidStrangerItemData] = {

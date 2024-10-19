@@ -1,5 +1,6 @@
 # void-stranger-ap
-Archipelago integration for Void Stranger
+Archipelago integration for Void Stranger. By being here I assume you know everything about the game, if you haven't 
+finished the game, then scram!
 
 ## How to install this
 For generation:
@@ -41,26 +42,38 @@ the game. If you run into this please provide the crash message so I can fix it.
 ## General options/game info
 Game Spoilers ahead, read at your own risk
 
-The apworld assumes you play as Gray, playing as Lillie will make certain locust chest locations uncheckable, and Cif 
-cannot goal. The only thing randomized by default is the burdens, making for a very small world. There are options for 
-randomizing normal chests, ability to use brands, certain statues existing, and the ability to use shortcuts. For now, 
-the only goal is the DIS ending, goal is sent after completing the final gameplay section before the ending sequence.
+The apworld assumes you play as Gray with the DIS ending as the only goal. Playing as Lillie will make certain locust 
+chest locations uncheckable, and Cif cannot goal. By default, the following are randomized: 
+
+- Burdens
+- Seals on the Endless Void Rod, with killing the traitors as locations
+- The Endless Void Rod
+- The ability to access the interface, with a location on the Egg in Gor's chamber since it hints about the interface. 
+Make sure to have the Void Memory for that check.
+
+There are options for the following:
+
+- Randomizing normal chests
+- Adding the ability to use brands to the item pool, with the murals having locations
+- Disabling Smilers, Lovers and Killers until finding their respective items. Adds locations for talking to them with
+the void memory
+- Adding ability to use shortcuts to the item pool, talking to Mon in each location gives checks
+
+For now, the only goal is the DIS ending, goal is sent after completing the final gameplay section before the ending 
+sequence.
 
 ## Future Plans
 
-1. Adding traitor kills to the locations, and their seals being broken to the item pool. This will add a little bit more
-to the base game randomization. 
+1. Support for characters other than Gray, more on that in #2
 
-2. Support for characters other than Gray, more on that in #3
-
-3. More Goals, I'm thinking the normal ending for all three characters. Perhaps Bee's Stinky Hole would be a good short 
+2. More Goals, I'm thinking the normal ending for all three characters. Perhaps Bee's Stinky Hole would be a good short 
 goal. Additionally, a MacGuffin oriented goal seems fitting. Carcass ending seems like a pretty bad goal in my opinion, 
 requires exactly one item and its annoying to reach unless you play as Cif.
 
-4. MAYBE more locations, but many ideas I've seen (memento crystals mainly) have one big issue: there aren't any more 
+3. MAYBE more locations, but many ideas I've seen (memento crystals mainly) have one big issue: there aren't any more 
 items left to place in those locations. Perhaps I could let the player choose locust chests or memento crystals as 
 locations, but not both. There are already way too many locust items in the pool as it is.
 
-5. Removing the constant network event debug message? At first, it was just a debug measure but as I played it sort of 
+4. Removing the constant network event debug message? At first, it was just a debug measure but as I played it sort of 
 grew on me? It provides a sort of reassurance that the communications are working properly. If enough people raise 
 complaints about it I'll get rid of it I suppose.
