@@ -54,9 +54,11 @@ Make sure to have the Void Memory for that check.
 There are options for the following:
 
 - Randomizing normal chests. When you connect, your locust count will be set to the total amount received so far 
-- Adding the ability to use brands to the item pool, with the murals having locations
+- Adding the ability to use brands to the item pool, with the murals having locations. No shortcuts of any kind are 
+  considered in the logic with this enabled at the moment
 - Disabling Smilers, Lovers and Killers until finding their respective items. Adds locations for talking to them with
-the void memory
+the void memory. Note that getting all of these items is required for go mode, and you may get stuck without them
+in the final area
 - Adding ability to use shortcuts to the item pool, talking to Mon in each location gives checks
 
 For now, the only goal is the DIS ending, goal is sent after completing the final gameplay section before the ending 
