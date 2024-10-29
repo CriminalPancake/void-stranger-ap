@@ -73,7 +73,9 @@ sequence.
 goal. Additionally, a MacGuffin oriented goal seems fitting. Carcass ending seems like a pretty bad goal in my opinion, 
 requires exactly one item and its annoying to reach unless you play as Cif.
 
-3. MAYBE more locations, but many ideas I've seen (memento crystals mainly) have one big issue: there aren't any more 
+3. Add an option for all kinds of shortcuts being accounted for in logic with brandsanity
+
+4. MAYBE more locations, but many ideas I've seen (memento crystals mainly) have one big issue: there aren't any more 
 items left to place in those locations. Perhaps I could let the player choose locust chests or memento crystals as 
 locations, but not both. There are already way too many locust items in the pool as it is.
 
