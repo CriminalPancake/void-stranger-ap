@@ -54,8 +54,9 @@ Make sure to have the Void Memory for that check.
 There are options for the following:
 
 - Randomizing normal chests. When you connect, your locust count will be set to the total amount received so far 
-- Adding the ability to use brands to the item pool, with the murals having locations. No shortcuts of any kind are 
-  considered in the logic with this enabled at the moment
+- Adding the ability to use brands to the item pool, with the murals having locations. Without a Void Lord's Brand,
+  you cannot progress beyond their domain. No shortcuts of any kind are considered
+  in the logic with this enabled at the moment
 - Disabling Smilers, Lovers and Killers until finding their respective items. Adds locations for talking to them with
 the void memory. Note that getting all of these items is required for go mode, and you may get stuck without them
 in the final area
