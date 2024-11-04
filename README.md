@@ -29,15 +29,19 @@ the AP server is always shown in the top left.
 
 ## Known bugs
 
-1. Mon will be invisible if your locust count isn't high enough. For now I have made it so they are standing on a locust 
+1. The game doesn't properly handle receiving the Endless Void Rod before opening the chest on B002 with the normal Void
+Rod. To properly get the upgrade, you will have to disconnect from the server by closing the game, then get back to the
+brand entry screen to start again, open the chest on B002 and then connect to the server.
+
+2. Mon will be invisible if your locust count isn't high enough. For now I have made it so they are standing on a locust 
 tile. Even after somebody else fixed this on their end, my game refuses to draw their sprite, so this issue might be 
 here to stay, unfortunately. 
 
-2. There is a bug with how UMT recompiles the game that can cause crashes when a textbox displays with different 
+3. There is a bug with how UMT recompiles the game that can cause crashes when a textbox displays with different 
 dialogue sounds. I fixed all the ones needed to complete a run, but I'm sure there are other instances of this across 
 the game. If you run into this please provide the crash message so I can fix it.
 
-3. During the final RPG battle, the command menu text is squished together. This is purely visual thankfully.
+4. During the final RPG battle, the command menu text is squished together. This is purely visual thankfully.
 
 ## General options/game info
 Game Spoilers ahead, read at your own risk
@@ -66,19 +70,20 @@ For now, the only goal is the DIS ending, goal is sent after completing the fina
 sequence.
 
 ## Future Plans
+1. Fixing the Endless Void rod issue
 
-1. Support for characters other than Gray, more on that in #2
+2. Support for characters other than Gray, more on that in #2
 
-2. More Goals, I'm thinking the normal ending for all three characters. Perhaps Bee's Stinky Hole would be a good short 
+3. More Goals, I'm thinking the normal ending for all three characters. Perhaps Bee's Stinky Hole would be a good short 
 goal. Additionally, a MacGuffin oriented goal seems fitting. Carcass ending seems like a pretty bad goal in my opinion, 
 requires exactly one item and its annoying to reach unless you play as Cif.
 
-3. Add an option for all kinds of shortcuts being accounted for in logic with brandsanity
+4. Add an option for all kinds of shortcuts being accounted for in logic with brandsanity
 
-4. MAYBE more locations, but many ideas I've seen (memento crystals mainly) have one big issue: there aren't any more 
+5. MAYBE more locations, but many ideas I've seen (memento crystals mainly) have one big issue: there aren't any more 
 items left to place in those locations. Perhaps I could let the player choose locust chests or memento crystals as 
 locations, but not both. There are already way too many locust items in the pool as it is.
 
-4. Removing the constant network event debug message? At first, it was just a debug measure but as I played it sort of 
+6. Removing the constant network event debug message? At first, it was just a debug measure but as I played it sort of 
 grew on me? It provides a sort of reassurance that the communications are working properly. If enough people raise 
 complaints about it I'll get rid of it I suppose.
