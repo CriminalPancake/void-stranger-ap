@@ -36,7 +36,8 @@ def set_rules(world: VoidStrangerWorld):
     elif not world.options.brandsanity and not world.options.idolsanity:
         world.active_logic_mapping = location_min_dis_logic
 
-    forbid_item(world.multiworld.get_location(LocationNames.mural_add, world.player), ItemNames.endless_void_rod,
+    if world.options.brandsanity:
+        forbid_item(world.multiworld.get_location(LocationNames.mural_add, world.player), ItemNames.endless_void_rod,
                 world.player)
 
     for location in world.multiworld.get_locations(world.player):
