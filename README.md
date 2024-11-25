@@ -89,6 +89,4 @@ locusts.
 
 7. Saving most recent connection details used.
 
-8. Removing the constant network event debug message? At first, it was just a debug measure but as I played it sort of 
-grew on me? It provides a sort of reassurance that the communications are working properly. If enough people raise 
-complaints about it I'll get rid of it I suppose.
+8. Reworking the constant network event debug message to be more detailed and readable
