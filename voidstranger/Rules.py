@@ -96,7 +96,7 @@ location_full_dis_logic: Dict[str, List[List[str]]] = {
 
     LocationNames.mural_bee: [[ItemNames.brand_add]],
     LocationNames.mural_mon: [[ItemNames.brand_add, ItemNames.brand_eus]],
-    LocationNames.mural_tan: [[ItemNames.brand_add, ItemNames.brand_eus, ItemNames.brand_bee, ItemNames.enable_killer]],
+    LocationNames.mural_tan: [[ItemNames.brand_add, ItemNames.brand_eus, ItemNames.brand_bee]],
     LocationNames.mural_gor: [[ItemNames.brand_add, ItemNames.brand_eus, ItemNames.brand_bee, ItemNames.brand_mon,
                                ItemNames.enable_killer]],
     LocationNames.mural_lev: [[ItemNames.brand_add, ItemNames.brand_eus, ItemNames.brand_bee, ItemNames.brand_mon,
@@ -108,7 +108,9 @@ location_full_dis_logic: Dict[str, List[List[str]]] = {
                                ItemNames.brand_tan, ItemNames.brand_gor, ItemNames.brand_lev, ItemNames.enable_killer]],
 
     LocationNames.statue_lover: [[ItemNames.void_memory, ItemNames.brand_add,
-                                  ItemNames.brand_eus, ItemNames.enable_lover]],
+                                  ItemNames.brand_eus, ItemNames.enable_lover, ItemNames.void_wings],
+                                 [ItemNames.void_memory, ItemNames.brand_add,
+                                  ItemNames.brand_eus, ItemNames.enable_lover, ItemNames.endless_void_rod]],
     LocationNames.statue_smiler: [[ItemNames.void_memory, ItemNames.enable_smiler]],
     LocationNames.statue_killer: [[ItemNames.brand_add, ItemNames.brand_eus, ItemNames.brand_bee, ItemNames.brand_mon,
                                    ItemNames.brand_tan, ItemNames.enable_killer, ItemNames.void_memory]],
@@ -247,7 +249,7 @@ location_no_locust_dis_logic: Dict[str, List[List[str]]] = {
 
     LocationNames.mural_bee: [[ItemNames.brand_add]],
     LocationNames.mural_mon: [[ItemNames.brand_add, ItemNames.brand_eus]],
-    LocationNames.mural_tan: [[ItemNames.brand_add, ItemNames.brand_eus, ItemNames.brand_bee, ItemNames.enable_killer]],
+    LocationNames.mural_tan: [[ItemNames.brand_add, ItemNames.brand_eus, ItemNames.brand_bee]],
     LocationNames.mural_gor: [[ItemNames.brand_add, ItemNames.brand_eus, ItemNames.brand_bee, ItemNames.brand_mon,
                                ItemNames.enable_killer]],
     LocationNames.mural_lev: [[ItemNames.brand_add, ItemNames.brand_eus, ItemNames.brand_bee, ItemNames.brand_mon,
@@ -474,7 +476,7 @@ location_no_shortcut_dis_logic: Dict[str, List[List[str]]] = {
 
     LocationNames.mural_bee: [[ItemNames.brand_add]],
     LocationNames.mural_mon: [[ItemNames.brand_add, ItemNames.brand_eus]],
-    LocationNames.mural_tan: [[ItemNames.brand_add, ItemNames.brand_eus, ItemNames.brand_bee, ItemNames.enable_killer]],
+    LocationNames.mural_tan: [[ItemNames.brand_add, ItemNames.brand_eus, ItemNames.brand_bee]],
     LocationNames.mural_gor: [[ItemNames.brand_add, ItemNames.brand_eus, ItemNames.brand_bee, ItemNames.brand_mon,
                                ItemNames.enable_killer]],
     LocationNames.mural_lev: [[ItemNames.brand_add, ItemNames.brand_eus, ItemNames.brand_bee, ItemNames.brand_mon,
@@ -648,7 +650,7 @@ location_brand_idol_dis_logic: Dict[str, List[List[str]]] = {
 
     LocationNames.mural_bee: [[ItemNames.brand_add]],
     LocationNames.mural_mon: [[ItemNames.brand_add, ItemNames.brand_eus]],
-    LocationNames.mural_tan: [[ItemNames.brand_add, ItemNames.brand_eus, ItemNames.brand_bee, ItemNames.enable_killer]],
+    LocationNames.mural_tan: [[ItemNames.brand_add, ItemNames.brand_eus, ItemNames.brand_bee]],
     LocationNames.mural_gor: [[ItemNames.brand_add, ItemNames.brand_eus, ItemNames.brand_bee, ItemNames.brand_mon,
                                ItemNames.enable_killer]],
     LocationNames.mural_lev: [[ItemNames.brand_add, ItemNames.brand_eus, ItemNames.brand_bee, ItemNames.brand_mon,

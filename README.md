@@ -72,7 +72,7 @@ sequence.
 ## Future Plans
 1. Fixing the Endless Void rod issue
 
-2. Support for characters other than Gray, more on that in #2
+2. Support for characters other than Gray, more on that in #3
 
 3. More Goals, I'm thinking the normal ending for all three characters. Perhaps Bee's Stinky Hole would be a good short 
 goal. Additionally, a MacGuffin oriented goal seems fitting. Carcass ending seems like a pretty bad goal in my opinion, 
@@ -84,6 +84,11 @@ requires exactly one item and its annoying to reach unless you play as Cif.
 items left to place in those locations. Perhaps I could let the player choose locust chests or memento crystals as 
 locations, but not both. There are already way too many locust items in the pool as it is.
 
-6. Removing the constant network event debug message? At first, it was just a debug measure but as I played it sort of 
+6. Making the void more convenient to traverse, by adding reset function to menu and more liberal manipulation of 
+locusts.
+
+7. Saving most recent connection details used.
+
+8. Removing the constant network event debug message? At first, it was just a debug measure but as I played it sort of 
 grew on me? It provides a sort of reassurance that the communications are working properly. If enough people raise 
 complaints about it I'll get rid of it I suppose.
