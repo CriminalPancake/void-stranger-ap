@@ -33,15 +33,11 @@ the AP server is always shown in the top left.
 Rod. To properly get the upgrade, you will have to disconnect from the server by closing the game, then get back to the
 brand entry screen to start again, open the chest on B002 and then connect to the server.
 
-2. Mon will be invisible if your locust count isn't high enough. For now I have made it so they are standing on a locust 
-tile. Even after somebody else fixed this on their end, my game refuses to draw their sprite, so this issue might be 
-here to stay, unfortunately. 
-
-3. There is a bug with how UMT recompiles the game that can cause crashes when a textbox displays with different 
+2. There is a bug with how UMT recompiles the game that can cause crashes when a textbox displays with different 
 dialogue sounds. I fixed all the ones needed to complete a run, but I'm sure there are other instances of this across 
 the game. If you run into this please provide the crash message so I can fix it.
 
-4. During the final RPG battle, the command menu text is squished together. This is purely visual thankfully.
+3. During the final RPG battle, the command menu text is squished together. This is purely visual thankfully.
 
 ## General options/game info
 Game Spoilers ahead, read at your own risk
@@ -90,3 +86,16 @@ locusts.
 7. Saving most recent connection details used.
 
 8. Reworking the constant network event debug message to be more detailed and readable
+
+
+## Special Thanks
+
+ThatOneGuy - For making the Manual Void Stranger AP Implementation
+
+Rayze - For sticking around and bouncing ideas around with me from the start
+
+Leonarth - For helping a massive amount with the gamemaker netcode side of things (and of course working on that library
+in the first place!)
+
+Cavin856 - For offering a staggering amount of wonderful feedback on how to improve this going forward, and also helping
+with some bug fixes and logic errors
