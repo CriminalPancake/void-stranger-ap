@@ -51,6 +51,13 @@ chest locations uncheckable, and Cif cannot goal. By default, the following are 
 - The ability to access the interface, with a location on the Egg in Gor's chamber since it hints about the interface. 
 Make sure to have the Void Memory for that check.
 
+The location and Item names are intentionally vague so as to minimize spoiling the game for other players, if you need 
+to see what all the names mean you can check the 
+item names here: https://github.com/CriminalPancake/void-stranger-ap/blob/main/voidstranger/Constants/ItemNames.py
+
+and the location 
+names here: https://github.com/CriminalPancake/void-stranger-ap/blob/main/voidstranger/Constants/LocationNames.py
+
 There are options for the following:
 
 - Randomizing normal chests. When you connect, your locust count will be set to the total amount received so far 
