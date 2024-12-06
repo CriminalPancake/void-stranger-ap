@@ -29,21 +29,27 @@ the AP server is always shown in the top left.
 
 ## Known bugs
 
-1. The game doesn't properly handle receiving the Endless Void Rod before opening the chest on B002 with the normal Void
-Rod. To properly get the upgrade, you will have to disconnect from the server by closing the game, then get back to the
-brand entry screen to start again, open the chest on B002 and then connect to the server.
-
-2. There is a bug with how UMT recompiles the game that can cause crashes when a textbox displays with different 
+1. There is a bug with how UMT recompiles the game that can cause crashes when a textbox displays with different 
 dialogue sounds. I fixed all the ones needed to complete a run, but I'm sure there are other instances of this across 
 the game. If you run into this please provide the crash message so I can fix it.
 
-3. During the final RPG battle, the command menu text is squished together. This is purely visual thankfully.
+2. During the final RPG battle, the command menu text is squished together. This is purely visual thankfully. (Should be
+fixed, but isn't yet tested so in the list it remains  until its confirmed)
 
 ## General options/game info
 Game Spoilers ahead, read at your own risk
 
 The apworld assumes you play as Gray with the DIS ending as the only goal. Playing as Lillie will make certain locust 
-chest locations uncheckable, and Cif cannot goal. By default, the following are randomized: 
+chest locations uncheckable, and Cif cannot goal. 
+
+Items are not received if the player does not carry the void rod. 
+An error message will display: "Waiting for VR Connection" until it is picked up. Then the game sends a sync message to 
+the AP server and all items are received. 
+
+The Pause menu contains 2 new options replacing the close game option: Atone and End Run. The first acts as a portable 
+atoner, letting you go back to B001 at any time. The second is used to go back to brand entry, but is unimplemented.
+
+By default, the following are randomized: 
 
 - Burdens
 - Seals on the Endless Void Rod, with killing the traitors as locations
@@ -73,26 +79,22 @@ For now, the only goal is the DIS ending, goal is sent after completing the fina
 sequence.
 
 ## Future Plans
-1. Fixing the Endless Void rod issue
 
-2. Support for characters other than Gray, more on that in #3
+1. Support for characters other than Gray, more on that in #2
 
-3. More Goals, I'm thinking the normal ending for all three characters. Perhaps Bee's Stinky Hole would be a good short 
+2. More Goals, I'm thinking the normal ending for all three characters. Perhaps Bee's Stinky Hole would be a good short 
 goal. Additionally, a MacGuffin oriented goal seems fitting. Carcass ending seems like a pretty bad goal in my opinion, 
 requires exactly one item and its annoying to reach unless you play as Cif.
 
-4. Add an option for all kinds of shortcuts being accounted for in logic with brandsanity
+3. Add an option for all kinds of shortcuts being accounted for in logic with brandsanity
 
-5. MAYBE more locations, but many ideas I've seen (memento crystals mainly) have one big issue: there aren't any more 
+4. MAYBE more locations, but many ideas I've seen (memento crystals mainly) have one big issue: there aren't any more 
 items left to place in those locations. Perhaps I could let the player choose locust chests or memento crystals as 
 locations, but not both. There are already way too many locust items in the pool as it is.
 
-6. Making the void more convenient to traverse, by adding reset function to menu and more liberal manipulation of 
-locusts.
+5. Making the void more convenient to traverse via more liberal manipulation of locusts.
 
-7. Saving most recent connection details used.
-
-8. Reworking the constant network event debug message to be more detailed and readable
+6. Saving most recent connection details used.
 
 
 ## Special Thanks
@@ -104,5 +106,5 @@ Rayze - For sticking around and bouncing ideas around with me from the start
 Leonarth - For helping a massive amount with the gamemaker netcode side of things (and of course working on that library
 in the first place!)
 
-Cavin856 - For offering a staggering amount of wonderful feedback on how to improve this going forward, and also helping
-with some bug fixes and logic errors
+Cavin856 - For offering a staggering amount of wonderful feedback on how to improve this going forward, helping
+with some bug fixes and logic errors, and adding the pause menu Atoner functionality.
