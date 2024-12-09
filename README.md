@@ -23,9 +23,8 @@ Finally, be sure to add the gm-apclientpp.dll to the Void Stranger folder
 
 ## Connecting to a server
 
-If the game was patched successfully, you can open the connection menu by pushing F10. Press tab to enter data and 
-move to the next field. (you will have to hit tab a few extra times after the password field) The most recent event from
-the AP server is always shown in the top left. 
+If the game was patched successfully, you can open the connection menu by pushing F10. Press Tab to move to the next field,
+Delete to clear the current field, and Enter to connect to AP. Your most recent connection will be saved.
 
 ## Known bugs
 
@@ -92,10 +91,6 @@ requires exactly one item and its annoying to reach unless you play as Cif.
 items left to place in those locations. Perhaps I could let the player choose locust chests or memento crystals as 
 locations, but not both. There are already way too many locust items in the pool as it is.
 
-5. Making the void more convenient to traverse via more liberal manipulation of locusts.
-
-6. Saving most recent connection details used.
-
 
 ## Special Thanks
 
@@ -106,5 +101,4 @@ Rayze - For sticking around and bouncing ideas around with me from the start
 Leonarth - For helping a massive amount with the gamemaker netcode side of things (and of course working on that library
 in the first place!)
 
-Cavin856 - For offering a staggering amount of wonderful feedback on how to improve this going forward, helping
-with some bug fixes and logic errors, and adding the pause menu Atoner functionality.
+Cavin856 - For help with bugfixes and adding several improvements and features to the mod
