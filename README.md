@@ -32,8 +32,10 @@ Delete to clear the current field, and Enter to connect to AP. Your most recent 
 dialogue sounds. I fixed all the ones needed to complete a run, but I'm sure there are other instances of this across 
 the game. If you run into this please provide the crash message so I can fix it.
 
-2. During the final RPG battle, the command menu text is squished together. This is purely visual thankfully. (Should be
-fixed, but isn't yet tested so in the list it remains  until its confirmed)
+2. During the final RPG battle, the command menu text is squished together. This is purely visual thankfully. 
+
+3. If you try to input a brand you have not received, you will go to the next Brane instead, and the Brane value will 
+be 'B???'. This doesn't affect much but atoning fixes it.
 
 ## General options/game info
 Game Spoilers ahead, read at your own risk

@@ -93,6 +93,9 @@ location_full_dis_logic: Dict[str, List[List[str]]] = {
     LocationNames.interface_manip_hint: [[ItemNames.brand_add, ItemNames.brand_eus, ItemNames.brand_bee,
                                           ItemNames.brand_mon, ItemNames.brand_tan, ItemNames.brand_gor,
                                           ItemNames.enable_killer, ItemNames.void_memory]],
+    LocationNames.lust_slain: [[ItemNames.brand_add, ItemNames.void_wings, ItemNames.void_sword]],
+    LocationNames.sloth_slain: [[ItemNames.brand_add, ItemNames.brand_eus, ItemNames.brand_bee, ItemNames.brand_mon,
+                               ItemNames.enable_killer, ItemNames.void_sword]],
 
     LocationNames.mural_bee: [[ItemNames.brand_add]],
     LocationNames.mural_mon: [[ItemNames.brand_add, ItemNames.brand_eus]],
@@ -247,6 +250,10 @@ location_no_locust_dis_logic: Dict[str, List[List[str]]] = {
                                           ItemNames.brand_mon, ItemNames.brand_tan, ItemNames.brand_gor,
                                           ItemNames.enable_killer, ItemNames.void_memory]],
 
+    LocationNames.lust_slain: [[ItemNames.brand_add, ItemNames.void_wings, ItemNames.void_sword]],
+    LocationNames.sloth_slain: [[ItemNames.brand_add, ItemNames.brand_eus, ItemNames.brand_bee, ItemNames.brand_mon,
+                               ItemNames.enable_killer, ItemNames.void_sword]],
+
     LocationNames.mural_bee: [[ItemNames.brand_add]],
     LocationNames.mural_mon: [[ItemNames.brand_add, ItemNames.brand_eus]],
     LocationNames.mural_tan: [[ItemNames.brand_add, ItemNames.brand_eus, ItemNames.brand_bee]],
@@ -285,6 +292,10 @@ location_no_idol_dis_logic: Dict[str, List[List[str]]] = {
     LocationNames.interface_manip_hint: [[ItemNames.brand_add, ItemNames.brand_eus, ItemNames.brand_bee,
                                           ItemNames.brand_mon, ItemNames.brand_tan, ItemNames.brand_gor,
                                           ItemNames.void_memory]],
+
+    LocationNames.lust_slain: [[ItemNames.brand_add, ItemNames.void_wings, ItemNames.void_sword]],
+    LocationNames.sloth_slain: [[ItemNames.brand_add, ItemNames.brand_eus, ItemNames.brand_bee, ItemNames.brand_mon,
+                                 ItemNames.void_sword]],
 
     LocationNames.mural_bee: [[ItemNames.brand_add]],
     LocationNames.mural_mon: [[ItemNames.brand_add, ItemNames.brand_eus]],
@@ -423,6 +434,9 @@ location_no_brand_dis_logic: Dict[str, List[List[str]]] = {
     LocationNames.endless_void_rod_chest: [[ItemNames.lust_seal, ItemNames.sloth_seal, ItemNames.interface_manip]],
     LocationNames.interface_manip_hint: [[ItemNames.enable_killer, ItemNames.void_memory]],
 
+LocationNames.lust_slain: [[ItemNames.void_wings, ItemNames.void_sword]],
+    LocationNames.sloth_slain: [[ItemNames.enable_killer, ItemNames.void_sword]],
+
     LocationNames.statue_lover: [[ItemNames.void_memory, ItemNames.enable_lover]],
     LocationNames.statue_smiler: [[ItemNames.void_memory, ItemNames.enable_smiler]],
     LocationNames.statue_killer: [[ItemNames.enable_killer, ItemNames.void_memory]],
@@ -473,6 +487,10 @@ location_no_shortcut_dis_logic: Dict[str, List[List[str]]] = {
     LocationNames.interface_manip_hint: [[ItemNames.brand_add, ItemNames.brand_eus, ItemNames.brand_bee,
                                           ItemNames.brand_mon, ItemNames.brand_tan, ItemNames.brand_gor,
                                           ItemNames.enable_killer, ItemNames.void_memory]],
+
+    LocationNames.lust_slain: [[ItemNames.brand_add, ItemNames.void_wings, ItemNames.void_sword]],
+    LocationNames.sloth_slain: [[ItemNames.brand_add, ItemNames.brand_eus, ItemNames.brand_bee, ItemNames.brand_mon,
+                               ItemNames.enable_killer, ItemNames.void_sword]],
 
     LocationNames.mural_bee: [[ItemNames.brand_add]],
     LocationNames.mural_mon: [[ItemNames.brand_add, ItemNames.brand_eus]],
@@ -618,6 +636,10 @@ location_brand_shortcut_dis_logic: Dict[str, List[List[str]]] = {
                                           ItemNames.brand_mon, ItemNames.brand_tan, ItemNames.brand_gor,
                                           ItemNames.void_memory]],
 
+    LocationNames.lust_slain: [[ItemNames.brand_add, ItemNames.void_wings, ItemNames.void_sword]],
+    LocationNames.sloth_slain: [[ItemNames.brand_add, ItemNames.brand_eus, ItemNames.brand_bee, ItemNames.brand_mon,
+                               ItemNames.void_sword]],
+
     LocationNames.mural_bee: [[ItemNames.brand_add]],
     LocationNames.mural_mon: [[ItemNames.brand_add, ItemNames.brand_eus]],
     LocationNames.mural_tan: [[ItemNames.brand_add, ItemNames.brand_eus, ItemNames.brand_bee]],
@@ -647,6 +669,10 @@ location_brand_idol_dis_logic: Dict[str, List[List[str]]] = {
     LocationNames.interface_manip_hint: [[ItemNames.brand_add, ItemNames.brand_eus, ItemNames.brand_bee,
                                           ItemNames.brand_mon, ItemNames.brand_tan, ItemNames.brand_gor,
                                           ItemNames.enable_killer, ItemNames.void_memory]],
+
+    LocationNames.lust_slain: [[ItemNames.brand_add, ItemNames.void_wings, ItemNames.void_sword]],
+    LocationNames.sloth_slain: [[ItemNames.brand_add, ItemNames.brand_eus, ItemNames.brand_bee, ItemNames.brand_mon,
+                               ItemNames.enable_killer, ItemNames.void_sword]],
 
     LocationNames.mural_bee: [[ItemNames.brand_add]],
     LocationNames.mural_mon: [[ItemNames.brand_add, ItemNames.brand_eus]],
@@ -679,6 +705,10 @@ location_brand_locust_dis_logic: Dict[str, List[List[str]]] = {
     LocationNames.interface_manip_hint: [[ItemNames.brand_add, ItemNames.brand_eus, ItemNames.brand_bee,
                                           ItemNames.brand_mon, ItemNames.brand_tan, ItemNames.brand_gor,
                                           ItemNames.void_memory]],
+
+    LocationNames.lust_slain: [[ItemNames.brand_add, ItemNames.void_wings, ItemNames.void_sword]],
+    LocationNames.sloth_slain: [[ItemNames.brand_add, ItemNames.brand_eus, ItemNames.brand_bee, ItemNames.brand_mon,
+                               ItemNames.void_sword]],
 
     LocationNames.mural_bee: [[ItemNames.brand_add]],
     LocationNames.mural_mon: [[ItemNames.brand_add, ItemNames.brand_eus]],
@@ -811,6 +841,9 @@ location_idol_shortcut_dis_logic: Dict[str, List[List[str]]] = {
     LocationNames.endless_void_rod_chest: [[ItemNames.lust_seal, ItemNames.sloth_seal, ItemNames.interface_manip]],
     LocationNames.interface_manip_hint: [[ItemNames.enable_killer, ItemNames.void_memory]],
 
+    LocationNames.lust_slain: [[ItemNames.void_wings, ItemNames.void_sword]],
+    LocationNames.sloth_slain: [[ItemNames.enable_killer, ItemNames.void_sword]],
+
     LocationNames.statue_lover: [[ItemNames.void_memory, ItemNames.enable_lover]],
     LocationNames.statue_smiler: [[ItemNames.void_memory, ItemNames.enable_smiler]],
     LocationNames.statue_killer: [[ItemNames.enable_killer, ItemNames.void_memory]],
@@ -826,6 +859,9 @@ location_idol_locust_dis_logic: Dict[str, List[List[str]]] = {
 
     LocationNames.endless_void_rod_chest: [[ItemNames.lust_seal, ItemNames.sloth_seal, ItemNames.interface_manip]],
     LocationNames.interface_manip_hint: [[ItemNames.enable_killer, ItemNames.void_memory]],
+
+    LocationNames.lust_slain: [[ItemNames.void_wings, ItemNames.void_sword]],
+    LocationNames.sloth_slain: [[ItemNames.enable_killer, ItemNames.void_sword]],
 
     LocationNames.statue_lover: [[ItemNames.void_memory, ItemNames.enable_lover]],
     LocationNames.statue_smiler: [[ItemNames.void_memory, ItemNames.enable_smiler]],
@@ -874,6 +910,10 @@ location_brand_dis_logic: Dict[str, List[List[str]]] = {
                                           ItemNames.brand_mon, ItemNames.brand_tan, ItemNames.brand_gor,
                                            ItemNames.void_memory]],
 
+    LocationNames.lust_slain: [[ItemNames.brand_add, ItemNames.void_wings, ItemNames.void_sword]],
+    LocationNames.sloth_slain: [[ItemNames.brand_add, ItemNames.brand_eus, ItemNames.brand_bee, ItemNames.brand_mon,
+                               ItemNames.void_sword]],
+
     LocationNames.mural_eus: [[ItemNames.brand_add]],
     LocationNames.mural_bee: [[ItemNames.brand_add, ItemNames.brand_eus]],
     LocationNames.mural_mon: [[ItemNames.brand_add, ItemNames.brand_eus, ItemNames.brand_bee]],
@@ -896,6 +936,9 @@ location_idol_dis_logic: Dict[str, List[List[str]]] = {
     LocationNames.endless_void_rod_chest: [[ItemNames.lust_seal, ItemNames.sloth_seal, ItemNames.interface_manip]],
     LocationNames.interface_manip_hint: [[ItemNames.enable_killer, ItemNames.void_memory]],
 
+    LocationNames.lust_slain: [[ItemNames.void_wings, ItemNames.void_sword]],
+    LocationNames.sloth_slain: [[ItemNames.enable_killer, ItemNames.void_sword]],
+
     LocationNames.statue_lover: [[ItemNames.void_memory, ItemNames.enable_lover]],
     LocationNames.statue_smiler: [[ItemNames.void_memory, ItemNames.enable_smiler]],
     LocationNames.statue_killer: [[ItemNames.enable_killer, ItemNames.void_memory]]
@@ -905,7 +948,10 @@ location_idol_dis_logic: Dict[str, List[List[str]]] = {
 #no extra randomization, or just locusts and/or shortcuts randomized
 location_min_dis_logic: Dict[str, List[List[str]]] = {
     LocationNames.endless_void_rod_chest: [[ItemNames.lust_seal, ItemNames.sloth_seal, ItemNames.interface_manip]],
-    LocationNames.interface_manip_hint: [[ItemNames.void_memory]]
+    LocationNames.interface_manip_hint: [[ItemNames.void_memory]],
+
+    LocationNames.lust_slain: [[ItemNames.void_wings, ItemNames.void_sword]],
+    LocationNames.sloth_slain: [[ItemNames.void_sword]],
 }
 
 def location_rule(state: CollectionState, world: VoidStrangerWorld, loc: str) -> bool:
