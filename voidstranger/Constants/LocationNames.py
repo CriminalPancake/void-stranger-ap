@@ -107,5 +107,22 @@ b200_chest = "B200 Chest"
 b209_chest = "B209 Chest"
 b210_chest = "B210 Chest"
 
+#Mon Chests
+m14_chest1 = "G14 Chest 1"
+m14_chest2 = "G14 Chest 2"
+m14_chest3 = "G14 Chest 3"
+m15_chest1 = "G15 Chest 1"
+m15_chest2 = "G15 Chest 2"
+m15_chest3 = "G15 Chest 3"
+m15_chest4 = "G15 Chest 4"
+m15_chest5 = "G15 Chest 5"
+m15_chest6 = "G15 Chest 6"
+m15_chest7 = "G15 Chest 7"
+m15_chest8 = "G15 Chest 8"
+m15_chest9 = "G15 Chest 9"
+m15_chest10 = "G15 Chest 10"
+m15_chest11 = "G15 Chest 11"
+m15_chest12 = "G15 Chest 12"
+
 #Goal
 ending_dis = "Finale"

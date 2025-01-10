@@ -31,9 +31,36 @@ class Shortcutsanity(Toggle):
     """
     display_name = "Shortcutsanity"
 
+class GreedZone(Toggle):
+    """
+    When enabled, adds 15 items and locations, for the 15 chests at the end of a certain optional area accessible from
+    B193. Entry is locked until all Greed Coins are collected. Only works if Locustsanity is enabled.
+    """
+    display_name = "Greed Zone"
+
+class GreedCoinAmount(Range):
+    """
+    Sets the amount of Greed Coins in the pool. The minimum and default value is 15, the maximum is 83. Using values
+    higher than 15 will remove locust idols from the pool to make room. Only works if the Greed Zone is enabled.
+    """
+    display_name = "Greed Coin Amount"
+    range_start = 15
+    range_end = 83
+    default = 15
+
+class SkipCutscenes(Toggle):
+    """
+    When enabled, the final cutscene at the end of the game is skipped, stepping onto the elevator brings you
+    instantly to controlling Lily in the final room.
+    """
+    display_name = "Skip Cutscenes"
+
 @dataclass
 class VoidStrangerOptions(PerGameCommonOptions):
     locustsanity: Locustsanity
     brandsanity: Brandsanity
     idolsanity: Idolsanity
     shortcutsanity: Shortcutsanity
+    greedzone: GreedZone
+    greedcoinamount: GreedCoinAmount
+    skipcutscenes: SkipCutscenes

@@ -128,13 +128,32 @@ chest_location_data_table: Dict[str, VoidStrangerLocationData] = {
     LocationNames.b210_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 92)
 }
 
+greed_chest_location_data_table: Dict[str, VoidStrangerLocationData] = {
+    LocationNames.m14_chest1: VoidStrangerLocationData("Void", void_stranger_base_id + 96),
+    LocationNames.m14_chest2: VoidStrangerLocationData("Void", void_stranger_base_id + 97),
+    LocationNames.m14_chest3: VoidStrangerLocationData("Void", void_stranger_base_id + 98),
+    LocationNames.m15_chest1: VoidStrangerLocationData("Void", void_stranger_base_id + 99),
+    LocationNames.m15_chest2: VoidStrangerLocationData("Void", void_stranger_base_id + 100),
+    LocationNames.m15_chest3: VoidStrangerLocationData("Void", void_stranger_base_id + 101),
+    LocationNames.m15_chest4: VoidStrangerLocationData("Void", void_stranger_base_id + 102),
+    LocationNames.m15_chest5: VoidStrangerLocationData("Void", void_stranger_base_id + 103),
+    LocationNames.m15_chest6: VoidStrangerLocationData("Void", void_stranger_base_id + 104),
+    LocationNames.m15_chest7: VoidStrangerLocationData("Void", void_stranger_base_id + 105),
+    LocationNames.m15_chest8: VoidStrangerLocationData("Void", void_stranger_base_id + 106),
+    LocationNames.m15_chest9: VoidStrangerLocationData("Void", void_stranger_base_id + 107),
+    LocationNames.m15_chest10: VoidStrangerLocationData("Void", void_stranger_base_id + 108),
+    LocationNames.m15_chest11: VoidStrangerLocationData("Void", void_stranger_base_id + 109),
+    LocationNames.m15_chest12: VoidStrangerLocationData("Void", void_stranger_base_id + 110)
+}
+
 location_data_table: Dict[str, VoidStrangerLocationData] = {
     **burden_location_data_table,
     **misc_location_data_table,
     **mural_location_data_table,
     **statue_location_data_table,
     **shortcut_location_data_table,
-    **chest_location_data_table
+    **chest_location_data_table,
+    **greed_chest_location_data_table
 }
 
 location_table = {name: data.address for name, data in location_data_table.items() if data.address is not None}
