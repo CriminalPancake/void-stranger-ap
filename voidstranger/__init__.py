@@ -29,7 +29,7 @@ class VoidStrangerWorld(World):
     #Instance Data
     active_logic_mapping: Dict[str, List[List[str]]]
     goal_logic_mapping: Dict[str, List[List[str]]]
-    greed_coin_count: int = 15
+    greed_coin_count: int
 
     def create_item(self, name: str) -> VoidStrangerItem:
         return VoidStrangerItem(name, item_data_table[name].type, item_data_table[name].code, self.player)
@@ -57,7 +57,7 @@ class VoidStrangerWorld(World):
 
             if self.options.greedzone:
                 location_count += 15
-                self.greed_coin_count: int = int(self.options.greedcoinamount)
+                self.greed_coin_count: int = int(self.options.greedcoinamount.value)
                 if self.greed_coin_count > 15:
                     gray_locusts -= self.greed_coin_count #removing locusts to make room for more greed coins if needed
                     if gray_locusts < 0: #if there are more greed coins than locusts, start removing triple locusts
