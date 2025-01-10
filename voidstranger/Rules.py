@@ -341,9 +341,6 @@ def set_rules(world: VoidStrangerWorld):
     # Completion condition.
     world.multiworld.completion_condition[world.player] = lambda state: goal_rule(state, world)
 
-    from Utils import visualize_regions
-    visualize_regions(world.multiworld.get_region("Menu", world.player), "my_world.puml")
-
 #goal rules
 
 #brands + idols randomized
