@@ -241,8 +241,7 @@ def set_rules(world: VoidStrangerWorld):
                                                              ItemNames.brand_bee: 1, ItemNames.brand_mon: 1,
                                                              ItemNames.brand_tan: 1, ItemNames.brand_gor: 1}, world.player))
 
-        else:
-            if world.options.idolsanity:
+        elif world.options.idolsanity:
                 #idol rules
                 set_rule(world.multiworld.get_location(LocationNames.m14_chest1, world.player),
                          lambda state: state.has_all_counts({ItemNames.greed_coin: world.greed_coin_count,
@@ -289,37 +288,38 @@ def set_rules(world: VoidStrangerWorld):
                 set_rule(world.multiworld.get_location(LocationNames.m15_chest12, world.player),
                          lambda state: state.has_all_counts({ItemNames.greed_coin: world.greed_coin_count,
                                                              ItemNames.enable_killer: 1}, world.player))
-        #just coins rules
-        set_rule(world.multiworld.get_location(LocationNames.m14_chest1, world.player),
-                 lambda state: state.has(ItemNames.greed_coin, world.player, world.greed_coin_count))
-        set_rule(world.multiworld.get_location(LocationNames.m14_chest2, world.player),
-                 lambda state: state.has(ItemNames.greed_coin, world.player, world.greed_coin_count))
-        set_rule(world.multiworld.get_location(LocationNames.m14_chest3, world.player),
-                 lambda state: state.has(ItemNames.greed_coin, world.player, world.greed_coin_count))
-        set_rule(world.multiworld.get_location(LocationNames.m15_chest1, world.player),
-                 lambda state: state.has(ItemNames.greed_coin, world.player, world.greed_coin_count))
-        set_rule(world.multiworld.get_location(LocationNames.m15_chest2, world.player),
-                 lambda state: state.has(ItemNames.greed_coin, world.player, world.greed_coin_count))
-        set_rule(world.multiworld.get_location(LocationNames.m15_chest3, world.player),
-                 lambda state: state.has(ItemNames.greed_coin, world.player, world.greed_coin_count))
-        set_rule(world.multiworld.get_location(LocationNames.m15_chest4, world.player),
-                 lambda state: state.has(ItemNames.greed_coin, world.player, world.greed_coin_count))
-        set_rule(world.multiworld.get_location(LocationNames.m15_chest5, world.player),
-                 lambda state: state.has(ItemNames.greed_coin, world.player, world.greed_coin_count))
-        set_rule(world.multiworld.get_location(LocationNames.m15_chest6, world.player),
-                 lambda state: state.has(ItemNames.greed_coin, world.player, world.greed_coin_count))
-        set_rule(world.multiworld.get_location(LocationNames.m15_chest7, world.player),
-                 lambda state: state.has(ItemNames.greed_coin, world.player, world.greed_coin_count))
-        set_rule(world.multiworld.get_location(LocationNames.m15_chest8, world.player),
-                 lambda state: state.has(ItemNames.greed_coin, world.player, world.greed_coin_count))
-        set_rule(world.multiworld.get_location(LocationNames.m15_chest9, world.player),
-                 lambda state: state.has(ItemNames.greed_coin, world.player, world.greed_coin_count))
-        set_rule(world.multiworld.get_location(LocationNames.m15_chest10, world.player),
-                 lambda state: state.has(ItemNames.greed_coin, world.player, world.greed_coin_count))
-        set_rule(world.multiworld.get_location(LocationNames.m15_chest11, world.player),
-                 lambda state: state.has(ItemNames.greed_coin, world.player, world.greed_coin_count))
-        set_rule(world.multiworld.get_location(LocationNames.m15_chest12, world.player),
-                 lambda state: state.has(ItemNames.greed_coin, world.player, world.greed_coin_count))
+        else:
+            #just coins rules
+            set_rule(world.multiworld.get_location(LocationNames.m14_chest1, world.player),
+                     lambda state: state.has(ItemNames.greed_coin, world.player, world.greed_coin_count))
+            set_rule(world.multiworld.get_location(LocationNames.m14_chest2, world.player),
+                     lambda state: state.has(ItemNames.greed_coin, world.player, world.greed_coin_count))
+            set_rule(world.multiworld.get_location(LocationNames.m14_chest3, world.player),
+                     lambda state: state.has(ItemNames.greed_coin, world.player, world.greed_coin_count))
+            set_rule(world.multiworld.get_location(LocationNames.m15_chest1, world.player),
+                     lambda state: state.has(ItemNames.greed_coin, world.player, world.greed_coin_count))
+            set_rule(world.multiworld.get_location(LocationNames.m15_chest2, world.player),
+                     lambda state: state.has(ItemNames.greed_coin, world.player, world.greed_coin_count))
+            set_rule(world.multiworld.get_location(LocationNames.m15_chest3, world.player),
+                     lambda state: state.has(ItemNames.greed_coin, world.player, world.greed_coin_count))
+            set_rule(world.multiworld.get_location(LocationNames.m15_chest4, world.player),
+                     lambda state: state.has(ItemNames.greed_coin, world.player, world.greed_coin_count))
+            set_rule(world.multiworld.get_location(LocationNames.m15_chest5, world.player),
+                     lambda state: state.has(ItemNames.greed_coin, world.player, world.greed_coin_count))
+            set_rule(world.multiworld.get_location(LocationNames.m15_chest6, world.player),
+                     lambda state: state.has(ItemNames.greed_coin, world.player, world.greed_coin_count))
+            set_rule(world.multiworld.get_location(LocationNames.m15_chest7, world.player),
+                     lambda state: state.has(ItemNames.greed_coin, world.player, world.greed_coin_count))
+            set_rule(world.multiworld.get_location(LocationNames.m15_chest8, world.player),
+                     lambda state: state.has(ItemNames.greed_coin, world.player, world.greed_coin_count))
+            set_rule(world.multiworld.get_location(LocationNames.m15_chest9, world.player),
+                     lambda state: state.has(ItemNames.greed_coin, world.player, world.greed_coin_count))
+            set_rule(world.multiworld.get_location(LocationNames.m15_chest10, world.player),
+                     lambda state: state.has(ItemNames.greed_coin, world.player, world.greed_coin_count))
+            set_rule(world.multiworld.get_location(LocationNames.m15_chest11, world.player),
+                     lambda state: state.has(ItemNames.greed_coin, world.player, world.greed_coin_count))
+            set_rule(world.multiworld.get_location(LocationNames.m15_chest12, world.player),
+                     lambda state: state.has(ItemNames.greed_coin, world.player, world.greed_coin_count))
 
     if world.options.brandsanity:
         forbid_item(world.multiworld.get_location(LocationNames.mural_add, world.player), ItemNames.endless_void_rod,
