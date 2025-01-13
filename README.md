@@ -71,8 +71,8 @@ names here: https://github.com/CriminalPancake/void-stranger-ap/blob/main/voidst
 There are options for the following:
 
 - Randomizing normal chests. Adds locust idols to the pool and they are managed by the locust menu, accessed with F9.
-  When locust idols are received from AP, they are added to a bank you can withdraw from using this menu. To replenish the
-  pool, you must atone via statue or the pause menu. The menu can be closed without taking any locusts using F9.
+  When locust idols are received from AP, they are added to a bank you can withdraw from using this menu. To replenish 
+  the pool, you must atone via statue or the pause menu. The menu can be closed without taking any locusts using F9.
 - Adding the ability to use brands to the item pool, with the murals having locations. Without a Void Lord's Brand,
   you cannot progress beyond their domain. No shortcuts of any kind are considered
   in the logic with this enabled at the moment

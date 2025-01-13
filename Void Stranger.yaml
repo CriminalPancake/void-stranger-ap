@@ -32,7 +32,7 @@ description: Default Void Stranger Template
 
 game: Void Stranger
 requires:
-  version: 0.5.0 # Version of Archipelago required for this yaml to work as expected.
+  version: 0.5.1 # Version of Archipelago required for this yaml to work as expected.
 
 Void Stranger:
   # Game Options
@@ -54,17 +54,16 @@ Void Stranger:
   accessibility:
     # Set rules for reachability of your items/locations.
     # 
-    # - **Locations:** ensure everything can be reached and acquired.
-    # - **Items:** ensure all logically relevant items can be acquired.
-    # - **Minimal:** ensure what is needed to reach your goal can be acquired.
-    locations: 0
-    items: 50
+    # **Full:** ensure everything can be reached and acquired.
+    # 
+    # **Minimal:** ensure what is needed to reach your goal can be acquired.
+    full: 50
     minimal: 0
 
   locustsanity:
     # When enabled, Locust Idols are shuffled into the item pool and their chests award checks. Each chest capable of
-    # tripling its contents adds an item worth 3 locusts to the pool. Using an atoner no longer sets your count to 0 but
-    # instead to the number received
+    # tripling its contents adds an item worth 3 locusts to the pool. Using an atoner no longer sets your count to 0 but instead to
+    # the number received
     'false': 50
     'true': 0
 
@@ -83,6 +82,12 @@ Void Stranger:
   shortcutsanity:
     # When enabled, the ability to use each of Mon's shortcuts are shuffled into the item pool. The locust requirements
     # for Mon to appear are removed, and talking to them awards a check
+    'false': 50
+    'true': 0
+
+  skipcutscenes:
+    # When enabled, the final cutscene at the end of the game is skipped, stepping onto the elevator brings you
+    # instantly to controlling Lily in the final room.
     'false': 50
     'true': 0
 
