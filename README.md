@@ -80,6 +80,7 @@ There are options for the following:
 the void memory. Note that getting all of these items is required for go mode, and you may get stuck without them
 in the final area
 - Adding ability to use shortcuts to the item pool, talking to Mon in each location gives checks
+- Skipping the long sequence of cutscenes before the final section of gameplay.
 
 For now, the only goal is the DIS ending, goal is sent after completing the final gameplay section before the ending 
 sequence.
