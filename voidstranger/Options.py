@@ -31,9 +31,17 @@ class Shortcutsanity(Toggle):
     """
     display_name = "Shortcutsanity"
 
+class SkipCutscenes(Toggle):
+    """
+    When enabled, the final cutscene at the end of the game is skipped, stepping onto the elevator brings you
+    instantly to controlling Lily in the final room.
+    """
+    display_name = "Skip Cutscenes"
+
 @dataclass
 class VoidStrangerOptions(PerGameCommonOptions):
     locustsanity: Locustsanity
     brandsanity: Brandsanity
     idolsanity: Idolsanity
     shortcutsanity: Shortcutsanity
+    skipcutscenes: SkipCutscenes

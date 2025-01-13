@@ -23,19 +23,17 @@ Finally, be sure to add the gm-apclientpp.dll to the Void Stranger folder
 
 ## Connecting to a server
 
-If the game was patched successfully, you can open the connection menu by pushing F10. Press Tab to move to the next field,
-Delete to clear the current field, and Enter to connect to AP. Your most recent connection will be saved.
+If the game was patched successfully, you can open the connection menu by pushing F10. Press Tab to move to the next 
+field, delete to clear the current field, and Enter to connect to AP. Your most recent connection will be saved.
 
 ## Known bugs
 
-1. There is a bug with how UMT recompiles the game that can cause crashes when a textbox displays with different 
+1. There is a bug with how the game is recompiled by UMT that can cause crashes when a textbox displays with different 
 dialogue sounds. I fixed all the ones needed to complete a run, but I'm sure there are other instances of this across 
-the game. If you run into this please provide the crash message so I can fix it.
+the game. If you run into this please provide the crash message, so I can fix it.
 
-2. During the final RPG battle, the command menu text is squished together. This is purely visual thankfully. 
-
-3. If you try to input a brand you have not received, you will go to the next Brane instead, and the Brane value will 
-be 'B???'. This doesn't affect much but atoning fixes it.
+2. If a Burden is received while one of the AP menus is open (connection menu, locust menu or item tracker), it will not
+be properly unlocked in game. Closing and reopening the game should fix this.
 
 ## General options/game info
 Game Spoilers ahead, read at your own risk
@@ -48,7 +46,12 @@ An error message will display: "Waiting for VR Connection" until it is picked up
 the AP server and all items are received. 
 
 The Pause menu contains 2 new options replacing the close game option: Atone and End Run. The first acts as a portable 
-atoner, letting you go back to B001 at any time. The second is used to go back to brand entry, but is unimplemented.
+atoner, letting you go back to B001 at any time. The second is used to go back to brand entry, mostly so players can 
+quickly exit their current run. Going back to brand entry in the middle of an AP run is not recommended as you will lose
+your items.
+
+Pushing F11 will bring up your item tracker, helpful for keeping track of the less visible items like the seals for 
+example.
 
 By default, the following are randomized: 
 
