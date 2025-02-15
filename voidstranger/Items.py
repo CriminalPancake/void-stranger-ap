@@ -56,8 +56,8 @@ shortcut_item_data_table: Dict[str, VoidStrangerItemData] = {
 }
 
 locustItemTable: Dict[str, VoidStrangerItemData] = {
-    ItemNames.locust_idol: VoidStrangerItemData(void_stranger_base_id + 25, ItemClassification.useful), #41 for Gray, 39 for Lillith
-    ItemNames.tripled_locust: VoidStrangerItemData(void_stranger_base_id + 26, ItemClassification.useful) #27 for Gray, 29 for Lillith
+    ItemNames.locust_idol: VoidStrangerItemData(void_stranger_base_id + 25, ItemClassification.useful), #42 for Gray, 40 for Lillith
+    ItemNames.tripled_locust: VoidStrangerItemData(void_stranger_base_id + 26, ItemClassification.useful) #26 for Gray, 29 for Lillith
 }
 
 item_data_table: Dict[str, VoidStrangerItemData] = {

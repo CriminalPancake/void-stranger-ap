@@ -45,7 +45,7 @@ class VoidStrangerWorld(World):
                       if name not in self.options.start_inventory]
 
         if self.options.locustsanity:
-            location_count+= 67
+            location_count+= 68
             gray_locusts: int = 42
             gray_triple_locusts: int = 26
             #for later
