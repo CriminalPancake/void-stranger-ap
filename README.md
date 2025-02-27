@@ -28,12 +28,15 @@ field, delete to clear the current field, and Enter to connect to AP. Your most 
 
 ## Known bugs
 
-1. There is a bug with how the game is recompiled by UMT that can cause crashes when a textbox displays with different 
-dialogue sounds. I fixed all the ones needed to complete a run, but I'm sure there are other instances of this across 
-the game. If you run into this please provide the crash message, so I can fix it.
+1. GAME BREAKING ASYNC BUG!!!: If the Endless Void Rod is sent to you while the game is not connected to the AP Server,
+then you won't get the rod upgrade, and you will need to have it cheated in.
 
 2. If a Burden is received while one of the AP menus is open (connection menu, locust menu or item tracker), it will not
 be properly unlocked in game. Closing and reopening the game should fix this.
+
+3. There is a bug with how the game is recompiled by UMT that can cause crashes when a textbox displays with different 
+dialogue sounds. I fixed all the ones needed to complete a run, but I'm sure there are other instances of this across 
+the game. If you run into this please provide the crash message, so I can fix it.
 
 ## General options/game info
 Game Spoilers ahead, read at your own risk
@@ -61,7 +64,7 @@ By default, the following are randomized:
 - The ability to access the interface, with a location on the Egg in Gor's chamber since it hints about the interface. 
 Make sure to have the Void Memory for that check.
 
-The location and Item names are intentionally vague so as to minimize spoiling the game for other players, if you need 
+The location and Item names are intentionally vague to minimize spoiling the game for other players, if you need 
 to see what all the names mean you can check the 
 item names here: https://github.com/CriminalPancake/void-stranger-ap/blob/main/voidstranger/Constants/ItemNames.py
 
@@ -106,7 +109,7 @@ ThatOneGuy - For making the Manual Void Stranger AP Implementation
 
 Rayze - For sticking around and bouncing ideas around with me from the start
 
-Leonarth - For helping a massive amount with the gamemaker netcode side of things (and of course working on that library
+Leonarth - For helping a massive amount with the gamemaker net code side of things (and of course working on that library
 in the first place!)
 
 Cavin856 - For help with bugfixes and adding several improvements and features to the mod
