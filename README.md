@@ -21,10 +21,28 @@ files with new content or a fix)
 
 Finally, be sure to add the gm-apclientpp.dll to the Void Stranger folder
 
-## Connecting to a server
+## AP Menu
 
-If the game was patched successfully, you can open the connection menu by pushing F10. Press Tab to move to the next 
-field, delete to clear the current field, and Enter to connect to AP. Your most recent connection will be saved.
+If the game was patched successfully, you can open the AP menu by pushing F10 or binding a controller button to it.
+The AP menu has three pages, which can be navigated with left and right.
+
+- Connection page
+  This is the default page. Here you can input the connection details to connect to the AP server.
+  Press Tab to move to the next field, Delete to clear the current field, and Enter to connect to AP.
+  Your most recent connection will be saved.
+
+- Mon Bank page
+  Any locusts you receive from AP are sent here (if Locust-Sanity is turned on). Up/Down to navigate the options.
+  You can withdraw and throw out locusts at will. Throwing out locusts DOES NOT deposit them back into the bank.
+  Upon Atoning, your locust count resets as well as the amount withdrawn, but not the amount received.
+  For rando balance reasons, you cannot withdraw if that would cause you to hold more than you've recieved.
+
+- Tracker page
+  This page keeps track of all the items you've received.
+  Top row is brands, middle row is statues (only three are implemented), bottom row in order is:
+    Void Memory, Seal of Lust, Void Wings, Mon Badge (Unimplemented), Void Sword, Seal of Sloth, Void Rod, Interface Manip
+  Shortcuts will show up on the righthand side with the shortcut number and an image depicting it.
+  The DIS Brand appears as a large DIS Badge between the three rows and the shortcuts, if you have it.
 
 ## Known bugs
 
@@ -53,9 +71,6 @@ atoner, letting you go back to B001 at any time. The second is used to go back t
 quickly exit their current run. Going back to brand entry in the middle of an AP run is not recommended as you will lose
 your items.
 
-Pushing F11 will bring up your item tracker, helpful for keeping track of the less visible items like the seals for 
-example.
-
 By default, the following are randomized: 
 
 - Burdens
@@ -73,9 +88,7 @@ names here: https://github.com/CriminalPancake/void-stranger-ap/blob/main/voidst
 
 There are options for the following:
 
-- Randomizing normal chests. Adds locust idols to the pool and they are managed by the locust menu, accessed with F9.
-  When locust idols are received from AP, they are added to a bank you can withdraw from using this menu. To replenish 
-  the pool, you must atone via statue or the pause menu. The menu can be closed without taking any locusts using F9.
+- Randomizing normal chests. Adds locust idols to the pool and they are managed by the Mon Bank. See "AP Menu" above.
 - Adding the ability to use brands to the item pool, with the murals having locations. Without a Void Lord's Brand,
   you cannot progress beyond their domain. No shortcuts of any kind are considered
   in the logic with this enabled at the moment
@@ -101,6 +114,8 @@ requires exactly one item and its annoying to reach unless you play as Cif.
 4. MAYBE more locations, but many ideas I've seen (memento crystals mainly) have one big issue: there aren't any more 
 items left to place in those locations. Perhaps I could let the player choose locust chests or memento crystals as 
 locations, but not both. There are already way too many locust items in the pool as it is.
+
+5. Possibly shuffling in new player dungeons and floors to remix things up?
 
 
 ## Special Thanks
