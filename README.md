@@ -53,8 +53,8 @@ atoner, letting you go back to B001 at any time. The second is used to go back t
 quickly exit their current run. Going back to brand entry in the middle of an AP run is not recommended as you will lose
 your items.
 
-Pushing F11 will bring up your item tracker, helpful for keeping track of the less visible items like the seals for 
-example.
+Pushing left or right in the AP menu will navigate to the Mon Bank for managing received locusts, and your item tracker
+which is helpful for keeping track of the less visible items like the seals for example.
 
 By default, the following are randomized: 
 
@@ -94,14 +94,17 @@ sequence.
 
 2. More Goals, I'm thinking the normal ending for all three characters. Perhaps Bee's Stinky Hole would be a good short 
 goal. Additionally, a MacGuffin oriented goal seems fitting. Carcass ending seems like a pretty bad goal in my opinion, 
-requires exactly one item and its annoying to reach unless you play as Cif.
+requires exactly one item and its annoying to reach unless you play as Cif. Killing all bosses could be a goal. Also 
+making goals to get multiple endings of the player's choice.
 
 3. Add an option for all kinds of shortcuts being accounted for in logic with brandsanity
 
 4. MAYBE more locations, but many ideas I've seen (memento crystals mainly) have one big issue: there aren't any more 
 items left to place in those locations. Perhaps I could let the player choose locust chests or memento crystals as 
-locations, but not both. There are already way too many locust items in the pool as it is.
+locations, but not both. There are already way too many locust items in the pool as it is. Interesting ideas include the 
+9 reachable chests in the voided ending and the end of the white void.
 
+5. Add the Gor Cube as an alternate location for undoing the seal of sloth
 
 ## Special Thanks
 
