@@ -35,13 +35,13 @@ The AP menu has three pages, which can be navigated with left and right.
   Any locusts you receive from AP are sent here (if Locust-Sanity is turned on). Up/Down to navigate the options.
   You can withdraw and throw out locusts at will. Throwing out locusts DOES NOT deposit them back into the bank.
   Upon Atoning, your locust count resets as well as the amount withdrawn, but not the amount received.
-  For rando balance reasons, you cannot withdraw if that would cause you to hold more than you've recieved.
+  For rando balance reasons, you cannot withdraw if that would cause you to hold more than you've received.
 
 - Tracker page
   This page keeps track of all the items you've received.
   Top row is brands, middle row is statues (only three are implemented), bottom row in order is:
-    Void Memory, Seal of Lust, Void Wings, Mon Badge (Unimplemented), Void Sword, Seal of Sloth, Void Rod, Interface Manip
-  Shortcuts will show up on the righthand side with the shortcut number and an image depicting it.
+  Void Memory, Seal of Lust, Void Wings, Mon Badge (Unimplemented), Void Sword, Seal of Sloth, Void Rod, Interface Manip
+  Shortcuts will show up on the right hand side with the shortcut number and an image depicting it.
   The DIS Brand appears as a large DIS Badge between the three rows and the shortcuts, if you have it.
 
 ## Known bugs
@@ -50,7 +50,8 @@ The AP menu has three pages, which can be navigated with left and right.
 then you won't get the rod upgrade, and you will need to have it cheated in.
 
 2. If a Burden is received while one of the AP menus is open (connection menu, locust menu or item tracker), it will not
-be properly unlocked in game. Closing and reopening the game should fix this.
+be properly unlocked in game. Closing and reopening the game should fix this. Sometimes it might happen outside the 
+menus, the same fix will work for that too.
 
 3. There is a bug with how the game is recompiled by UMT that can cause crashes when a textbox displays with different 
 dialogue sounds. I fixed all the ones needed to complete a run, but I'm sure there are other instances of this across 
@@ -88,14 +89,16 @@ names here: https://github.com/CriminalPancake/void-stranger-ap/blob/main/voidst
 
 There are options for the following:
 
-- Randomizing normal chests. Adds locust idols to the pool and they are managed by the Mon Bank. See "AP Menu" above.
+- Randomizing normal chests. Adds locust idols to the pool, and they are managed by the Mon Bank. See "AP Menu" above.
 - Adding the ability to use brands to the item pool, with the murals having locations. Without a Void Lord's Brand,
   you cannot progress beyond their domain. No shortcuts of any kind are considered
   in the logic with this enabled at the moment
+- Making the Brand items progressive. Each one you have will grant the next brand in order.
 - Disabling Smilers, Lovers and Killers until finding their respective items. Adds locations for talking to them with 
 the void memory. Note that getting all of these items is required for go mode, and you may get stuck without them
 in the final area
 - Adding ability to use shortcuts to the item pool, talking to Mon in each location gives checks
+- adding interface manipulation as a requirement for as many of the shortcuts as you want
 - Skipping the long sequence of cutscenes before the final section of gameplay.
 
 For now, the only goal is the DIS ending, goal is sent after completing the final gameplay section before the ending 
@@ -124,7 +127,7 @@ ThatOneGuy - For making the Manual Void Stranger AP Implementation
 
 Rayze - For sticking around and bouncing ideas around with me from the start
 
-Leonarth - For helping a massive amount with the gamemaker net code side of things (and of course working on that library
-in the first place!)
+Leonarth - For helping a massive amount with the gamemaker net code side of things (and of course working on that 
+library in the first place!)
 
 Cavin856 - For help with bugfixes and adding several improvements and features to the mod

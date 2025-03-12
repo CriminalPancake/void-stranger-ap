@@ -2,7 +2,7 @@ from typing import Dict, NamedTuple, Optional
 
 from BaseClasses import Item, ItemClassification
 from .Constants import ItemNames
-
+from .Locations import VoidStrangerLocationData
 
 void_stranger_base_id: int = 12345000
 
@@ -38,6 +38,10 @@ brand_item_data_table: Dict[str, VoidStrangerItemData] = {
     ItemNames.brand_dis: VoidStrangerItemData(void_stranger_base_id + 13, ItemClassification.progression)
 }
 
+prog_brand_item_data_table: Dict[str, VoidStrangerItemData] = {
+    ItemNames.brand_prog: VoidStrangerItemData(void_stranger_base_id + 29, ItemClassification.progression)
+}
+
 statue_item_data_table: Dict[str, VoidStrangerItemData] = {
     ItemNames.enable_lover: VoidStrangerItemData(void_stranger_base_id + 14, ItemClassification.progression),
     ItemNames.enable_smiler: VoidStrangerItemData(void_stranger_base_id + 15, ItemClassification.progression),
@@ -56,14 +60,15 @@ shortcut_item_data_table: Dict[str, VoidStrangerItemData] = {
 }
 
 locustItemTable: Dict[str, VoidStrangerItemData] = {
-    ItemNames.locust_idol: VoidStrangerItemData(void_stranger_base_id + 25, ItemClassification.useful), #42 for Gray, 40 for Lillith
-    ItemNames.tripled_locust: VoidStrangerItemData(void_stranger_base_id + 26, ItemClassification.useful) #26 for Gray, 29 for Lillith
+    ItemNames.locust_idol: VoidStrangerItemData(void_stranger_base_id + 25, ItemClassification.progression), #42 for Gray, 40 for Lillith
+    ItemNames.tripled_locust: VoidStrangerItemData(void_stranger_base_id + 26, ItemClassification.progression) #26 for Gray, 29 for Lillith
 }
 
 item_data_table: Dict[str, VoidStrangerItemData] = {
     **burden_item_data_table,
     **misc_item_data_table,
     **brand_item_data_table,
+    **prog_brand_item_data_table,
     **statue_item_data_table,
     **shortcut_item_data_table,
     **locustItemTable

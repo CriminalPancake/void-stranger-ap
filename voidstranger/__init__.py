@@ -1,8 +1,9 @@
 from typing import Dict, List
-from BaseClasses import Region
+from BaseClasses import Region, Item, CollectionState, ItemClassification
 from worlds.AutoWorld import WebWorld, World
 from .Items import VoidStrangerItem, burden_item_data_table, misc_item_data_table, brand_item_data_table, \
-    statue_item_data_table, shortcut_item_data_table, locustItemTable, item_data_table, item_table
+    statue_item_data_table, shortcut_item_data_table, locustItemTable, item_data_table, item_table, \
+    prog_brand_item_data_table
 from .Locations import VoidStrangerLocation, burden_location_data_table, misc_location_data_table,\
     mural_location_data_table, statue_location_data_table, shortcut_location_data_table, chest_location_data_table, \
     location_table
@@ -25,8 +26,24 @@ class VoidStrangerWorld(World):
     item_name_to_id = item_table
 
     #Instance Data
-    active_logic_mapping: Dict[str, List[List[str]]]
+    locusts: ItemClassification.progression
     goal_logic_mapping: Dict[str, List[List[str]]]
+
+    def collect(self, state: "CollectionState", item: "Item") -> bool:
+        change = super().collect(state, item)
+        if change and item.name == ItemNames.locust_idol:
+            state.prog_items[item.player]["locusts"] += 1
+        elif change and item.name == ItemNames.tripled_locust:
+            state.prog_items[item.player]["locusts"] += 3
+        return change
+
+    def remove(self, state: "CollectionState", item: "Item") -> bool:
+        change = super().remove(state, item)
+        if change and item.name == ItemNames.locust_idol:
+            state.prog_items[item.player]["locusts"] -= 1
+        elif change and item.name == ItemNames.tripled_locust:
+            state.prog_items[item.player]["locusts"] -= 3
+        return change
 
     def create_item(self, name: str) -> VoidStrangerItem:
         return VoidStrangerItem(name, item_data_table[name].type, item_data_table[name].code, self.player)
@@ -45,7 +62,7 @@ class VoidStrangerWorld(World):
                       if name not in self.options.start_inventory]
 
         if self.options.locustsanity:
-            location_count+= 68
+            location_count += 68
             gray_locusts: int = 42
             gray_triple_locusts: int = 26
             #for later
@@ -56,9 +73,13 @@ class VoidStrangerWorld(World):
             item_pool += [self.create_item(ItemNames.tripled_locust) for _ in range(gray_triple_locusts)]
         if self.options.brandsanity:
             location_count+= 9
-            item_pool += [self.create_item(name)
-                          for name in brand_item_data_table.keys()
-                          if name not in self.options.start_inventory]
+
+            if self.options.progressivebrands:
+                item_pool += [self.create_item(ItemNames.brand_prog) for _ in range(9)]
+            else:
+                item_pool += [self.create_item(name)
+                              for name in brand_item_data_table.keys()
+                              if name not in self.options.start_inventory]
         if self.options.idolsanity:
             location_count+= 3
             item_pool += [self.create_item(name)
@@ -78,8 +99,6 @@ class VoidStrangerWorld(World):
         for region_name in region_data_table.keys():
             region = Region(region_name, self.player, self.multiworld)
             self.multiworld.regions.append(region)
-
-
 
             # Create locations.
         for region_name, region_data in region_data_table.items():
@@ -129,6 +148,8 @@ class VoidStrangerWorld(World):
         return {
             "locustsanity": self.options.locustsanity.value,
             "brandsanity": self.options.brandsanity.value,
+            "progressivebrands": self.options.progressivebrands.value,
             "idolsanity": self.options.idolsanity.value,
-            "shortcutsanity": self.options.shortcutsanity.value
+            "shortcutsanity": self.options.shortcutsanity.value,
+            "shortcutcheating": self.options.shortcutcheating.value
         }
