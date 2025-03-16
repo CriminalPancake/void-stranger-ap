@@ -3,6 +3,7 @@ from typing import Dict, NamedTuple, Optional
 from BaseClasses import Item, ItemClassification
 from .Constants import ItemNames
 from .Constants.ItemNames import greed_coin
+from .Locations import VoidStrangerLocationData
 
 void_stranger_base_id: int = 12345000
 
@@ -38,6 +39,10 @@ brand_item_data_table: Dict[str, VoidStrangerItemData] = {
     ItemNames.brand_dis: VoidStrangerItemData(void_stranger_base_id + 13, ItemClassification.progression)
 }
 
+prog_brand_item_data_table: Dict[str, VoidStrangerItemData] = {
+    ItemNames.brand_prog: VoidStrangerItemData(void_stranger_base_id + 29, ItemClassification.progression)
+}
+
 statue_item_data_table: Dict[str, VoidStrangerItemData] = {
     ItemNames.enable_lover: VoidStrangerItemData(void_stranger_base_id + 14, ItemClassification.progression),
     ItemNames.enable_smiler: VoidStrangerItemData(void_stranger_base_id + 15, ItemClassification.progression),
@@ -55,21 +60,20 @@ shortcut_item_data_table: Dict[str, VoidStrangerItemData] = {
     ItemNames.shortcut5: VoidStrangerItemData(void_stranger_base_id + 24, ItemClassification.useful)
 }
 
-locust_item_table: Dict[str, VoidStrangerItemData] = {
-    ItemNames.locust_idol: VoidStrangerItemData(void_stranger_base_id + 25, ItemClassification.useful),
-    #41 for Gray, 39 for Lillith
-    ItemNames.tripled_locust: VoidStrangerItemData(void_stranger_base_id + 26, ItemClassification.useful)
-    #27 for Gray, 29 for Lillith
+locustItemTable: Dict[str, VoidStrangerItemData] = {
+    ItemNames.locust_idol: VoidStrangerItemData(void_stranger_base_id + 25, ItemClassification.progression), #42 for Gray, 40 for Lillith
+    ItemNames.tripled_locust: VoidStrangerItemData(void_stranger_base_id + 26, ItemClassification.progression) #26 for Gray, 29 for Lillith
 }
 
 greed_coin_item_table: Dict[str, VoidStrangerItemData] = {
-    ItemNames.greed_coin: VoidStrangerItemData(void_stranger_base_id + 29, ItemClassification.progression)
+    ItemNames.greed_coin: VoidStrangerItemData(void_stranger_base_id + 30, ItemClassification.progression)
 }
 
 item_data_table: Dict[str, VoidStrangerItemData] = {
     **burden_item_data_table,
     **misc_item_data_table,
     **brand_item_data_table,
+    **prog_brand_item_data_table,
     **statue_item_data_table,
     **shortcut_item_data_table,
     **locust_item_table,

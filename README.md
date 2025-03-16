@@ -21,21 +21,41 @@ files with new content or a fix)
 
 Finally, be sure to add the gm-apclientpp.dll to the Void Stranger folder
 
-## Connecting to a server
+## AP Menu
 
-If the game was patched successfully, you can open the connection menu by pushing F10. Press Tab to move to the next field,
-Delete to clear the current field, and Enter to connect to AP. Your most recent connection will be saved.
+If the game was patched successfully, you can open the AP menu by pushing F10 or binding a controller button to it.
+The AP menu has three pages, which can be navigated with left and right.
+
+- Connection page
+  This is the default page. Here you can input the connection details to connect to the AP server.
+  Press Tab to move to the next field, Delete to clear the current field, and Enter to connect to AP.
+  Your most recent connection will be saved.
+
+- Mon Bank page
+  Any locusts you receive from AP are sent here (if Locust-Sanity is turned on). Up/Down to navigate the options.
+  You can withdraw and throw out locusts at will. Throwing out locusts DOES NOT deposit them back into the bank.
+  Upon Atoning, your locust count resets as well as the amount withdrawn, but not the amount received.
+  For rando balance reasons, you cannot withdraw if that would cause you to hold more than you've received.
+
+- Tracker page
+  This page keeps track of all the items you've received.
+  Top row is brands, middle row is statues (only three are implemented), bottom row in order is:
+  Void Memory, Seal of Lust, Void Wings, Mon Badge (Unimplemented), Void Sword, Seal of Sloth, Void Rod, Interface Manip
+  Shortcuts will show up on the right hand side with the shortcut number and an image depicting it.
+  The DIS Brand appears as a large DIS Badge between the three rows and the shortcuts, if you have it.
 
 ## Known bugs
 
-1. There is a bug with how UMT recompiles the game that can cause crashes when a textbox displays with different 
+1. GAME BREAKING ASYNC BUG!!!: If the Endless Void Rod is sent to you while the game is not connected to the AP Server,
+then you won't get the rod upgrade, and you will need to have it cheated in.
+
+2. If a Burden is received while one of the AP menus is open (connection menu, locust menu or item tracker), it will not
+be properly unlocked in game. Closing and reopening the game should fix this. Sometimes it might happen outside the 
+menus, the same fix will work for that too.
+
+3. There is a bug with how the game is recompiled by UMT that can cause crashes when a textbox displays with different 
 dialogue sounds. I fixed all the ones needed to complete a run, but I'm sure there are other instances of this across 
-the game. If you run into this please provide the crash message so I can fix it.
-
-2. During the final RPG battle, the command menu text is squished together. This is purely visual thankfully. 
-
-3. If you try to input a brand you have not received, you will go to the next Brane instead, and the Brane value will 
-be 'B???'. This doesn't affect much but atoning fixes it.
+the game. If you run into this please provide the crash message, so I can fix it.
 
 ## General options/game info
 Game Spoilers ahead, read at your own risk
@@ -48,7 +68,9 @@ An error message will display: "Waiting for VR Connection" until it is picked up
 the AP server and all items are received. 
 
 The Pause menu contains 2 new options replacing the close game option: Atone and End Run. The first acts as a portable 
-atoner, letting you go back to B001 at any time. The second is used to go back to brand entry, but is unimplemented.
+atoner, letting you go back to B001 at any time. The second is used to go back to brand entry, mostly so players can 
+quickly exit their current run. Going back to brand entry in the middle of an AP run is not recommended as you will lose
+your items.
 
 By default, the following are randomized: 
 
@@ -58,7 +80,7 @@ By default, the following are randomized:
 - The ability to access the interface, with a location on the Egg in Gor's chamber since it hints about the interface. 
 Make sure to have the Void Memory for that check.
 
-The location and Item names are intentionally vague so as to minimize spoiling the game for other players, if you need 
+The location and Item names are intentionally vague to minimize spoiling the game for other players, if you need 
 to see what all the names mean you can check the 
 item names here: https://github.com/CriminalPancake/void-stranger-ap/blob/main/voidstranger/Constants/ItemNames.py
 
@@ -67,16 +89,17 @@ names here: https://github.com/CriminalPancake/void-stranger-ap/blob/main/voidst
 
 There are options for the following:
 
-- Randomizing normal chests. Adds locust idols to the pool and they are managed by the locust menu, accessed with F9.
-  When locust idols are received from AP, they are added to a bank you can withdraw from using this menu. To replenish the
-  pool, you must atone via statue or the pause menu. The menu can be closed without taking any locusts using F9.
+- Randomizing normal chests. Adds locust idols to the pool, and they are managed by the Mon Bank. See "AP Menu" above.
 - Adding the ability to use brands to the item pool, with the murals having locations. Without a Void Lord's Brand,
   you cannot progress beyond their domain. No shortcuts of any kind are considered
   in the logic with this enabled at the moment
+- Making the Brand items progressive. Each one you have will grant the next brand in order.
 - Disabling Smilers, Lovers and Killers until finding their respective items. Adds locations for talking to them with 
 the void memory. Note that getting all of these items is required for go mode, and you may get stuck without them
 in the final area
 - Adding ability to use shortcuts to the item pool, talking to Mon in each location gives checks
+- adding interface manipulation as a requirement for as many of the shortcuts as you want
+- Skipping the long sequence of cutscenes before the final section of gameplay.
 
 For now, the only goal is the DIS ending, goal is sent after completing the final gameplay section before the ending 
 sequence.
@@ -95,6 +118,8 @@ requires exactly one item and its annoying to reach unless you play as Cif.
 items left to place in those locations. Perhaps I could let the player choose locust chests or memento crystals as 
 locations, but not both. There are already way too many locust items in the pool as it is.
 
+5. Possibly shuffling in new player dungeons and floors to remix things up?
+
 
 ## Special Thanks
 
@@ -102,7 +127,7 @@ ThatOneGuy - For making the Manual Void Stranger AP Implementation
 
 Rayze - For sticking around and bouncing ideas around with me from the start
 
-Leonarth - For helping a massive amount with the gamemaker netcode side of things (and of course working on that library
-in the first place!)
+Leonarth - For helping a massive amount with the gamemaker net code side of things (and of course working on that 
+library in the first place!)
 
 Cavin856 - For help with bugfixes and adding several improvements and features to the mod

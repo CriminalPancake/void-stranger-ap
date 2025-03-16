@@ -4,30 +4,36 @@ from Options import Choice, Range, Toggle, OptionGroup, PerGameCommonOptions
 
 class Locustsanity(Toggle):
     """
-    When enabled, Locust Idols are shuffled into the item pool and their chests award checks. Each chest capable of
-    tripling its contents adds an item worth 3 locusts to the pool. Using an atoner no longer sets your count to 0 but instead to
-    the number received
+    When enabled, Locust Idols are shuffled into the item pool and their chests are checks. Each chest capable of
+    tripling its contents adds an item worth 3 locusts to the pool.
     """
     display_name = "Locustsanity"
 
 class Brandsanity(Toggle):
     """
     When enabled, the ability to carve each lord's brand into rooms are shuffled into the item pool and
-    the inspecting the murals depicting them awards a check
+    the inspecting each mural depicting them gives a check
     """
     display_name = "Brandsanity"
+
+class ProgressiveBrands(Toggle):
+    """
+    When enabled, 9 progressive brands are added to the pool instead of specific ones for each domain. Each domain needs
+    an additional brand to enter. No effect when brandsanity is disabled.
+    """
+    display_name = "Progressive Brands"
 
 class Idolsanity(Toggle):
     """
     When enabled, the Lover, Smiler, and Killer Idols are eggs until their respective items are received, and
-    once restored, talking to them with the void memory awards a check
+    once restored, talking to them with the void memory gives checks
     """
     display_name = "Idolsanity"
 
 class Shortcutsanity(Toggle):
     """
-    When enabled, the ability to use each of Mon's shortcuts are shuffled into the item pool. The locust requirements
-    for Mon to appear are removed, and talking to them awards a check
+    When enabled, the ability to use each of Mon's shortcuts are shuffled into the item pool, and talking to them is a
+    check
     """
     display_name = "Shortcutsanity"
 
@@ -48,6 +54,18 @@ class GreedCoinAmount(Range):
     range_end = 83
     default = 15
 
+class ShortcutCheating(Range):
+    """
+    Determines how many of the shortcuts will require the "Unlock Cheats" item in logic. This starts from the final
+    shortcut, so a value of 2 will make the final 2 shortcuts require cheating for example. Since the first shortcut
+    only needs 3 there is no need to cheat on this one.
+    For reference the requirements are as follows: 3, 21, 49, 56, and 77. Has no effect if Shortcutsanity is disabled.
+    """
+    display_name = "Shortcut Cheating"
+    range_start = 0
+    range_end = 4
+    default = 3
+
 class SkipCutscenes(Toggle):
     """
     When enabled, the final cutscene at the end of the game is skipped, stepping onto the elevator brings you
@@ -59,8 +77,10 @@ class SkipCutscenes(Toggle):
 class VoidStrangerOptions(PerGameCommonOptions):
     locustsanity: Locustsanity
     brandsanity: Brandsanity
+    progressivebrands: ProgressiveBrands
     idolsanity: Idolsanity
     shortcutsanity: Shortcutsanity
     greedzone: GreedZone
     greedcoinamount: GreedCoinAmount
+    shortcutcheating: ShortcutCheating
     skipcutscenes: SkipCutscenes

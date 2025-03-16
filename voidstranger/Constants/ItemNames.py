@@ -19,6 +19,7 @@ brand_gor = "Sign of Sloth"
 brand_lev = "Sign of Envy"
 brand_cif = "Sign of Pride"
 brand_dis = "Sign of Mystery"
+brand_prog = "Sign of Progress"
 
 #Statues
 enable_lover = "Idol of Lust"
