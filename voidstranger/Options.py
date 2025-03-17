@@ -37,6 +37,18 @@ class Shortcutsanity(Toggle):
     """
     display_name = "Shortcutsanity"
 
+class ShortcutCheating(Range):
+    """
+    Determines how many of the shortcuts will require the "Unlock Cheats" item in logic. This starts from the final
+    shortcut, so a value of 2 will make the final 2 shortcuts require cheating for example. Since the first shortcut
+    only needs 3 there is no need to cheat on this one.
+    For reference the requirements are as follows: 3, 21, 49, 56, and 77. Has no effect if Shortcutsanity is disabled.
+    """
+    display_name = "Shortcut Cheating"
+    range_start = 0
+    range_end = 4
+    default = 3
+
 class GreedZone(Toggle):
     """
     When enabled, adds 15 items and locations, for the 15 chests at the end of a certain optional area accessible from
@@ -54,18 +66,6 @@ class GreedCoinAmount(Range):
     range_end = 83
     default = 15
 
-class ShortcutCheating(Range):
-    """
-    Determines how many of the shortcuts will require the "Unlock Cheats" item in logic. This starts from the final
-    shortcut, so a value of 2 will make the final 2 shortcuts require cheating for example. Since the first shortcut
-    only needs 3 there is no need to cheat on this one.
-    For reference the requirements are as follows: 3, 21, 49, 56, and 77. Has no effect if Shortcutsanity is disabled.
-    """
-    display_name = "Shortcut Cheating"
-    range_start = 0
-    range_end = 4
-    default = 3
-
 class SkipCutscenes(Toggle):
     """
     When enabled, the final cutscene at the end of the game is skipped, stepping onto the elevator brings you
@@ -80,7 +80,7 @@ class VoidStrangerOptions(PerGameCommonOptions):
     progressivebrands: ProgressiveBrands
     idolsanity: Idolsanity
     shortcutsanity: Shortcutsanity
+    shortcutcheating: ShortcutCheating
     greedzone: GreedZone
     greedcoinamount: GreedCoinAmount
-    shortcutcheating: ShortcutCheating
     skipcutscenes: SkipCutscenes

@@ -4,7 +4,7 @@ from worlds.AutoWorld import WebWorld, World
 
 from .Constants.ItemNames import greed_coin
 from .Items import VoidStrangerItem, burden_item_data_table, misc_item_data_table, brand_item_data_table, \
-    statue_item_data_table, shortcut_item_data_table, locustItemTable, item_data_table, item_table, \
+    statue_item_data_table, shortcut_item_data_table, locust_item_table, item_data_table, item_table, \
     prog_brand_item_data_table
 from .Locations import VoidStrangerLocation, burden_location_data_table, misc_location_data_table,\
     mural_location_data_table, statue_location_data_table, shortcut_location_data_table, chest_location_data_table, \
@@ -76,7 +76,7 @@ class VoidStrangerWorld(World):
                 location_count += 15
                 self.greed_coin_count: int = int(self.options.greedcoinamount.value)
                 if self.greed_coin_count > 15:
-                    gray_locusts -= self.greed_coin_count #removing locusts to make room for more greed coins if needed
+                    gray_locusts -= self.greed_coin_count - 15 #removing locusts to make room for more greed coins if needed
                     if gray_locusts < 0: #if there are more greed coins than locusts, start removing triple locusts
                         gray_triple_locusts += gray_locusts
                 item_pool += [self.create_item(ItemNames.greed_coin) for _ in range(self.greed_coin_count)]
@@ -169,8 +169,7 @@ class VoidStrangerWorld(World):
             "progressivebrands": self.options.progressivebrands.value,
             "idolsanity": self.options.idolsanity.value,
             "shortcutsanity": self.options.shortcutsanity.value,
+            "shortcutcheating": self.options.shortcutcheating.value,
             "greedzone": self.options.greedzone.value,
             "greedcoinamount": self.options.greedcoinamount.value
-            "shortcutsanity": self.options.shortcutsanity.value,
-            "shortcutcheating": self.options.shortcutcheating.value
         }
