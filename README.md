@@ -53,7 +53,12 @@ then you won't get the rod upgrade, and you will need to have it cheated in.
 be properly unlocked in game. Closing and reopening the game should fix this. Sometimes it might happen outside the 
 menus, the same fix will work for that too.
 
-3. There is a bug with how the game is recompiled by UMT that can cause crashes when a textbox displays with different 
+3. The tracker shows a slightly incorrect image for Gor's brand. 
+
+4. The greed zone might not open properly the first time, it's unclear from the small amount of testing done. If you run
+ into this issue then reconnecting should fix it. 
+
+5. There is a bug with how the game is recompiled by UMT that can cause crashes when a textbox displays with different 
 dialogue sounds. I fixed all the ones needed to complete a run, but I'm sure there are other instances of this across 
 the game. If you run into this please provide the crash message, so I can fix it.
 
@@ -98,7 +103,11 @@ There are options for the following:
 the void memory. Note that getting all of these items is required for go mode, and you may get stuck without them
 in the final area
 - Adding ability to use shortcuts to the item pool, talking to Mon in each location gives checks
-- adding interface manipulation as a requirement for as many of the shortcuts as you want
+- Adding interface manipulation as a requirement for as many of the shortcuts as you want
+- Adding the 15 chests (including the 3 before the final room) at the end Mon's Lair as locations. The item pool will 
+have 15 "Greed Coins" added which lock the entrance until they are all collected. You can also add more Greed Coins to 
+the pool, removing locusts from the pool to make room. This option only works with normal chests being randomized 
+already.
 - Skipping the long sequence of cutscenes before the final section of gameplay.
 
 For now, the only goal is the DIS ending, goal is sent after completing the final gameplay section before the ending 
