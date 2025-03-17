@@ -2,6 +2,7 @@ from typing import Dict, NamedTuple, Optional
 
 from BaseClasses import Item, ItemClassification
 from .Constants import ItemNames
+from .Constants.ItemNames import greed_coin
 from .Locations import VoidStrangerLocationData
 
 void_stranger_base_id: int = 12345000
@@ -59,9 +60,13 @@ shortcut_item_data_table: Dict[str, VoidStrangerItemData] = {
     ItemNames.shortcut5: VoidStrangerItemData(void_stranger_base_id + 24, ItemClassification.useful)
 }
 
-locustItemTable: Dict[str, VoidStrangerItemData] = {
+locust_item_table: Dict[str, VoidStrangerItemData] = {
     ItemNames.locust_idol: VoidStrangerItemData(void_stranger_base_id + 25, ItemClassification.progression), #42 for Gray, 40 for Lillith
     ItemNames.tripled_locust: VoidStrangerItemData(void_stranger_base_id + 26, ItemClassification.progression) #26 for Gray, 29 for Lillith
+}
+
+greed_coin_item_table: Dict[str, VoidStrangerItemData] = {
+    ItemNames.greed_coin: VoidStrangerItemData(void_stranger_base_id + 30, ItemClassification.progression)
 }
 
 item_data_table: Dict[str, VoidStrangerItemData] = {
@@ -71,7 +76,8 @@ item_data_table: Dict[str, VoidStrangerItemData] = {
     **prog_brand_item_data_table,
     **statue_item_data_table,
     **shortcut_item_data_table,
-    **locustItemTable
+    **locust_item_table,
+    **greed_coin_item_table
 }
 
 item_table = {name: data.code for name, data in item_data_table.items() if data.code is not None}

@@ -41,3 +41,6 @@ shortcut5 = "Shop Item 5"
 #Locusts
 locust_idol = "Locust Idol"
 tripled_locust = "Lucky Locust Idol"
+
+#Greed Coins
+greed_coin = "Greed Coin"
