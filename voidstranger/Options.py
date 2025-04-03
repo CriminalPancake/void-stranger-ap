@@ -12,7 +12,7 @@ class Locustsanity(Toggle):
 class Brandsanity(Toggle):
     """
     When enabled, the ability to carve each lord's brand into rooms are shuffled into the item pool and
-    the inspecting each mural depicting them gives a check
+    the inspecting each mural depicting them gives a check.
     """
     display_name = "Brandsanity"
 
@@ -26,14 +26,14 @@ class ProgressiveBrands(Toggle):
 class Idolsanity(Toggle):
     """
     When enabled, the Lover, Smiler, and Killer Idols are eggs until their respective items are received, and
-    once restored, talking to them with the void memory gives checks
+    once restored, talking to them with the void memory gives checks.
     """
     display_name = "Idolsanity"
 
 class Shortcutsanity(Toggle):
     """
     When enabled, the ability to use each of Mon's shortcuts are shuffled into the item pool, and talking to them is a
-    check
+    check.
     """
     display_name = "Shortcutsanity"
 
@@ -59,11 +59,11 @@ class GreedZone(Toggle):
 class GreedCoinAmount(Range):
     """
     Sets the amount of Greed Coins in the pool. The minimum and default value is 15, the maximum is 83. Using values
-    higher than 15 will remove locust idols from the pool to make room. Only works if the Greed Zone is enabled.
+    higher than 15 will remove normal locust idols from the pool to make room. Only works if the Greed Zone is enabled.
     """
     display_name = "Greed Coin Amount"
     range_start = 15
-    range_end = 83
+    range_end = 35
     default = 15
 
 class SkipCutscenes(Toggle):
