@@ -119,15 +119,23 @@ sequence.
 
 2. More Goals, I'm thinking the normal ending for all three characters. Perhaps Bee's Stinky Hole would be a good short 
 goal. Additionally, a MacGuffin oriented goal seems fitting. Carcass ending seems like a pretty bad goal in my opinion, 
-requires exactly one item and its annoying to reach unless you play as Cif.
+requires exactly one item and its annoying to reach unless you play as Cif. We could also have a goal to beat all bosses.
 
-3. Add an option for all kinds of shortcuts being accounted for in logic with brandsanity
+3. Getting multiple endings to goal, something like "reach three endings" and then the player can choose which ones to reach.
 
-4. MAYBE more locations, but many ideas I've seen (memento crystals mainly) have one big issue: there aren't any more 
+4. Add an option for all kinds of shortcuts being accounted for in logic with brandsanity
+
+5. MAYBE more locations, but many ideas I've seen (memento crystals mainly) have one big issue: there aren't any more 
 items left to place in those locations. Perhaps I could let the player choose locust chests or memento crystals as 
 locations, but not both. There are already way too many locust items in the pool as it is.
 
-5. Possibly shuffling in new player dungeons and floors to remix things up?
+Notable ideas include:
+- The 9 reachable chests in the Voided sequence
+- Bottom of the white void
+
+6. Gor cube as an alternate location instead of the normal kill
+
+7. Possibly shuffling in new player dungeons and floors to remix things up?
 
 
 ## Special Thanks
