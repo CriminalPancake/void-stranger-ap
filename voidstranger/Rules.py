@@ -1326,33 +1326,37 @@ def set_rules(world: VoidStrangerWorld):
             add_rule(world.multiworld.get_location(LocationNames.buy_shortcut1, world.player),
                      lambda state: locust(state, world.player, 3))
 
-            add_rule(world.multiworld.get_location(LocationNames.buy_shortcut2, world.player),
-                     lambda state: locust(state, world.player, 21))
+            if world.options.shortcutcheating >= 4:
+                add_rule(world.multiworld.get_location(LocationNames.buy_shortcut2, world.player),
+                         lambda state: state.has(ItemNames.interface_manip, world.player) or
+                                       locust(state, world.player, 21))
+            else:
+                add_rule(world.multiworld.get_location(LocationNames.buy_shortcut2, world.player),
+                         lambda state: locust(state, world.player, 21))
 
-            add_rule(world.multiworld.get_location(LocationNames.buy_shortcut3, world.player),
-                     lambda state: locust(state, world.player, 49))
+            if world.options.shortcutcheating >= 3:
+                add_rule(world.multiworld.get_location(LocationNames.buy_shortcut3, world.player),
+                         lambda state: state.has(ItemNames.interface_manip, world.player) or
+                                       locust(state, world.player, 49))
+            else:
+                add_rule(world.multiworld.get_location(LocationNames.buy_shortcut3, world.player),
+                         lambda state: locust(state, world.player, 49))
 
-            add_rule(world.multiworld.get_location(LocationNames.buy_shortcut4, world.player),
-                     lambda state: locust(state, world.player, 56))
+            if world.options.shortcutcheating >= 2:
+                add_rule(world.multiworld.get_location(LocationNames.buy_shortcut4, world.player),
+                         lambda state: state.has(ItemNames.interface_manip, world.player) or
+                                       locust(state, world.player, 56))
+            else:
+                add_rule(world.multiworld.get_location(LocationNames.buy_shortcut4, world.player),
+                         lambda state: locust(state, world.player, 56))
 
-            add_rule(world.multiworld.get_location(LocationNames.buy_shortcut5, world.player),
-                     lambda state: locust(state, world.player, 77))
-
-        if world.options.shortcutcheating >= 4:
-            add_rule(world.multiworld.get_location(LocationNames.buy_shortcut2, world.player),
-                     lambda state: state.has(ItemNames.interface_manip, world.player))
-
-        if world.options.shortcutcheating >= 3:
-            add_rule(world.multiworld.get_location(LocationNames.buy_shortcut3, world.player),
-                     lambda state: state.has(ItemNames.interface_manip, world.player))
-
-        if world.options.shortcutcheating >= 2:
-            add_rule(world.multiworld.get_location(LocationNames.buy_shortcut4, world.player),
-                     lambda state: state.has(ItemNames.interface_manip, world.player))
-
-        if world.options.shortcutcheating >= 1:
-            add_rule(world.multiworld.get_location(LocationNames.buy_shortcut5, world.player),
-                     lambda state: state.has(ItemNames.interface_manip, world.player))
+            if world.options.shortcutcheating >= 1:
+                add_rule(world.multiworld.get_location(LocationNames.buy_shortcut5, world.player),
+                         lambda state: state.has(ItemNames.interface_manip, world.player) or
+                                       locust(state, world.player, 77))
+            else:
+                add_rule(world.multiworld.get_location(LocationNames.buy_shortcut5, world.player),
+                         lambda state: locust(state, world.player, 77))
 
 def locust(state: CollectionState, player: int, required: int) -> bool:
     return state.has("locusts", player, required)

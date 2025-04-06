@@ -42,12 +42,13 @@ class ShortcutCheating(Range):
     Determines how many of the shortcut hint locations from Mon will require the "Unlock Cheats" item in logic to reach.
     This starts from the final shortcut, so a value of 2 will make the final 2 shortcut hint locations require cheating
     for example. Since the first shortcut only needs 3 there is no need to cheat on this one.
-    For reference the requirements are as follows: 3, 21, 49, 56, and 77. Has no effect if Shortcutsanity is disabled.
+    For reference the requirements are as follows: 3, 21, 49, 56, and 77. Only functions with both shortcutsanity and
+    locustsanity enabled.
     """
     display_name = "Shortcut Cheating"
     range_start = 0
     range_end = 4
-    default = 3
+    default = 2
 
 class GreedZone(Toggle):
     """

@@ -62,6 +62,12 @@ menus, the same fix will work for that too.
 dialogue sounds. I fixed all the ones needed to complete a run, but I'm sure there are other instances of this across 
 the game. If you run into this please provide the crash message, so I can fix it.
 
+6. There has been a report of progressive brands not being received properly due to multiple being sent at once from a
+release, reconnecting resolves the issue.
+
+If you run into an issue not on this list, try reconnecting to the AP server. Regardless of if this resolves the issue, 
+report it either on the Void Stranger thread on the AP discord or open an issue with the details here on the repository.
+
 ## General options/game info
 Game Spoilers ahead, read at your own risk
 
