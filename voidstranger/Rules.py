@@ -139,6 +139,10 @@ def set_rules(world: VoidStrangerWorld):
     add_rule(world.multiworld.get_location(LocationNames.sloth_slain, world.player),
              lambda state: state.has(ItemNames.void_sword, world.player))
 
+    if world.options.killtan:
+        add_rule(world.multiworld.get_location(LocationNames.burden_chest3, world.player),
+                 lambda state: state.has(ItemNames.void_sword, world.player))
+
     #base Greed Zone rules
     if world.options.greedzone and world.options.locustsanity:
         add_rule(world.multiworld.get_location(LocationNames.m14_chest1, world.player),
