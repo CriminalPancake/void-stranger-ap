@@ -169,8 +169,7 @@ class VoidStrangerWorld(World):
             "progressivebrands": self.options.progressivebrands.value,
             "idolsanity": self.options.idolsanity.value,
             "shortcutsanity": self.options.shortcutsanity.value,
-            "killtan": self.options.killtan.value,
+            "shortcutcheating": self.options.shortcutcheating.value,
             "greedzone": self.options.greedzone.value,
-            "greedcoinamount": self.options.greedcoinamount.value,
-            "skipcutscenes": self.options.skipcutscenes.value
+            "greedcoinamount": self.options.greedcoinamount.value
         }

@@ -50,13 +50,6 @@ class ShortcutCheating(Range):
     range_end = 4
     default = 2
 
-class KillTan(Toggle):
-    """
-    If this is enabled, you must kill Tan to get the check for the sword. Otherwise you get it upon interacting with the
-     sword as normal.
-    """
-    display_name = "Kill Tan"
-
 class GreedZone(Toggle):
     """
     When enabled, adds 15 items and locations, for the 15 chests at the end of a certain optional area accessible from
@@ -89,7 +82,6 @@ class VoidStrangerOptions(PerGameCommonOptions):
     idolsanity: Idolsanity
     shortcutsanity: Shortcutsanity
     shortcutcheating: ShortcutCheating
-    killtan: KillTan
     greedzone: GreedZone
     greedcoinamount: GreedCoinAmount
     skipcutscenes: SkipCutscenes
