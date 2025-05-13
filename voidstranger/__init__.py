@@ -171,5 +171,6 @@ class VoidStrangerWorld(World):
             "shortcutsanity": self.options.shortcutsanity.value,
             "shortcutcheating": self.options.shortcutcheating.value,
             "greedzone": self.options.greedzone.value,
-            "greedcoinamount": self.options.greedcoinamount.value
+            "greedcoinamount": self.options.greedcoinamount.value,
+            "skipcutscenes": self.options.skipcutscenes.value
         }
