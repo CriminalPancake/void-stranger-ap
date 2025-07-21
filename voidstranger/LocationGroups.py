@@ -1,3 +1,4 @@
+from BaseClasses import Location
 from .Constants import LocationNames
 
 
