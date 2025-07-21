@@ -1,4 +1,4 @@
-from .gen.LocationNames import LocationName
+from .Constants.LocationNames import LocationName
 
 
 vs_location_groups = {
