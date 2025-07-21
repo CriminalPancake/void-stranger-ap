@@ -152,7 +152,7 @@ Notable ideas include:
 
 ThatOneGuy - For making the Manual Void Stranger AP Implementation
 
-Rayze - For sticking around and bouncing ideas around with me from the start
+Rayze - For adding location groups to the apworld for plando support, and brainstorming ideas
 
 Leonarth - For helping a massive amount with the gamemaker net code side of things (and of course working on that 
 library in the first place!)
