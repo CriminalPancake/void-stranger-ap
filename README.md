@@ -152,9 +152,9 @@ Notable ideas include:
 
 ThatOneGuy - For making the Manual Void Stranger AP Implementation
 
-Rayze - For adding location groups to the apworld for plando support, and brainstorming ideas
+[@Rayze421](https://github.com/Rayze421) - For adding location groups to the apworld for plando support, and brainstorming ideas
 
-Leonarth - For helping a massive amount with the gamemaker net code side of things (and of course working on that 
+[@LeonarthCG](https://github.com/LeonarthCG) - For helping a massive amount with the gamemaker net code side of things (and of course working on that 
 library in the first place!)
 
-Cavin856 - For help with bugfixes and adding several improvements and features to the mod
+[@Cavin856](https://github.com/Cavin856) - For help with bugfixes and adding several improvements and features to the mod
