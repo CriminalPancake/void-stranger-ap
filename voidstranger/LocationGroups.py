@@ -9,7 +9,7 @@ vs_location_groups = {
         LocationNames.b006_chest,
         LocationNames.b009_chest,
         LocationNames.b010_chest,
-        LocationNames.bo12_chest,
+        LocationNames.b012_chest,
         LocationNames.b012_chest,
         LocationNames.b014_chest,
         LocationNames.b018_chest,
@@ -92,7 +92,7 @@ vs_location_groups = {
     "Cif's Domain Chests": {
         LocationNames.b200_chest,
         LocationNames.b209_chest,
-        LocationNames.b0210_chest
+        LocationNames.b210_chest
     },
 
     "Idol Checks": {
