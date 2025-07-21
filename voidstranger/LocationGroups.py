@@ -1,6 +1,5 @@
-from BaseClasses import Location
 from .Constants import LocationNames
-
+from typing import Dict
 
 vs_location_groups = {
     "Add's Domain Chests": {
