@@ -11,7 +11,7 @@ from .Locations import VoidStrangerLocation, burden_location_data_table, misc_lo
     location_table, greed_chest_location_data_table
 from .Options import VoidStrangerOptions
 from .Constants import ItemNames, LocationNames
-
+from .LocationGroups import vs_location_groups
 
 class VoidStrangerWebWorld(WebWorld):
     theme = "stone"
@@ -26,6 +26,7 @@ class VoidStrangerWorld(World):
     options: VoidStrangerOptions
     location_name_to_id = location_table
     item_name_to_id = item_table
+    location_name_groups = vs_location_groups
 
     #Instance Data
     locusts: ItemClassification.progression
