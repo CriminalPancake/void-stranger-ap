@@ -26,6 +26,7 @@ class VoidStrangerWorld(World):
     options: VoidStrangerOptions
     location_name_to_id = location_table
     item_name_to_id = item_table
+    location_name_groups = vs_location_groups
 
     #Instance Data
     locusts: ItemClassification.progression
