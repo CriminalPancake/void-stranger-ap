@@ -173,5 +173,6 @@ class VoidStrangerWorld(World):
             "shortcutcheating": self.options.shortcutcheating.value,
             "greedzone": self.options.greedzone.value,
             "greedcoinamount": self.options.greedcoinamount.value,
-            "skipcutscenes": self.options.skipcutscenes.value
+            "skipcutscenes": self.options.skipcutscenes.value,
+            "visibleinterface": self.options.visibleinterface.value
         }

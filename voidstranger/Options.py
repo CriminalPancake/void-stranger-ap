@@ -41,13 +41,13 @@ class ShortcutCheating(Range):
     """
     Determines how many of the shortcut hint locations from Mon will require the "Unlock Cheats" item in logic to reach.
     This starts from the final shortcut, so a value of 2 will make the final 2 shortcut hint locations require cheating
-    for example. Since the first shortcut only needs 3 there is no need to cheat on this one.
+    for example.
     For reference the requirements are as follows: 3, 21, 49, 56, and 77. Only functions with both shortcutsanity and
     locustsanity enabled.
     """
     display_name = "Shortcut Cheating"
     range_start = 0
-    range_end = 4
+    range_end = 5
     default = 2
 
 class GreedZone(Toggle):
@@ -74,6 +74,14 @@ class SkipCutscenes(Toggle):
     """
     display_name = "Skip Cutscenes"
 
+class VisibleInterface(Toggle):
+    """
+    Normally before receiving the ability to manipulate the interface, it is entirely blocked by voider statues in rooms
+     that allow access to the interface. If you prefer to see the interface even when you cant mess with it, set this to
+     true so these specific voiders are invisible.
+    """
+    display_name = "Visible Interface"
+
 @dataclass
 class VoidStrangerOptions(PerGameCommonOptions):
     locustsanity: Locustsanity
@@ -85,3 +93,4 @@ class VoidStrangerOptions(PerGameCommonOptions):
     greedzone: GreedZone
     greedcoinamount: GreedCoinAmount
     skipcutscenes: SkipCutscenes
+    visibleinterface: VisibleInterface
