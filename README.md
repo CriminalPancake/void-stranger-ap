@@ -20,8 +20,8 @@ or
 vsap.xdelta (using https://www.romhacking.net/utilities/598/)
 
 and replace the existing data.win file with the patched one, still named data.win. It might also be wise to keep a copy 
-of the original data.win file as a backup in case at any point you need to patch the game again (When I update the patch
-files with new content or a fix)
+of the original data.win file as a backup in case at any point you need to patch the game again (When the patch is 
+updated with new content or a fix)
 
 Finally, be sure to add the gm-apclientpp.dll to the Void Stranger folder
 
@@ -119,6 +119,7 @@ have 15 "Greed Coins" added which lock the entrance until they are all collected
 the pool, removing locusts from the pool to make room. This option only works with normal chests being randomized 
 already.
 - Skipping the long sequence of cutscenes before the final section of gameplay.
+- Making the voiders covering the interface invisible, keeping important info visible in all rooms.
 
 For now, the only goal is the DIS ending, goal is sent after completing the final gameplay section before the ending 
 sequence.
@@ -129,9 +130,11 @@ sequence.
 
 2. More Goals, I'm thinking the normal ending for all three characters. Perhaps Bee's Stinky Hole would be a good short 
 goal. Additionally, a MacGuffin oriented goal seems fitting. Carcass ending seems like a pretty bad goal in my opinion, 
-requires exactly one item and its annoying to reach unless you play as Cif. We could also have a goal to beat all bosses.
+requires exactly one item and its annoying to reach unless you play as Cif. We could also have a goal to beat all
+ bosses.
 
-3. Getting multiple endings to goal, something like "reach three endings" and then the player can choose which ones to reach.
+3. Getting multiple endings to goal, something like "reach three endings" and then the player can choose which ones to 
+reach.
 
 4. Add an option for all kinds of shortcuts being accounted for in logic with brandsanity
 
@@ -152,9 +155,11 @@ Notable ideas include:
 
 ThatOneGuy - For making the Manual Void Stranger AP Implementation
 
-[@Rayze421](https://github.com/Rayze421) - For adding location groups to the apworld for plando support, and brainstorming ideas
+[@Rayze421](https://github.com/Rayze421) - For adding location groups to the apworld for plando support, testing, and 
+brainstorming ideas.
 
-[@LeonarthCG](https://github.com/LeonarthCG) - For helping a massive amount with the gamemaker net code side of things (and of course working on that 
-library in the first place!)
+[@LeonarthCG](https://github.com/LeonarthCG) - For helping a massive amount with the gamemaker net code side of things 
+(and of course working on that library in the first place!).
 
-[@Cavin856](https://github.com/Cavin856) - For help with bugfixes and adding several improvements and features to the mod
+[@Cavin856](https://github.com/Cavin856) - For help with bugfixes and adding several improvements and features to the 
+mod.
