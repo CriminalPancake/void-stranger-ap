@@ -50,8 +50,10 @@ The AP menu has three pages, which can be navigated with left and right.
 
 ## Known bugs
 
-1. GAME BREAKING ASYNC BUG!!!: If the Endless Void Rod is sent to you while the game is not connected to the AP Server,
-then you won't get the rod upgrade, and you will need to have it cheated in.
+1. If your endless void rod was sent to you while you are "Waiting for VR Connection" (Don't have the regular
+ Void Rod) you may need to reconnect to properly get the upgrade. Previously you would be unable to get it at all if it
+was sent to you while not connected in game, this issue should finally be resolved but please report if this is still 
+happening.
 
 2. If a Burden is received while one of the AP menus is open (connection menu, locust menu or item tracker), it will not
 be properly unlocked in game. Closing and reopening the game should fix this. Sometimes it might happen outside the 
