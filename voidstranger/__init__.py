@@ -1,5 +1,6 @@
 from typing import Dict, List
 from BaseClasses import Region, Item, CollectionState, ItemClassification
+from Options import OptionError
 from worlds.AutoWorld import WebWorld, World
 
 from .Constants.ItemNames import greed_coin
@@ -64,6 +65,12 @@ class VoidStrangerWorld(World):
         item_pool += [self.create_item(name)
                       for name in misc_item_data_table.keys()
                       if name not in self.options.start_inventory]
+
+        if self.options.greedzone and not self.options.locustsanity:
+            raise OptionError(
+                f"Void Stranger player {self.player_name} failed. "
+                + "Locustsanity must be enabled for greedzone to be enabled."
+            )
 
         if self.options.locustsanity:
             location_count += 68
