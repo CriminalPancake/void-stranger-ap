@@ -57,7 +57,7 @@ shortcut_location_data_table: Dict[str, VoidStrangerLocationData] = {
     LocationNames.buy_shortcut5: VoidStrangerLocationData("Void", void_stranger_base_id + 23)
 }
 
-chest_location_data_table: Dict[str, VoidStrangerLocationData] = {
+normal_chest_location_data_table: Dict[str, VoidStrangerLocationData] = {
     LocationNames.b003_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 24),
     LocationNames.b004_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 25),
     LocationNames.b005_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 26),
@@ -128,6 +128,77 @@ chest_location_data_table: Dict[str, VoidStrangerLocationData] = {
     LocationNames.b210_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 92)
 }
 
+hard_chest_location_data_table: Dict[str, VoidStrangerLocationData] = {
+    LocationNames.b003_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 24),
+    LocationNames.b004_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 25),
+    LocationNames.b006_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 27),
+    LocationNames.b009_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 28),
+    LocationNames.b012_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 30),
+    LocationNames.b014_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 31),
+    LocationNames.b018_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 32),
+    LocationNames.b025_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 35),
+    LocationNames.b026_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 36),
+    LocationNames.b032_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 37),
+    LocationNames.b033_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 38),
+    LocationNames.b034_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 39),
+    LocationNames.b035_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 40),
+    LocationNames.b036_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 41),
+    LocationNames.b040_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 43),
+    LocationNames.b041_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 44),
+    LocationNames.b043_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 45),
+    LocationNames.b048_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 46),
+    LocationNames.b050_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 47),
+    LocationNames.b059_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 87),
+    LocationNames.b060_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 48),
+    LocationNames.b063_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 26),
+    LocationNames.b064_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 49),
+    LocationNames.b065_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 50),
+    LocationNames.b066_chest1: VoidStrangerLocationData("Void", void_stranger_base_id + 29),
+    LocationNames.b066_chest2: VoidStrangerLocationData("Void", void_stranger_base_id + 33),
+    LocationNames.b066_chest3: VoidStrangerLocationData("Void", void_stranger_base_id + 34),
+    LocationNames.b066_chest4: VoidStrangerLocationData("Void", void_stranger_base_id + 42),
+    LocationNames.b069_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 51),
+    LocationNames.b073_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 52),
+    LocationNames.b077_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 54),
+    LocationNames.b078_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 55),
+    LocationNames.b081_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 57),
+    LocationNames.b088_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 58),
+    LocationNames.b091_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 59),
+    LocationNames.b092_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 53),
+    LocationNames.b094_chest1: VoidStrangerLocationData("Void", void_stranger_base_id + 60),
+    LocationNames.b094_chest2: VoidStrangerLocationData("Void", void_stranger_base_id + 56),
+    LocationNames.b095_chest1: VoidStrangerLocationData("Void", void_stranger_base_id + 61),
+    LocationNames.b095_chest2: VoidStrangerLocationData("Void", void_stranger_base_id + 66),
+    LocationNames.b095_chest3: VoidStrangerLocationData("Void", void_stranger_base_id + 67),
+    LocationNames.b096_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 73),
+    LocationNames.b116_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 62),
+    LocationNames.b118_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 63),
+    LocationNames.b122_chest1: VoidStrangerLocationData("Void", void_stranger_base_id + 64),
+    LocationNames.b122_chest2: VoidStrangerLocationData("Void", void_stranger_base_id + 88),
+    LocationNames.b122_chest3: VoidStrangerLocationData("Void", void_stranger_base_id + 89),
+    LocationNames.b123_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 65),
+    LocationNames.b135_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 68),
+    LocationNames.b138_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 74),
+    LocationNames.b144_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 69),
+    LocationNames.b145_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 70),
+    LocationNames.b151_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 71),
+    LocationNames.b159_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 72),
+    LocationNames.b166_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 75),
+    LocationNames.b172_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 76),
+    LocationNames.b173_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 77),
+    LocationNames.b178_chest1: VoidStrangerLocationData("Void", void_stranger_base_id + 80),
+    LocationNames.b178_chest2: VoidStrangerLocationData("Void", void_stranger_base_id + 81),
+    LocationNames.b179_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 82),
+    LocationNames.b180_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 83),
+    LocationNames.b189_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 84),
+    LocationNames.b191_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 85),
+    LocationNames.b208_chest1: VoidStrangerLocationData("Void", void_stranger_base_id + 78),
+    LocationNames.b208_chest2: VoidStrangerLocationData("Void", void_stranger_base_id + 79),
+    LocationNames.b208_chest3: VoidStrangerLocationData("Void", void_stranger_base_id + 91),
+    LocationNames.b210_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 92),
+    LocationNames.b215_chest: VoidStrangerLocationData("Void", void_stranger_base_id + 86)
+}
+
 greed_chest_location_data_table: Dict[str, VoidStrangerLocationData] = {
     LocationNames.m14_chest1: VoidStrangerLocationData("Void", void_stranger_base_id + 96),
     LocationNames.m14_chest2: VoidStrangerLocationData("Void", void_stranger_base_id + 97),
@@ -152,7 +223,7 @@ location_data_table: Dict[str, VoidStrangerLocationData] = {
     **mural_location_data_table,
     **statue_location_data_table,
     **shortcut_location_data_table,
-    **chest_location_data_table,
+    **normal_chest_location_data_table,
     **greed_chest_location_data_table
 }
 

@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from Options import Choice, Range, Toggle, OptionGroup, PerGameCommonOptions
+from Options import Choice, Range, Toggle, OptionGroup, PerGameCommonOptions, DefaultOnToggle
 
 class Locustsanity(Toggle):
     """
@@ -41,21 +41,14 @@ class ShortcutCheating(Range):
     """
     Determines how many of the shortcut hint locations from Mon will require the "Unlock Cheats" item in logic to reach.
     This starts from the final shortcut, so a value of 2 will make the final 2 shortcut hint locations require cheating
-    for example. Since the first shortcut only needs 3 there is no need to cheat on this one.
+    for example.
     For reference the requirements are as follows: 3, 21, 49, 56, and 77. Only functions with both shortcutsanity and
     locustsanity enabled.
     """
     display_name = "Shortcut Cheating"
     range_start = 0
-    range_end = 4
+    range_end = 5
     default = 2
-
-class KillTan(Toggle):
-    """
-    If this is enabled, you must kill Tan to get the check for the sword. Otherwise you get it upon interacting with the
-     sword as normal.
-    """
-    display_name = "Kill Tan"
 
 class GreedZone(Toggle):
     """
@@ -74,12 +67,35 @@ class GreedCoinAmount(Range):
     range_end = 35
     default = 15
 
-class SkipCutscenes(Toggle):
+class SkipCutscenes(DefaultOnToggle):
     """
     When enabled, the final cutscene at the end of the game is skipped, stepping onto the elevator brings you
     instantly to controlling Lily in the final room.
     """
     display_name = "Skip Cutscenes"
+
+class VisibleInterface(DefaultOnToggle):
+    """
+    Normally before receiving the ability to manipulate the interface, it is entirely blocked by voider statues in rooms
+     that allow access to the interface. If you prefer to see the interface even when you cant mess with it, set this to
+     true so these specific voiders are invisible.
+    """
+    display_name = "Visible Interface"
+
+class Character(Choice):
+    """
+    Determines which character you play as, Gray, Lillie, or Cif. This is purely cosmetic and has no effect on gameplay.
+    """
+    display_name = "Character"
+    option_gray = 0
+    option_lillie = 1
+    option_cif = 2
+
+class HardMode(Toggle):
+    """
+    Determines if the void has the easier or harder floor layouts.
+    """
+    display_name = "Hard Mode"
 
 @dataclass
 class VoidStrangerOptions(PerGameCommonOptions):
@@ -89,7 +105,9 @@ class VoidStrangerOptions(PerGameCommonOptions):
     idolsanity: Idolsanity
     shortcutsanity: Shortcutsanity
     shortcutcheating: ShortcutCheating
-    killtan: KillTan
     greedzone: GreedZone
     greedcoinamount: GreedCoinAmount
     skipcutscenes: SkipCutscenes
+    visibleinterface: VisibleInterface
+    character: Character
+    hardMode: HardMode

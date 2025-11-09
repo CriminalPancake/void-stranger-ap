@@ -7,11 +7,11 @@ from .Items import VoidStrangerItem, burden_item_data_table, misc_item_data_tabl
     statue_item_data_table, shortcut_item_data_table, locust_item_table, item_data_table, item_table, \
     prog_brand_item_data_table
 from .Locations import VoidStrangerLocation, burden_location_data_table, misc_location_data_table,\
-    mural_location_data_table, statue_location_data_table, shortcut_location_data_table, chest_location_data_table, \
+    mural_location_data_table, statue_location_data_table, shortcut_location_data_table, normal_chest_location_data_table, \
     location_table, greed_chest_location_data_table
 from .Options import VoidStrangerOptions
 from .Constants import ItemNames, LocationNames
-
+from .LocationGroups import vs_location_groups
 
 class VoidStrangerWebWorld(WebWorld):
     theme = "stone"
@@ -26,6 +26,7 @@ class VoidStrangerWorld(World):
     options: VoidStrangerOptions
     location_name_to_id = location_table
     item_name_to_id = item_table
+    location_name_groups = vs_location_groups
 
     #Instance Data
     locusts: ItemClassification.progression
@@ -66,23 +67,25 @@ class VoidStrangerWorld(World):
 
         if self.options.locustsanity:
             location_count += 68
-            gray_locusts: int = 42
-            gray_triple_locusts: int = 26
-            #for later
-            lillith_locusts: int = 40
-            lillith_triple_locusts: int = 29
+
+            if self.options.hardMode:
+                locusts: int = 39
+                triple_locusts: int = 29
+            else:
+                locusts: int = 42
+                triple_locusts: int = 26
 
             if self.options.greedzone:
                 location_count += 15
                 self.greed_coin_count: int = int(self.options.greedcoinamount.value)
                 if self.greed_coin_count > 15:
-                    gray_locusts -= self.greed_coin_count - 15 #removing locusts to make room for more greed coins if needed
-                    if gray_locusts < 0: #if there are more greed coins than locusts, start removing triple locusts
-                        gray_triple_locusts += gray_locusts
+                    locusts -= self.greed_coin_count - 15 #removing locusts to make room for more greed coins if needed
+                    if locusts < 0: #if there are more greed coins than locusts, start removing triple locusts
+                        triple_locusts += locusts
                 item_pool += [self.create_item(ItemNames.greed_coin) for _ in range(self.greed_coin_count)]
 
-            item_pool += [self.create_item(ItemNames.tripled_locust) for _ in range(gray_triple_locusts)]
-            item_pool += [self.create_item(ItemNames.locust_idol) for _ in range(gray_locusts)]
+            item_pool += [self.create_item(ItemNames.tripled_locust) for _ in range(triple_locusts)]
+            item_pool += [self.create_item(ItemNames.locust_idol) for _ in range(locusts)]
         if self.options.brandsanity:
             location_count+= 9
 
@@ -129,7 +132,7 @@ class VoidStrangerWorld(World):
             if self.options.locustsanity:
                 region.add_locations({
                     location_name: location_data.address for location_name, location_data in
-                    chest_location_data_table.items() if location_data.region == region_name
+                    normal_chest_location_data_table.items() if location_data.region == region_name
                 }, VoidStrangerLocation)
 
                 if self.options.greedzone:
@@ -169,8 +172,11 @@ class VoidStrangerWorld(World):
             "progressivebrands": self.options.progressivebrands.value,
             "idolsanity": self.options.idolsanity.value,
             "shortcutsanity": self.options.shortcutsanity.value,
-            "killtan": self.options.killtan.value,
+            "shortcutcheating": self.options.shortcutcheating.value,
             "greedzone": self.options.greedzone.value,
             "greedcoinamount": self.options.greedcoinamount.value,
-            "skipcutscenes": self.options.skipcutscenes.value
+            "skipcutscenes": self.options.skipcutscenes.value,
+            "visibleinterface": self.options.visibleinterface.value,
+            "character": self.options.character,
+            "hardMode": self.options.hardMode
         }
