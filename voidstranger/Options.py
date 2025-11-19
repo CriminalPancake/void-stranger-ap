@@ -59,7 +59,7 @@ class GreedZone(Toggle):
 
 class GreedCoinAmount(Range):
     """
-    Sets the amount of Greed Coins in the pool. The minimum and default value is 15, the maximum is 83. Using values
+    Sets the amount of Greed Coins in the pool. The minimum and default value is 15, the maximum is 35. Using values
     higher than 15 will remove normal locust idols from the pool to make room. Only works if the Greed Zone is enabled.
     """
     display_name = "Greed Coin Amount"
