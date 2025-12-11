@@ -11,14 +11,37 @@ For playing the game:
 Navigate to the betas tab under properties for the game on steam and select the 'old_version_1.1.1' beta to go back to 
 the previous version of the game.
 
-Find the data.win file for Void Stranger at {YourSteamLibrary}\steamapps\common\Void Stranger, and patch it using either
 
+Find the data.win file for Void Stranger at {YourSteamLibrary}\steamapps\common\Void Stranger, and patch it using either:
+
+---
+### Windows
 vsap.bdf (using https://www.romhacking.net/utilities/929/)
 
 or
 
 vsap.xdelta (using https://www.romhacking.net/utilities/598/)
 
+### Linux
+install `xdelta3` via your package manager (or distro specific tools) and use the command:
+
+```sh
+xdelta3 -d -s data.win vsap.xdelta data_patched.win
+```
+
+inside your game directory
+
+or
+
+install `bsdiff` via your package manager (or distro specific tools) and use the command:
+
+```sh
+bspatch data.win data_patched.win patch.bdfs
+```
+
+inside your game directory
+
+---
 and replace the existing data.win file with the patched one, still named data.win. It might also be wise to keep a copy 
 of the original data.win file as a backup in case at any point you need to patch the game again (When the patch is 
 updated with new content or a fix)
@@ -165,3 +188,4 @@ brainstorming ideas.
 
 [@Cavin856](https://github.com/Cavin856) - For help with bugfixes and adding several improvements and features to the 
 mod.
+
