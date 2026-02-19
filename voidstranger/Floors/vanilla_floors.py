@@ -1,5 +1,4 @@
-from typing import Dict, List
-from ..Constants import ItemNames, LocationNames
+from ..Constants import ItemNames
 
 
 # Connection Types: Stairs, Shortcut, Dungeon
