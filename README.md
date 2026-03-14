@@ -194,6 +194,6 @@ brainstorming ideas.
 
 [@Cavin856](https://github.com/Cavin856) -  Feature implementations & bug fixes.
 
-[@Eijebong] (https://github.com/Eijebong) - Rewrote and helped considerably with the pathfinding algorithm and debugging/fuzzing
+[@Eijebong](https://github.com/Eijebong) - Rewrote and helped considerably with the pathfinding algorithm and debugging/fuzzing
 
-[@Mysteryem] (https://github.com/Mysteryem) - Further help with bugfixes in the python code
+[@Mysteryem](https://github.com/Mysteryem) - Further help with bugfixes in the python code
