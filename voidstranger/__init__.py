@@ -35,6 +35,8 @@ class VoidStrangerWorld(World):
     goal_logic_mapping: Dict[str, List[List[str]]]
     greed_coin_count: int
     locust_up_size: int
+    locust_up_amount: int
+    starting_max_locust: int
     
     #vs_brane_order: List         # ordered list of all 255 main branes in the seed
     #vs_brane_list: Dict          # dict of all branes in the seed, in the form {brane_id: {brane_data}}
@@ -67,7 +69,6 @@ class VoidStrangerWorld(World):
         
         # generate the list of floors
         # mostly setup for the future shuffle floors option
-        # may need to move this off of state
         
         # create floor generation variables
         pool_required_main = {}
@@ -163,12 +164,7 @@ class VoidStrangerWorld(World):
         for brane in self.vs_brane_list:
             state.vs_brane_accessibility[self.player].update({brane: {"Accessible": False, "Locust_Score": -1}})
         
-        if self.options.locustsanity:
-            #max_locust_score = max(99, state.prog_items[self.player][ItemNames.locust_capacity_up] * self.locust_up_size)
-            max_locust_score = 99
-            
-        else:
-            max_locust_score = 99
+        max_locust_score = max(99, (state.prog_items[self.player][ItemNames.locust_capacity_up] * self.locust_up_size) + self.starting_max_locust)
         
         # main pathfinding loop
         queue = [("B001", 0)]
@@ -241,24 +237,23 @@ class VoidStrangerWorld(World):
                       for name in misc_item_data_table.keys()
                       if name not in self.options.start_inventory]
 
-        if self.options.locustsanity:
-            location_count += 68
-            #if lillith, location_count = 69
-            unfilled_locations += 68
+        location_count += 68
+        #if lillith, location_count = 69
+        unfilled_locations += 68
 
-            if self.options.greedzone:
-                self.greed_coin_count: int = int(self.options.greedcoinamount.value)
-                location_count += 15
-                unfilled_locations = unfilled_locations + 15 - self.greed_coin_count
-                item_pool += [self.create_item(ItemNames.greed_coin) for _ in range(self.greed_coin_count)]
-            
-            self.locust_up_size: int = int(self.options.locustcapacityup.value)
-            locust_up_count: int = min(unfilled_locations, math.ceil(99 / self.locust_up_size))
-            unfilled_locations -= locust_up_count
-            item_pool += [self.create_item(ItemNames.locust_capacity_up) for _ in range(locust_up_count)]
-            print("LocUP " + str(locust_up_count))
-            print("unfilled " + str(unfilled_locations))
-            #input()
+        if self.options.greedzone:
+            self.greed_coin_count: int = int(self.options.greedcoinamount.value)
+            location_count += 15
+            unfilled_locations = unfilled_locations + 15 - self.greed_coin_count
+            item_pool += [self.create_item(ItemNames.greed_coin) for _ in range(self.greed_coin_count)]
+        
+        self.locust_up_size: int = int(self.options.locustcapacityup.value)
+        self.locust_up_amount: int = min(unfilled_locations, math.ceil(99 / self.locust_up_size))
+        self.starting_max_locust: int = math.ceil(99 / self.locust_up_size) - self.locust_up_amount
+        unfilled_locations -= self.locust_up_amount
+        item_pool += [self.create_item(ItemNames.locust_capacity_up) for _ in range(self.locust_up_amount)]
+        print("LocUP " + str(self.locust_up_amount))
+        #input()
             
         if self.options.brandsanity:
             location_count+= 9
@@ -306,17 +301,16 @@ class VoidStrangerWorld(World):
                 misc_location_data_table.items() if location_data.region == region_name
             }, VoidStrangerLocation)
 
-            if self.options.locustsanity:
+            region.add_locations({
+                location_name: location_data.address for location_name, location_data in
+                chest_location_data_table.items() if location_data.region == region_name
+            }, VoidStrangerLocation)
+
+            if self.options.greedzone:
                 region.add_locations({
                     location_name: location_data.address for location_name, location_data in
-                    chest_location_data_table.items() if location_data.region == region_name
+                    greed_chest_location_data_table.items() if location_data.region == region_name
                 }, VoidStrangerLocation)
-
-                if self.options.greedzone:
-                    region.add_locations({
-                        location_name: location_data.address for location_name, location_data in
-                        greed_chest_location_data_table.items() if location_data.region == region_name
-                    }, VoidStrangerLocation)
 
             if self.options.brandsanity:
                 region.add_locations({
@@ -345,9 +339,10 @@ class VoidStrangerWorld(World):
 
     def fill_slot_data(self):
         return {
-            "locustsanity": self.options.locustsanity.value,
             "brandsanity": self.options.brandsanity.value,
             "locustcapacityup": self.options.locustcapacityup.value,
+            #"locustcapacityamount": self.locust_up_amount,
+            "startingmaxlocust": self.starting_max_locust,
             "progressivebrands": self.options.progressivebrands.value,
             "idolsanity": self.options.idolsanity.value,
             "shortcutsanity": self.options.shortcutsanity.value,

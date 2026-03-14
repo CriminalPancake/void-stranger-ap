@@ -148,7 +148,7 @@ def set_rules(world: VoidStrangerWorld):
         forbid_item(world.multiworld.get_location(LocationNames.mural_add, world.player),
                     ItemNames.endless_void_rod,world.player)
 
-    if world.options.greedzone and world.options.locustsanity:
+    if world.options.greedzone:
         forbid_item(world.multiworld.get_location(LocationNames.m14_chest1, world.player), ItemNames.greed_coin,
                     world.player)
         forbid_item(world.multiworld.get_location(LocationNames.m14_chest2, world.player), ItemNames.greed_coin,
@@ -260,179 +260,178 @@ def set_rules(world: VoidStrangerWorld):
         add_rule(world.multiworld.get_location(LocationNames.buy_shortcut5, world.player),
                  lambda state: can_access_floor_with_locusts(world, state, "B196", 77) and check_shortcut_cheating(world, state, 1))
         
-    #locustsanity locations
-    if world.options.locustsanity:
-        add_rule(world.multiworld.get_location(LocationNames.b032_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B032"))
+    #locust chest locations
+    add_rule(world.multiworld.get_location(LocationNames.b032_chest, world.player),
+             lambda state: can_access_floor(world, state, "B032"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b033_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B033"))
+    add_rule(world.multiworld.get_location(LocationNames.b033_chest, world.player),
+             lambda state: can_access_floor(world, state, "B033"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b034_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B034"))
+    add_rule(world.multiworld.get_location(LocationNames.b034_chest, world.player),
+             lambda state: can_access_floor(world, state, "B034"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b035_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B035"))
+    add_rule(world.multiworld.get_location(LocationNames.b035_chest, world.player),
+             lambda state: can_access_floor(world, state, "B035"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b036_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B036"))
+    add_rule(world.multiworld.get_location(LocationNames.b036_chest, world.player),
+             lambda state: can_access_floor(world, state, "B036"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b037_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B037"))
+    add_rule(world.multiworld.get_location(LocationNames.b037_chest, world.player),
+             lambda state: can_access_floor(world, state, "B037"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b040_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B040"))
+    add_rule(world.multiworld.get_location(LocationNames.b040_chest, world.player),
+             lambda state: can_access_floor(world, state, "B040"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b041_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B041"))
+    add_rule(world.multiworld.get_location(LocationNames.b041_chest, world.player),
+             lambda state: can_access_floor(world, state, "B041"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b043_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B043"))
+    add_rule(world.multiworld.get_location(LocationNames.b043_chest, world.player),
+             lambda state: can_access_floor(world, state, "B043"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b048_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B048"))
-                 
-        add_rule(world.multiworld.get_location(LocationNames.b050_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B050"))
-                 
-        add_rule(world.multiworld.get_location(LocationNames.b060_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B060"))
+    add_rule(world.multiworld.get_location(LocationNames.b048_chest, world.player),
+             lambda state: can_access_floor(world, state, "B048"))
+             
+    add_rule(world.multiworld.get_location(LocationNames.b050_chest, world.player),
+             lambda state: can_access_floor(world, state, "B050"))
+             
+    add_rule(world.multiworld.get_location(LocationNames.b060_chest, world.player),
+             lambda state: can_access_floor(world, state, "B060"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b064_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B064"))
+    add_rule(world.multiworld.get_location(LocationNames.b064_chest, world.player),
+             lambda state: can_access_floor(world, state, "B064"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b065_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B065"))
+    add_rule(world.multiworld.get_location(LocationNames.b065_chest, world.player),
+             lambda state: can_access_floor(world, state, "B065"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b069_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B069"))
+    add_rule(world.multiworld.get_location(LocationNames.b069_chest, world.player),
+             lambda state: can_access_floor(world, state, "B069"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b074_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B074"))
+    add_rule(world.multiworld.get_location(LocationNames.b074_chest, world.player),
+             lambda state: can_access_floor(world, state, "B074"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b076_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B076"))
+    add_rule(world.multiworld.get_location(LocationNames.b076_chest, world.player),
+             lambda state: can_access_floor(world, state, "B076"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b077_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B077"))
+    add_rule(world.multiworld.get_location(LocationNames.b077_chest, world.player),
+             lambda state: can_access_floor(world, state, "B077"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b078_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B078"))
+    add_rule(world.multiworld.get_location(LocationNames.b078_chest, world.player),
+             lambda state: can_access_floor(world, state, "B078"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b080_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B080"))
+    add_rule(world.multiworld.get_location(LocationNames.b080_chest, world.player),
+             lambda state: can_access_floor(world, state, "B080"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b081_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B081"))
+    add_rule(world.multiworld.get_location(LocationNames.b081_chest, world.player),
+             lambda state: can_access_floor(world, state, "B081"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b088_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B088"))
+    add_rule(world.multiworld.get_location(LocationNames.b088_chest, world.player),
+             lambda state: can_access_floor(world, state, "B088"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b091_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B091"))
+    add_rule(world.multiworld.get_location(LocationNames.b091_chest, world.player),
+             lambda state: can_access_floor(world, state, "B091"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b094_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B094"))
+    add_rule(world.multiworld.get_location(LocationNames.b094_chest, world.player),
+             lambda state: can_access_floor(world, state, "B094"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b115_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B115"))
+    add_rule(world.multiworld.get_location(LocationNames.b115_chest, world.player),
+             lambda state: can_access_floor(world, state, "B115"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b116_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B116"))
+    add_rule(world.multiworld.get_location(LocationNames.b116_chest, world.player),
+             lambda state: can_access_floor(world, state, "B116"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b118_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B118") and has_idol(world, state, "killer"))
+    add_rule(world.multiworld.get_location(LocationNames.b118_chest, world.player),
+             lambda state: can_access_floor(world, state, "B118") and has_idol(world, state, "killer"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b122_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B122") and has_idol(world, state, "killer"))
+    add_rule(world.multiworld.get_location(LocationNames.b122_chest, world.player),
+             lambda state: can_access_floor(world, state, "B122") and has_idol(world, state, "killer"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b123_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B123"))
+    add_rule(world.multiworld.get_location(LocationNames.b123_chest, world.player),
+             lambda state: can_access_floor(world, state, "B123"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b127_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B127") and (has_idol(world, state, "killer") or state.has(ItemNames.void_wings, world.player)))
+    add_rule(world.multiworld.get_location(LocationNames.b127_chest, world.player),
+             lambda state: can_access_floor(world, state, "B127") and (has_idol(world, state, "killer") or state.has(ItemNames.void_wings, world.player)))
 
-        add_rule(world.multiworld.get_location(LocationNames.b133_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B133"))
+    add_rule(world.multiworld.get_location(LocationNames.b133_chest, world.player),
+             lambda state: can_access_floor(world, state, "B133"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b135_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B135"))
+    add_rule(world.multiworld.get_location(LocationNames.b135_chest, world.player),
+             lambda state: can_access_floor(world, state, "B135"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b144_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B144"))
+    add_rule(world.multiworld.get_location(LocationNames.b144_chest, world.player),
+             lambda state: can_access_floor(world, state, "B144"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b145_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B145"))
+    add_rule(world.multiworld.get_location(LocationNames.b145_chest, world.player),
+             lambda state: can_access_floor(world, state, "B145"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b151_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B151"))
+    add_rule(world.multiworld.get_location(LocationNames.b151_chest, world.player),
+             lambda state: can_access_floor(world, state, "B151"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b159_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B159"))
+    add_rule(world.multiworld.get_location(LocationNames.b159_chest, world.player),
+             lambda state: can_access_floor(world, state, "B159"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b160_chest1, world.player),
-                 lambda state: can_access_floor(world, state, "B160"))
+    add_rule(world.multiworld.get_location(LocationNames.b160_chest1, world.player),
+             lambda state: can_access_floor(world, state, "B160"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b160_chest2, world.player),
-                 lambda state: can_access_floor(world, state, "B160"))
+    add_rule(world.multiworld.get_location(LocationNames.b160_chest2, world.player),
+             lambda state: can_access_floor(world, state, "B160"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b166_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B166"))
+    add_rule(world.multiworld.get_location(LocationNames.b166_chest, world.player),
+             lambda state: can_access_floor(world, state, "B166"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b171_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B171"))
+    add_rule(world.multiworld.get_location(LocationNames.b171_chest, world.player),
+             lambda state: can_access_floor(world, state, "B171"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b173_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B173"))
+    add_rule(world.multiworld.get_location(LocationNames.b173_chest, world.player),
+             lambda state: can_access_floor(world, state, "B173"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b176_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B176"))
+    add_rule(world.multiworld.get_location(LocationNames.b176_chest, world.player),
+             lambda state: can_access_floor(world, state, "B176"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b177_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B177"))
+    add_rule(world.multiworld.get_location(LocationNames.b177_chest, world.player),
+             lambda state: can_access_floor(world, state, "B177"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b178_chest1, world.player),
-                 lambda state: can_access_floor(world, state, "B178") and (has_idol(world, state, "watcher") or state.has(ItemNames.void_wings, world.player)))
+    add_rule(world.multiworld.get_location(LocationNames.b178_chest1, world.player),
+             lambda state: can_access_floor(world, state, "B178") and (has_idol(world, state, "watcher") or state.has(ItemNames.void_wings, world.player)))
 
-        add_rule(world.multiworld.get_location(LocationNames.b178_chest2, world.player),
-                 lambda state: can_access_floor(world, state, "B178") and (has_idol(world, state, "watcher") or state.has(ItemNames.void_wings, world.player)))
+    add_rule(world.multiworld.get_location(LocationNames.b178_chest2, world.player),
+             lambda state: can_access_floor(world, state, "B178") and (has_idol(world, state, "watcher") or state.has(ItemNames.void_wings, world.player)))
 
-        add_rule(world.multiworld.get_location(LocationNames.b179_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B179"))
+    add_rule(world.multiworld.get_location(LocationNames.b179_chest, world.player),
+             lambda state: can_access_floor(world, state, "B179"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b180_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B180"))
+    add_rule(world.multiworld.get_location(LocationNames.b180_chest, world.player),
+             lambda state: can_access_floor(world, state, "B180"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b189_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B189"))
+    add_rule(world.multiworld.get_location(LocationNames.b189_chest, world.player),
+             lambda state: can_access_floor(world, state, "B189"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b191_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B191"))
+    add_rule(world.multiworld.get_location(LocationNames.b191_chest, world.player),
+             lambda state: can_access_floor(world, state, "B191"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b195_chest1, world.player),
-                 lambda state: can_access_floor(world, state, "B195") and (has_idol(world, state, "watcher") or state.has(ItemNames.void_wings, world.player)))
+    add_rule(world.multiworld.get_location(LocationNames.b195_chest1, world.player),
+             lambda state: can_access_floor(world, state, "B195") and (has_idol(world, state, "watcher") or state.has(ItemNames.void_wings, world.player)))
 
-        add_rule(world.multiworld.get_location(LocationNames.b195_chest2, world.player),
-                 lambda state: can_access_floor(world, state, "B195") and (has_idol(world, state, "watcher") or state.has(ItemNames.void_wings, world.player)))
+    add_rule(world.multiworld.get_location(LocationNames.b195_chest2, world.player),
+             lambda state: can_access_floor(world, state, "B195") and (has_idol(world, state, "watcher") or state.has(ItemNames.void_wings, world.player)))
 
-        add_rule(world.multiworld.get_location(LocationNames.b195_chest3, world.player),
-                 lambda state: can_access_floor(world, state, "B195") and (has_idol(world, state, "watcher") or state.has(ItemNames.void_wings, world.player)))
+    add_rule(world.multiworld.get_location(LocationNames.b195_chest3, world.player),
+             lambda state: can_access_floor(world, state, "B195") and (has_idol(world, state, "watcher") or state.has(ItemNames.void_wings, world.player)))
 
-        add_rule(world.multiworld.get_location(LocationNames.b195_chest4, world.player),
-                 lambda state: can_access_floor(world, state, "B195") and (has_idol(world, state, "watcher") or state.has(ItemNames.void_wings, world.player)))
+    add_rule(world.multiworld.get_location(LocationNames.b195_chest4, world.player),
+             lambda state: can_access_floor(world, state, "B195") and (has_idol(world, state, "watcher") or state.has(ItemNames.void_wings, world.player)))
 
-        add_rule(world.multiworld.get_location(LocationNames.b200_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B200"))
+    add_rule(world.multiworld.get_location(LocationNames.b200_chest, world.player),
+             lambda state: can_access_floor(world, state, "B200"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b209_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B209") and has_idol(world, state, "killer"))
+    add_rule(world.multiworld.get_location(LocationNames.b209_chest, world.player),
+             lambda state: can_access_floor(world, state, "B209") and has_idol(world, state, "killer"))
 
-        add_rule(world.multiworld.get_location(LocationNames.b210_chest, world.player),
-                 lambda state: can_access_floor(world, state, "B210"))
+    add_rule(world.multiworld.get_location(LocationNames.b210_chest, world.player),
+             lambda state: can_access_floor(world, state, "B210"))
                                
     #greed zone locations
     # will rewrite these rules once we migrate to the Dungeon system
-    if world.options.greedzone and world.options.locustsanity:
+    if world.options.greedzone:
         add_rule(world.multiworld.get_location(LocationNames.m14_chest1, world.player),
                  lambda state: state.has(ItemNames.greed_coin, world.player, world.greed_coin_count) and
                         state.has_all({ItemNames.void_wings, ItemNames.void_sword}, world.player) and

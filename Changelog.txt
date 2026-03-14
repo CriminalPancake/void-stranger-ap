@@ -1,7 +1,31 @@
-KNOWN MAJOR ISSUES:
-	Currently, Waypoints do not properly restore Mon Bank values
-	This will be fixed in the v0.9.2.0 major update
+Known Issues:
+	Collecting a locust chest containing a Max Locust Up gives you the locusts first and then upgrades your capacity, wasting locusts if you're at max capacity
 
+
+v0.9.2.0
+	General:
+		Locusts are now obtained from chests just like vanilla
+		Numbered Brane locust chests are now always AP Checks
+		Max Locust Up's are included in the item pool and increase your maximum capacity for holding locusts
+		Mon Bank now deals with Bonus Locusts, which are filler items not factored into logic
+		
+	Generation:
+		Locustsanity is now forced on
+		Generation shouldn't fail, probably
+		
+	Yaml:
+		Removed Locustsanity option
+		New setting "Max Locust Up Size"
+		Greed Coin Amount range is now from 1-30
+	
+	Bugfixes:
+		Receiving multiple items in quick succession will no longer delete locusts, progressive brands, or greed coins
+		Burdens are now properly received from AP
+	
+	Misc:
+		AP Items are now saved to file and should not reset upon game close or reconnecting to AP
+		To properly reset between multiworlds, select End Run from the pause menu
+		
 
 
 v0.9.1.0

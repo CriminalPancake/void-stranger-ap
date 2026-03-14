@@ -17,14 +17,6 @@ class LogicComplexity(Choice):
     option_full = 1
     default = 0
 
-class Locustsanity(Toggle):
-    """
-    When enabled, opening a locust chests will give a check in addition to their vanilla locusts,
-     however your maximum locust carrying capacity will be limited.
-    Max Locust Ups will be added to the pool to increase your locust carrying capacity.
-    """
-    display_name = "Locustsanity"
-
 class LocustCapacityUp(Range):
     """
     How much each Max Locust Up will increase you locust carrying capacity.
@@ -42,6 +34,7 @@ class Brandsanity(Toggle):
      the inspecting each mural depicting them gives a check.
     """
     display_name = "Brandsanity"
+    default = 1
 
 class ProgressiveBrands(Toggle):
     """
@@ -62,6 +55,7 @@ class Shortcutsanity(Toggle):
     When enabled, the ability to use each of Mon's shortcuts are shuffled into the item pool, and talking to them is a check.
     """
     display_name = "Shortcutsanity"
+    default = 1
 
 class ShortcutCheating(Range):
     """
@@ -102,6 +96,7 @@ class SkipCutscenes(Toggle):
      instantly to controlling Lily in the final room.
     """
     display_name = "Skip Cutscenes"
+    default = 1
 
 class VisibleInterface(Toggle):
     """
@@ -114,7 +109,6 @@ class VisibleInterface(Toggle):
 @dataclass
 class VoidStrangerOptions(PerGameCommonOptions):
     logiccomplexity: LogicComplexity
-    locustsanity: Locustsanity
     locustcapacityup: LocustCapacityUp
     brandsanity: Brandsanity
     progressivebrands: ProgressiveBrands
