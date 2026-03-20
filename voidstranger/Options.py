@@ -17,12 +17,16 @@ class LogicComplexity(Choice):
     option_full = 1
     default = 0
 
-class Locustsanity(Toggle):
+class LocustCapacityUp(Range):
     """
-    When enabled, Locust Idols are shuffled into the item pool and their chests are checks.
-    Each chest capable of tripling its contents adds an item worth 3 locusts to the pool.
+    How much each Max Locust Up will increase you locust carrying capacity.
+    No effect without Locustsanity. Valid range is 1-5.
+    It is not reccommended to set this to 1, as there are not enough locations
     """
-    display_name = "Locustsanity"
+    display_name = "Max Locust Up Size"
+    range_start = 1
+    range_end = 5
+    default = 2
 
 class Brandsanity(Toggle):
     """
@@ -30,6 +34,7 @@ class Brandsanity(Toggle):
      the inspecting each mural depicting them gives a check.
     """
     display_name = "Brandsanity"
+    default = 1
 
 class ProgressiveBrands(Toggle):
     """
@@ -50,6 +55,7 @@ class Shortcutsanity(Toggle):
     When enabled, the ability to use each of Mon's shortcuts are shuffled into the item pool, and talking to them is a check.
     """
     display_name = "Shortcutsanity"
+    default = 1
 
 class ShortcutCheating(Range):
     """
@@ -76,13 +82,12 @@ class GreedZone(Toggle):
 
 class GreedCoinAmount(Range):
     """
-    Sets the amount of Greed Coins in the pool. The minimum and default value is 15, the maximum is 35.
-    Using values higher than 15 will remove normal locust idols from the pool to make room.
-    Only works if the Greed Zone is enabled.
+    Sets the amount of Greed Coins in the pool.
+    Only works if the Greed Zone is enabled. Valid range is 1-30.
     """
     display_name = "Greed Coin Amount"
-    range_start = 15
-    range_end = 35
+    range_start = 1
+    range_end = 30
     default = 15
 
 class SkipCutscenes(Toggle):
@@ -91,6 +96,7 @@ class SkipCutscenes(Toggle):
      instantly to controlling Lily in the final room.
     """
     display_name = "Skip Cutscenes"
+    default = 1
 
 class VisibleInterface(Toggle):
     """
@@ -103,7 +109,7 @@ class VisibleInterface(Toggle):
 @dataclass
 class VoidStrangerOptions(PerGameCommonOptions):
     logiccomplexity: LogicComplexity
-    locustsanity: Locustsanity
+    locustcapacityup: LocustCapacityUp
     brandsanity: Brandsanity
     progressivebrands: ProgressiveBrands
     idolsanity: Idolsanity

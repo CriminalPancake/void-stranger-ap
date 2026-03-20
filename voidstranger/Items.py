@@ -61,8 +61,8 @@ shortcut_item_data_table: Dict[str, VoidStrangerItemData] = {
 }
 
 locust_item_table: Dict[str, VoidStrangerItemData] = {
-    ItemNames.locust_idol: VoidStrangerItemData(void_stranger_base_id + 25, ItemClassification.progression), #42 for Gray, 40 for Lillith
-    ItemNames.tripled_locust: VoidStrangerItemData(void_stranger_base_id + 26, ItemClassification.progression) #26 for Gray, 29 for Lillith
+    ItemNames.bonus_locust: VoidStrangerItemData(void_stranger_base_id + 25, ItemClassification.filler),
+    ItemNames.locust_capacity_up: VoidStrangerItemData(void_stranger_base_id + 26, ItemClassification.progression)
 }
 
 greed_coin_item_table: Dict[str, VoidStrangerItemData] = {

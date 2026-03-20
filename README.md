@@ -93,19 +93,12 @@ The AP menu has three pages, which can be navigated with left and right.
 was sent to you while not connected in game, this issue should finally be resolved but please report if this is still 
 happening.
 
-2. If a Burden is received while one of the AP menus is open (connection menu, locust menu or item tracker), it will not
-be properly unlocked in game. Closing and reopening the game should fix this. Sometimes it might happen outside the 
-menus, the same fix will work for that too.
-
-3. The greed zone might not open properly the first time, it's unclear from the small amount of testing done. If you run
+2. The greed zone might not open properly the first time, it's unclear from the small amount of testing done. If you run
  into this issue then reconnecting should fix it. 
 
-4. There is a bug with how the game is recompiled by UMT that can cause crashes when a textbox displays with different 
+3. There is a bug with how the game is recompiled by UMT that can cause crashes when a textbox displays with different 
 dialogue sounds. I fixed all the ones needed to complete a run, but I'm sure there are other instances of this across 
 the game. If you run into this please provide the crash message, so I can fix it.
-
-5. There has been a report of progressive brands not being received properly due to multiple being sent at once from a
-release, reconnecting resolves the issue.
 
 If you run into an issue not on this list, try reconnecting to the AP server. Regardless of if this resolves the issue, 
 report it either on the Void Stranger thread on the AP discord or open an issue with the details here on the repository.
@@ -201,3 +194,6 @@ brainstorming ideas.
 
 [@Cavin856](https://github.com/Cavin856) -  Feature implementations & bug fixes.
 
+[@Eijebong](https://github.com/Eijebong) - Rewrote and helped considerably with the pathfinding algorithm and debugging/fuzzing
+
+[@Mysteryem](https://github.com/Mysteryem) - Further help with bugfixes in the python code

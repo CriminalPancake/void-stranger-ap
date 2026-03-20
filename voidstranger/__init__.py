@@ -1,4 +1,4 @@
-import importlib
+import importlib, math
 from typing import Dict, List
 from collections import defaultdict
 from BaseClasses import Region, Item, MultiWorld, CollectionState, ItemClassification
@@ -32,9 +32,11 @@ class VoidStrangerWorld(World):
     location_name_groups = vs_location_groups
 
     #Instance Data
-    locusts: ItemClassification.progression
     goal_logic_mapping: Dict[str, List[List[str]]]
     greed_coin_count: int
+    locust_up_size: int
+    locust_up_amount: int
+    starting_max_locust: int
     
     #vs_brane_order: List         # ordered list of all 255 main branes in the seed
     #vs_brane_list: Dict          # dict of all branes in the seed, in the form {brane_id: {brane_data}}
@@ -67,7 +69,6 @@ class VoidStrangerWorld(World):
         
         # generate the list of floors
         # mostly setup for the future shuffle floors option
-        # may need to move this off of state
         
         # create floor generation variables
         pool_required_main = {}
@@ -85,11 +86,11 @@ class VoidStrangerWorld(World):
         # import all enabled floor packs and sort the floors within
         for enabled_floor_pack in floor_pack_list:
             floor_pack = importlib.import_module(f".Floors.{enabled_floor_pack}", package = __name__)
-            pool_required_main.update(floor_pack.RequiredMainBranes)
-            pool_required_side.update(floor_pack.RequiredSideBranes)
-            pool_optional_main.update(floor_pack.OptionalMainBranes)
-            pool_optional_side.update(floor_pack.OptionalSideBranes)
-            pool_dungeons.update(floor_pack.Dungeons)
+            pool_required_main.update({k: v.copy() for k, v in floor_pack.RequiredMainBranes.items()})
+            pool_required_side.update({k: v.copy() for k, v in floor_pack.RequiredSideBranes.items()})
+            pool_optional_main.update({k: v.copy() for k, v in floor_pack.OptionalMainBranes.items()})
+            pool_optional_side.update({k: v.copy() for k, v in floor_pack.OptionalSideBranes.items()})
+            pool_dungeons.update({k: v.copy() for k, v in floor_pack.Dungeons.items()})
         
         # when shuffle floors is off, excluded dungeons remain, but logic won't place anything there.
         # when shuffle floors is on, excluding a dungeon will remove it's entrance and all related floors entirely
@@ -118,7 +119,6 @@ class VoidStrangerWorld(World):
         # Add required access rule tags to each active floor
         # Compile floor lists for each statue type
         for brane in self.vs_brane_list:
-            #self.vs_brane_list[brane].update({"Accessible": False, "Locust_Score": -1})
             for statue_type in self.vs_brane_list[brane]["Statues"]:
                 self.vs_statue_floors[statue_type].append(brane)
             
@@ -161,178 +161,61 @@ class VoidStrangerWorld(World):
         from .Rules import has_item_by_type, check_item_tuples
         state.vs_stale_pathfinding[self.player] = False
         
-        # initialize the pathfinder if needed
-        #if not self.vs_state_initialized:
-        #self.vs_state_initialized = True
-        #self.vs_brane_order
-        #self.vs_brane_list
-        #self.vs_dungeon_list
-        #self.vs_statue_floors
         for brane in self.vs_brane_list:
-            state.vs_brane_accessibility[self.player].update({brane:{"Accessible": False, "Locust_Score": -1}})
+            state.vs_brane_accessibility[self.player].update({brane: {"Accessible": False, "Locust_Score": -1}})
         
-        #print(self.vs_brane_order)
-        #print(self.vs_brane_list)
-        #print(self.vs_dungeon_list)
-        #input(self.vs_statue_floors)
-            
-        shortcut_list = []          # connection tuples: (destination, [[option A item_tuples],[option B item_tuples]], running_locust_score)
-        smiler_list = []            # tuples with format: (current_floor, brane_index, [[option A item_tuples],[option B item_tuples]], running_locust_score, [last_checked_index_offset])
-        interface_list = []         # tuples with format: (current_floor, brane_index, [[option A item_tuples],[option B item_tuples]], running_locust_score, [last_checked_index_offset])
-        
-        # clear lingering tags from previous pathfinding attempt
-        #for brane in self.vs_brane_list:
-        #    self.vs_brane_list[brane].update({"Accessible": False, "Locust_Score": -1})
-        
-        # initialize pathfinding variables
-        brane_index = self.vs_brane_order.index("B001")
-        current_brane = "B001"
-        if self.options.locustsanity:
-            running_locust_score = state.prog_items[self.player][ItemNames.locust_idol] + state.prog_items[self.player][ItemNames.tripled_locust] * 3
-        else:
-            running_locust_score = 0
+        max_locust_score = max(99, (state.prog_items[self.player][ItemNames.locust_capacity_up] * self.locust_up_size) + self.starting_max_locust)
         
         # main pathfinding loop
-        while True:
-            #print(shortcut_list)
-            #print(current_brane)
-            #print(brane_index)
-            #input(running_locust_score)
-            result = False
+        queue = [("B001", 0)]
+        while queue:
+            current_brane, locust_score = queue.pop(0)
+            #for node in queue:
+            #    if current_brane == node[0]:
+            #        locust_score = max(locust_score, node[1])
+            #        queue.remove(node)
+                    
+            brane_access = state.vs_brane_accessibility[self.player][current_brane]
+            if brane_access["Accessible"] and brane_access["Locust_Score"] >= locust_score:
+                continue
             
-            state.vs_brane_accessibility[self.player][current_brane]["Accessible"] = True
-            state.vs_brane_accessibility[self.player][current_brane]["Locust_Score"] = running_locust_score
+            brane_access["Accessible"] = True
+            brane_access["Locust_Score"] = locust_score
+            floor = self.vs_brane_list[current_brane]
             
-            if not self.options.locustsanity:
-                running_locust_score += self.vs_brane_list[current_brane]["Chest_Score"]
-                if running_locust_score > 99:
-                    running_locust_score = 99
+            locust_score += floor["Chest_Score"]
+            if locust_score > max_locust_score:
+                locust_score = max_locust_score
             
-            # store alternate floor exits for later
-            if self.vs_brane_list[current_brane]["Shortcut"] != False:
-                for shortcut in self.vs_brane_list[current_brane]["Shortcut"]:
-                    shortcut_list.append((shortcut[0], shortcut[1], running_locust_score))
-            if self.vs_brane_list[current_brane]["Smiler"] != False:
-                smiler_list.append((current_brane, brane_index, self.vs_brane_list[current_brane]["Smiler"], running_locust_score, [0])) #putting the last var in a list is hacky
-            if self.vs_brane_list[current_brane]["Interface"] != False and has_item_by_type(self, state, "item", ItemNames.interface_manip):
-                interface_list.append((current_brane, brane_index, self.vs_brane_list[current_brane]["Interface"], running_locust_score, [0]))
-            if self.vs_brane_list[current_brane]["Brand_Room"] != False:
+            if floor["Stairs"] != False:
+                if check_item_tuples(self, state, floor["Stairs"][1]):
+                    queue.append((floor["Stairs"][0], locust_score))
+
+            if floor["Shortcut"] != False:
+                for shortcut in floor["Shortcut"]:
+                    if check_item_tuples(self, state, shortcut[1]):
+                        queue.append((shortcut[0], locust_score))
+
+            if floor["Brand_Room"] != False:
                 for brand_carve in Floors.vanilla_floors.VanillaBrandCarving[current_brane]:
-                    shortcut_list.append((brand_carve[0], brand_carve[1], running_locust_score))
-            
-            # check main floor exit and run loop again if the next floor is accessible
-            if self.vs_brane_list[current_brane]["Stairs"] != False:
-                result, current_brane, brane_index = self.check_floor_connection(state, (self.vs_brane_list[current_brane]["Stairs"][0], self.vs_brane_list[current_brane]["Stairs"][1], running_locust_score), current_brane, brane_index)
-                if result:
-                    continue
-            
-            # iterate through the list of interfaces until it finds a new accessible floor or exhausts the list
-            #if interface_list != []:
-            #    for interface in interface_list:
-            #        current_brane = interface[0]
-            #        brane_index = interface[1]
-            #        modular_index = brane_index % 100
-            #        range_min = brane_index - modular_index
-            #        next_floor_offset = interface[4][0]
-            #        if check_item_tuples(self, state, interface[2]): # redundant, but filters out unreachable interfaces earlier
-            #            while not result:
-            #                next_floor_offset += 1
-            #                if next_floor_offset < modular_index:
-            #                    running_locust_score = max(modular_index, 7) # assume a minimum of 7 locusts after an interface warp, as HP should at least be 7
-            #                    result, current_brane, brane_index = self.check_floor_connection(state, (next_floor, interface[2], running_locust_score), current_brane, brane_index)
-            #                    if result:
-            #                        interface[4][0] = next_floor_offset
-            #                        break
-            #                    
-            #                    
-            #                if next_floor_offset > 99 or smiler[3] - next_floor_offset < 0:
-            #                    smiler_list.remove(smiler)
-            #                    break
-            #                if brane_index + next_floor_offset > 255:
-            #                    #enable white_void
-            #                    smiler_list.remove(smiler)
-            #                    break
-            #                next_floor = self.vs_brane_order[brane_index + next_floor_offset]
-            #                if not self.options.locustsanity:
-            #                    running_locust_score = 0
-            #                else:
-            #                    running_locust_score = smiler[3] - next_floor_offset
-            #                result, current_brane, brane_index = self.check_floor_connection(state, (next_floor, smiler[2], running_locust_score), current_brane, brane_index)
-            #            if result:
-            #                interface[4][0] = next_floor_offset
-            #                break
-            #    if result:
-            #        continue
-            
-            # iterate through the list of alternate floor exits until it finds an accessible one or exhausts the list
-            if shortcut_list != []:
-                for shortcut in shortcut_list:
-                    result, current_brane, brane_index = self.check_floor_connection(state, shortcut, current_brane, brane_index)
-                    shortcut_list.remove(shortcut)
-                    if result:
-                        running_locust_score = shortcut[2]
-                        break
-                if result:
-                    continue
-            
-            # iterate through the list of smilers until it finds a new accessible floor or exhausts the list
-            #if smiler_list != []:
-            #    for smiler in smiler_list:
-            #        current_brane = smiler[0]
-            #        brane_index = smiler[1]
-            #        next_floor_offset = smiler[4][0]
-            #        if check_item_tuples(self, state, smiler[2]): #redundant, but filters out unreachable smilers earlier
-            #            while not result:
-            #                next_floor_offset += 1
-            #                if next_floor_offset > 99 or smiler[3] - next_floor_offset < 0:
-            #                    smiler_list.remove(smiler)
-            #                    break
-            #                if brane_index + next_floor_offset > 255:
-            #                    #enable white_void
-            #                    smiler_list.remove(smiler)
-            #                    break
-            #                next_floor = self.vs_brane_order[brane_index + next_floor_offset]
-            #                if not self.options.locustsanity:
-            #                    running_locust_score = 0
-            #                else:
-            #                    running_locust_score = smiler[3] - next_floor_offset
-            #                result, current_brane, brane_index = self.check_floor_connection(state, (next_floor, smiler[2], running_locust_score), current_brane, brane_index)
-            #            if result:
-            #                smiler[4][0] = next_floor_offset
-            #                break
-            #    if result:
-            #        continue
-            
-            # end the loop and pathfinding function
-            break
-    
+                    if check_item_tuples(self, state, brand_carve[1]):
+                        queue.append((brand_carve[0], locust_score))
+                        
+        #print(state.vs_brane_accessibility[self.player])
+        
     
     def collect(self, state: "CollectionState", item: "Item") -> bool:
         change = super().collect(state, item)
-        # this is now obsolete?
-        if change and item.name == ItemNames.locust_idol:
-            state.prog_items[item.player]["locusts"] += 1
-        elif change and item.name == ItemNames.tripled_locust:
-            state.prog_items[item.player]["locusts"] += 3
-        # set stale flag
         state.vs_stale_pathfinding[self.player] = True
-        #print(self.vs_stale_pathfinding)
-        #for brane in self.vs_brane_list:
-        #   print(brane + ", " + str(self.vs_brane_list[brane]["Accessible"]) + ", Player " + str(self.player))
-        #print (state.prog_items)
-        #input()
         return change
 
     def remove(self, state: "CollectionState", item: "Item") -> bool:
         change = super().remove(state, item)
-        if change and item.name == ItemNames.locust_idol:
-            state.prog_items[item.player]["locusts"] -= 1
-        elif change and item.name == ItemNames.tripled_locust:
-            state.prog_items[item.player]["locusts"] -= 3
         state.vs_stale_pathfinding[self.player] = True
         return change
 
     def generate_early(self):
+        return
         if self.options.logiccomplexity == 1:
             raise OptionError("ERROR: Full Logic is not currently implemented")
     
@@ -344,6 +227,7 @@ class VoidStrangerWorld(World):
         item_pool: list[VoidStrangerItem] = []
 
         location_count: int = 7
+        unfilled_locations: int = 0
 
         item_pool += [self.create_item(name)
                       for name in burden_item_data_table.keys()
@@ -353,25 +237,24 @@ class VoidStrangerWorld(World):
                       for name in misc_item_data_table.keys()
                       if name not in self.options.start_inventory]
 
-        if self.options.locustsanity:
-            location_count += 68
-            gray_locusts: int = 42
-            gray_triple_locusts: int = 26
-            #for later
-            lillith_locusts: int = 40
-            lillith_triple_locusts: int = 29
+        location_count += 68
+        #if lillith, location_count = 69
+        unfilled_locations += 68
 
-            if self.options.greedzone:
-                location_count += 15
-                self.greed_coin_count: int = int(self.options.greedcoinamount.value)
-                if self.greed_coin_count > 15:
-                    gray_locusts -= self.greed_coin_count - 15 #removing locusts to make room for more greed coins if needed
-                    if gray_locusts < 0: #if there are more greed coins than locusts, start removing triple locusts
-                        gray_triple_locusts += gray_locusts
-                item_pool += [self.create_item(ItemNames.greed_coin) for _ in range(self.greed_coin_count)]
-
-            item_pool += [self.create_item(ItemNames.tripled_locust) for _ in range(gray_triple_locusts)]
-            item_pool += [self.create_item(ItemNames.locust_idol) for _ in range(gray_locusts)]
+        if self.options.greedzone:
+            self.greed_coin_count: int = int(self.options.greedcoinamount.value)
+            location_count += 15
+            unfilled_locations = unfilled_locations + 15 - self.greed_coin_count
+            item_pool += [self.create_item(ItemNames.greed_coin) for _ in range(self.greed_coin_count)]
+        
+        self.locust_up_size: int = int(self.options.locustcapacityup.value)
+        self.locust_up_amount: int = min(unfilled_locations, math.ceil(99 / self.locust_up_size))
+        self.starting_max_locust: int = math.ceil(99 / self.locust_up_size) - self.locust_up_amount
+        unfilled_locations -= self.locust_up_amount
+        item_pool += [self.create_item(ItemNames.locust_capacity_up) for _ in range(self.locust_up_amount)]
+        print("LocUP " + str(self.locust_up_amount))
+        #input()
+            
         if self.options.brandsanity:
             location_count+= 9
 
@@ -391,7 +274,10 @@ class VoidStrangerWorld(World):
             item_pool += [self.create_item(name)
                           for name in shortcut_item_data_table.keys()
                           if name not in self.options.start_inventory]
-
+                          
+        # fill remaining locations with filler
+        item_pool += [self.create_item(ItemNames.bonus_locust) for _ in range(unfilled_locations)] # cap this with setting
+        
         self.multiworld.itempool += item_pool
 
     def create_regions(self) -> None:
@@ -415,17 +301,16 @@ class VoidStrangerWorld(World):
                 misc_location_data_table.items() if location_data.region == region_name
             }, VoidStrangerLocation)
 
-            if self.options.locustsanity:
+            region.add_locations({
+                location_name: location_data.address for location_name, location_data in
+                chest_location_data_table.items() if location_data.region == region_name
+            }, VoidStrangerLocation)
+
+            if self.options.greedzone:
                 region.add_locations({
                     location_name: location_data.address for location_name, location_data in
-                    chest_location_data_table.items() if location_data.region == region_name
+                    greed_chest_location_data_table.items() if location_data.region == region_name
                 }, VoidStrangerLocation)
-
-                if self.options.greedzone:
-                    region.add_locations({
-                        location_name: location_data.address for location_name, location_data in
-                        greed_chest_location_data_table.items() if location_data.region == region_name
-                    }, VoidStrangerLocation)
 
             if self.options.brandsanity:
                 region.add_locations({
@@ -454,8 +339,10 @@ class VoidStrangerWorld(World):
 
     def fill_slot_data(self):
         return {
-            "locustsanity": self.options.locustsanity.value,
             "brandsanity": self.options.brandsanity.value,
+            "locustcapacityup": self.options.locustcapacityup.value,
+            #"locustcapacityamount": self.locust_up_amount,
+            "startingmaxlocust": self.starting_max_locust,
             "progressivebrands": self.options.progressivebrands.value,
             "idolsanity": self.options.idolsanity.value,
             "shortcutsanity": self.options.shortcutsanity.value,
