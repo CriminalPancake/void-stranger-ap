@@ -227,7 +227,7 @@ def set_rules(world: VoidStrangerWorld):
                  lambda state: can_access_floor(world, state, "B169"))
 
         add_rule(world.multiworld.get_location(LocationNames.mural_cif, world.player),
-                 lambda state: can_access_floor(world, state, "B197"))
+                 lambda state: can_access_floor(world, state, "B197") and state.has(ItemNames.void_memory, world.player))
 
         add_rule(world.multiworld.get_location(LocationNames.mural_dis, world.player),
                  lambda state: can_access_floor(world, state, "B225"))

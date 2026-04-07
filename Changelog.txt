@@ -2,7 +2,14 @@ Known Issues:
 	Collecting a locust chest containing a Max Locust Up gives you the locusts first and then upgrades your capacity, wasting locusts if you're at max capacity
 
 
+
+v0.9.2.1
+	Fix:
+		Void Memory was missing as a logical requirement for Cif's Mural
+
+
 v0.9.2.0
+
 	General:
 		Locusts are now obtained from chests just like vanilla
 		Numbered Brane locust chests are now always AP Checks
@@ -25,10 +32,12 @@ v0.9.2.0
 	Misc:
 		AP Items are now saved to file and should not reset upon game close or reconnecting to AP
 		To properly reset between multiworlds, select End Run from the pause menu
+		Fixed typo on room name of Floor 196
 		
 
 
 v0.9.1.0
+
 	General:
 		New file "ap_room_name.csv" is now required
 		
