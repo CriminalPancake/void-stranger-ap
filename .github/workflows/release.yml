@@ -1,0 +1,43 @@
+name: Release Drafter
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: 'Release Tag (Prefer SemVer, i.e. v0.1.2)'
+        required: true
+        type: string
+      release_title:
+        description: 'Release Title (defaults to tag)'
+        required: false
+        type: string
+        default: ''
+
+jobs:
+  create_release_draft:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Required to create releases and upload assets
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create Zip File
+        run: zip -r voidstranger.apworld voidstranger/
+
+      - name: Create Release Draft
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ github.event.inputs.release_tag }}
+          TITLE: ${{ github.event.inputs.release_title || github.event.inputs.release_tag }}
+        run: |
+          gh release create "$TAG" \
+            --title "$TITLE" \
+            --draft \
+            --notes "## What's Changed for $TAG" \
+            voidstranger.apworld \
+            ap_room_names.csv \
+            gm-apclientpp.dll \
+            vsap.bdf \
+            vsap.xdelta
