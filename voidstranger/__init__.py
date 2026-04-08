@@ -5,15 +5,13 @@ from BaseClasses import Region, Item, MultiWorld, CollectionState, ItemClassific
 from Options import OptionError
 from worlds.AutoWorld import WebWorld, World, LogicMixin
 
-from .Constants.ItemNames import greed_coin
 from .Items import VoidStrangerItem, burden_item_data_table, misc_item_data_table, brand_item_data_table, \
-    statue_item_data_table, shortcut_item_data_table, locust_item_table, item_data_table, item_table, \
-    prog_brand_item_data_table
+    statue_item_data_table, shortcut_item_data_table, item_data_table, item_table
 from .Locations import VoidStrangerLocation, burden_location_data_table, misc_location_data_table,\
     mural_location_data_table, statue_location_data_table, shortcut_location_data_table, chest_location_data_table, \
     location_table, greed_chest_location_data_table
 from .Options import VoidStrangerOptions
-from .Constants import ItemNames, LocationNames
+from .Constants import ItemNames
 from .LocationGroups import vs_location_groups
 from .ItemGroups import vs_item_groups
 

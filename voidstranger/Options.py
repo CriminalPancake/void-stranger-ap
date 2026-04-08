@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from Options import Choice, Range, Toggle, OptionGroup, PerGameCommonOptions
+from Options import Choice, Range, Toggle, PerGameCommonOptions
 
 class LogicComplexity(Choice):
     """

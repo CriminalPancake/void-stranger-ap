@@ -2,8 +2,6 @@ from typing import Dict, NamedTuple, Optional
 
 from BaseClasses import Item, ItemClassification
 from .Constants import ItemNames
-from .Constants.ItemNames import greed_coin
-from .Locations import VoidStrangerLocationData
 
 void_stranger_base_id: int = 12345000
 
