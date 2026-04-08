@@ -15,6 +15,7 @@ from .Locations import VoidStrangerLocation, burden_location_data_table, misc_lo
 from .Options import VoidStrangerOptions
 from .Constants import ItemNames, LocationNames
 from .LocationGroups import vs_location_groups
+from .ItemGroups import vs_item_groups
 
 class VoidStrangerWebWorld(WebWorld):
     theme = "stone"
@@ -30,6 +31,7 @@ class VoidStrangerWorld(World):
     location_name_to_id = location_table
     item_name_to_id = item_table
     location_name_groups = vs_location_groups
+    item_name_groups = vs_item_groups
 
     #Instance Data
     goal_logic_mapping: Dict[str, List[List[str]]]
