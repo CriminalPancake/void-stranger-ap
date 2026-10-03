@@ -1,6 +1,7 @@
-# void-stranger-ap
-Archipelago integration for Void Stranger. By being here I assume you know everything about the game, if you haven't 
-finished the game, then scram!
+# void-stranger-ap v0.11.X
+Archipelago integration for Void Stranger.  
+This document and repository contains major spoilers for the game.
+Thus, it is not recommended to read this until you have absolutely cleared the game for sure.
 
 ## How to install this
 For generation:
@@ -48,156 +49,147 @@ updated with new content or a fix)
 
 Finally, be sure to add gm-apclientpp.dll and ap_room_names.csv to the Void Stranger folder
 
-## AP Menu
-
-If the game was patched successfully, you can open the AP menu by pushing F10 or binding a controller button to it.
-The AP menu has multiple pages, which can be navigated with left and right.
-
-- Connection page
-
-  This is the default page. Here you can input the connection details to connect to the AP server.
-  Press Tab to move to the next field, Delete to clear the current field, and Enter to connect to AP.
-  Your most recent connection will be saved.
-
-- Mon Bank page
-
-  Any locusts you receive from AP are sent here (if Locust-Sanity is turned on). Up/Down to navigate the options.
-  You can withdraw and throw out locusts at will. Throwing out locusts DOES NOT deposit them back into the bank.
-  Upon Atoning, your locust count resets as well as the amount withdrawn, but not the amount received.
-  For rando balance reasons, you cannot withdraw if that would cause you to hold more than you've received.
-
-- Tracker page
-
-  This page keeps track of all the items you've received.
-  Top row is brands, middle row is statues (only three are implemented), bottom row in order is:
-  Void Memory, Seal of Lust, Void Wings, Mon Badge (Unimplemented), Void Sword, Seal of Sloth, Void Rod, Interface Manip
-  Shortcuts will show up on the right hand side with the shortcut number and an image depicting it.
-  The DIS Brand appears as a large DIS Badge between the three rows and the shortcuts, if you have it.
-
-- Waypoints page
-
-  This page allows you to set up to three simultanious waypoints and warp back to them at will.
-  Waypoints restore your locust count to what it was when the waypoint was made.
-  Waypoints can only be set on numbered branes.
-
-- Extra page
-
-  This page was added as a result of having too many pages.
-  The Connection, Debug, and Palette pages can be loaded from here, as these pages are not frequently required.
-
-- Debug page
-
-  Shows several internal variables used for debugging.
-  If something clearly wrong occurs with your AP connection, or some items seem to vanish from your inventory,
-  please ping @Cavin856 with a screenshot of the debug page in the Void Stranger channel in the AP discord.
-
-  Palette page
-
-  Allows previewing and selecting a custom palette from the palettes.txt file.
-  Place the palettes.txt file (a sample file is included) in the save directory, which is NOT the same as the game directory.
-  Typically found in appdata/local/void_stranger
-  Custom palettes much follow the following format, where each color is a valid hex color preceeded by 0x (this means no #'s)
-  Name1
-  0xColor1
-  0xColor2
-  0xColor3
-  0xColor4
-  Name2
-  etc
-
-## Known bugs
-
-1. If your endless void rod was sent to you while you are "Waiting for VR Connection" (Don't have the regular
- Void Rod) you may need to reconnect to properly get the upgrade. Previously you would be unable to get it at all if it
-was sent to you while not connected in game, this issue should finally be resolved but please report if this is still 
-happening.
-
-2. The greed zone might not open properly the first time, it's unclear from the small amount of testing done. If you run
- into this issue then reconnecting should fix it. 
-
-3. There is a bug with how the game is recompiled by UMT that can cause crashes when a textbox displays with different 
-dialogue sounds. I fixed all the ones needed to complete a run, but I'm sure there are other instances of this across 
-the game. If you run into this please provide the crash message, so I can fix it.
-
-If you run into an issue not on this list, try reconnecting to the AP server. Regardless of if this resolves the issue, 
-report it either on the Void Stranger thread on the AP discord or open an issue with the details here on the repository.
-
 ## General options/game info
-Game Spoilers ahead, read at your own risk
 
-The apworld assumes you play as Gray with the DIS ending as the only goal. Playing as Lillie will make certain locust 
-chest locations uncheckable, and Cif cannot goal. 
+**Game Spoilers ahead, read at your own risk**  
 
-Items are not received if the player does not carry the void rod. 
-An error message will display: "Waiting for VR Connection" until it is picked up. Then the game sends a sync message to 
-the AP server and all items are received. 
+The apworld assumes you play as Gray with the DIS ending as the only goal.
+In the future, content from Lillie and Cif's routes will be added into Gray's route.
+
+Items are not received if the player does not carry the void rod (however they can still be sent).
+An error message will display: "Awaiting VR Connection" until it is picked up.
+It is safe to send items while not connected to Archipelago; they will be saved and sent the next time you connect.
 
 The Pause menu contains 2 new options replacing the close game option: Atone and End Run. The first acts as a portable 
 atoner, letting you go back to B001 at any time. The second is used to go back to brand entry, mostly so players can 
 quickly exit their current run. Going back to brand entry in the middle of an AP run is not recommended as you will lose
 your items.
 
-By default, the following are randomized: 
+By default, the following items are randomized:
 
-- Burdens
-- Seals on the Endless Void Rod, with killing the traitors as locations
-- The Endless Void Rod
-- The ability to access the interface, with a location on the Egg in Gor's chamber since it hints about the interface. 
-Make sure to have the Void Memory for that check.
+- All three Burdens
+- Seals of Lust, Greed, and Sloth (Seal of Greed does nothing currently)
+- Endless Void Rod
+- Interface access
+- The Void Fruit (makes you VOID in a certain area)
+- Each Void Lord's Brand
 
-The location and Item names are intentionally vague to minimize spoiling the game for other players, if you need 
-to see what all the names mean you can check the 
-item names here: https://github.com/CriminalPancake/void-stranger-ap/blob/main/voidstranger/Constants/ItemNames.py
+Void Lord Brands are required to progress to take the stairs in their corrosponding mural room.  
+Additionally, each brand must be acquired to access that Void Lord's secret room.
 
-and the location 
-names here: https://github.com/CriminalPancake/void-stranger-ap/blob/main/voidstranger/Constants/LocationNames.py
+Further options exist to include some of the Void Lord's Statues as items, and to include Mon's Shortcuts.
+Without a particular statue, all instances of it will become mostly useless eggs.  
+Currently, only three statues are implemented.
 
-There are options for the following:
+By default, the following locations are checks:
 
-- Randomizing normal chests. Adds locust idols to the pool, and they are managed by the Mon Bank. See "AP Menu" above.
-- Adding the ability to use brands to the item pool, with the murals having locations. Without a Void Lord's Brand,
-  you cannot progress beyond their domain. No shortcuts of any kind are considered
-  in the logic with this enabled at the moment
-- Disabling Smilers, Lovers and Killers until finding their respective items. Adds locations for talking to them with 
-the void memory. Note that getting all of these items is required for go mode, and you may get stuck without them
-in the final area
-- Adding ability to use shortcuts to the item pool, talking to Mon in each location gives checks
-- Adding the 15 chests (including the 3 before the final room) at the end Mon's Lair as locations. The item pool will 
-have 15 "Greed Coins" added which lock the entrance until they are all collected. You can also add more Greed Coins to 
-the pool, removing locusts from the pool to make room. This option only works with normal chests being randomized 
-already.
-- Skipping the long sequence of cutscenes before the final section of gameplay.
-- Making the voiders covering the interface invisible, keeping important info visible in all rooms.
+- Locust Chests in numbered branes
+- Secret Chests in secret rooms
+- The Endless Void Rod chest
+- All Murals (Speak to the rock in front of Cif's Mural while having the Void Memory to send Cif's Mural)
+- Slaying Tail, Tan, and Gor
+- Speaking to the rock in Gor's secret room (Obsolete location, will be removed in 0.12.0)
 
-For now, the only goal is the DIS ending, goal is sent after completing the final gameplay section before the ending 
-sequence.
+Further options exist to include various dungeons as locations, such as the Whitevoid area or Mon's Funhouse
+
+The location and Item names are intentionally vague to minimize spoilers for other players in the multiworld.  
+You can view a list of the Item and Location names here:
+ - https://github.com/Cavin856/void-stranger-ap/blob/main/voidstranger/Constants/ItemNames.py
+ - https://github.com/Cavin856/void-stranger-ap/blob/main/voidstranger/Constants/LocationNames.py
+
+### AP Menu
+
+If the game was patched successfully, you can open the AP menu by pushing F10 or binding a controller button to it.
+The AP menu consists of multiple sub-menus, which can be navigated with left and right.
+
+- Connection Menu
+
+  This is the default menu until you connect to Archipelago. Here, you input the connectiong details and connect.  
+  Press Enter to select a field, Tab to move to the next field, and Delete to clear the current field.  
+  Your most recent connection will be saved.
+
+- Mon Bank
+
+  This menu allows you to view and manage the state and quantity of your locusts.  
+  Bonus locusts you receive from AP are sent here. You can withdraw them from the bank or throw out locusts on hand.  
+  Throwing out locusts does not deposit them back into the bank; they are removed entirely.  
+  You cannot withdraw more than your maximum carrying capacity.  
+  Atoning will not restore bonus locusts previously withdrawn.
+
+- Tracker
+
+  This menu keeps track of all the items you've received.  
+  Top row is brands, middle row is statues (only three are implemented), bottom row in order is:  
+  Void Memory, Seal of Lust, Void Wings, Mon Badge (Unimplemented), Void Sword, Seal of Sloth, Void Rod, Interface Manip  
+  Shortcuts will show up on the right hand side with the shortcut number and an image depicting it.  
+  The DIS Brand appears as a large DIS Badge between the three rows and the shortcuts, if you have it.  
+  Also, the Void Fruit will appear if you have it, and your Greed Coins are tracker here.  
+  This page is scheduled to be reformatted in v0.13.0
+
+- Waypoints
+
+  This menu allows you to set up to three simultanious waypoints and warp back to them at will.  
+  Waypoints restore your locust count to what it was when the waypoint was made.  
+  Waypoints can only be set on numbered branes.
+
+- Extra
+
+  This menu was added as a result of having too many menus. Less frequently used menu can be opened here.  
+  Currently, this contains the Connection, Debug, and Palette menus.
+
+- Debug
+
+  This menu shows several internal variables used for debugging.  
+  If something goes wrong with your game, please include a screenshot of this menu along with your bug report.  
+  You can report bugs in the Void Stranger thread of the Archipelago discord.
+
+- Palette
+
+  This menu lets you preview and select a custom palette from the palettes.txt file.  
+  Place the palettes.txt file (a sample file is included) in the save directory, which is NOT the same as the game directory.  
+  Typically found in appdata/local/void_stranger  
+  Custom palettes must follow the following format, where each color is a valid hex color, preceeded by 0x  
+
+  *PaletteName1*  
+  0x*Color1*  
+  0x*Color2*  
+  0x*Color3*  
+  0x*Color4*  
+  *PaletteName2*  
+  0x*Color1*  
+  etc.
+
+### Known major issues
+
+1. Opening a chest containing a locust capacity up will not grant additional locusts.
+2. It is theoretically possible that logic will require you to loop Cif's Domain (or some other subset of floors)
+    more times than reasonable in order to grind up locusts. No solution has been found yet.
+
 
 ## Future Plans
 
-This is not an exhaustive list of all future planned updates.
+This is not an exhaustive list of all future updates, nor a comprehensive list of everything said updates will contain.
 Many more features are planned, but not currently in development.
 
-0.10.0      Logic Part 2, Custom Palette support
-0.10.1      Many bug fixes
-0.11.0      "Dungeons" / new vanilla checks, Traps
-0.12.0      Revamped Item Tracker, New Location Tracker
+0.11.1      Music Menu, many QoL fixes
+0.12.0      Traps, More Statues, More Dungeon Checks
+0.13.0      Location Tracker, New Item Tracker, [*REDACTED*]
 
 ## Contributors
 
-ThatOneGuy - For making the Manual Void Stranger AP Implementation
+This implementation is the result of an entire community, and many people have had a hand in it.  
+However, I would like to especially thank the following people, without whom this implementation never would have existed.
 
-[@Rayze421](https://github.com/Rayze421) - For adding location groups to the apworld for plando support, testing, and 
-brainstorming ideas.
+- [@Cavin856](https://github.com/Cavin856) -  For handling the current development
+- [@CriminalPancake](https://github.com/CriminalPancake) -  For handling the initial development
+- [@Eijebong](https://github.com/Eijebong) - For rewriting the entire the pathfinding algorithm and creating the AP generation fuzzer
+- [@LeonarthCG](https://github.com/LeonarthCG) - For creating the entire gamemaker net code, the backbone of how we connect to AP
 
-[@LeonarthCG](https://github.com/LeonarthCG) - For helping a massive amount with the gamemaker net code side of things 
-(and of course working on that library in the first place!).
+Additionally, I'd like to thank the following people for other contributions to the implementation:
 
-[@CriminalPancake](https://github.com/CriminalPancake) -  For making the initial AP development and paving the way to make future developments possible.
-
-[@Cavin856](https://github.com/Cavin856) -  For handling the current AP development
-
-[@Eijebong](https://github.com/Eijebong) - For rewriting and helping considerably with the pathfinding algorithm and debugging/fuzzing
-
-[@Mysteryem](https://github.com/Mysteryem) - For further help with bugfixes in the python code
-
-Anonymous - For arranging the default custom palettes
+- @Abelism
+- [@Rayze421](https://github.com/Rayze421)
+- [@Mysteryem](https://github.com/Mysteryem)
+- @RoobyRoo
+- @ThatOneGuy27
+- [@Virulence](https://github.com/VirulenceDev)

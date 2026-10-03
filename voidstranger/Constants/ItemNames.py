@@ -6,8 +6,10 @@ void_sword = "Burden 3"
 #Miscellaneous
 endless_void_rod = "The Key"
 interface_manip = "Unlock Cheats"
-lust_seal = "Seal of Lust Broken"
-sloth_seal = "Seal of Sloth Broken"
+lust_seal = "Seal of Lust"
+sloth_seal = "Seal of Sloth"
+greed_seal = "Seal of Greed"
+void_orange = "Void Fruit"
 
 #Brands
 brand_add = "Sign of the Void"
@@ -19,7 +21,6 @@ brand_gor = "Sign of Sloth"
 brand_lev = "Sign of Envy"
 brand_cif = "Sign of Pride"
 brand_dis = "Sign of Mystery"
-brand_prog = "Sign of Progress"
 
 #Statues
 enable_lover = "Idol of Lust"

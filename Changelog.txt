@@ -1,14 +1,127 @@
 Known Issues:
-	Collecting a locust chest containing a Max Locust Up gives you the locusts first and then upgrades your capacity, wasting locusts if you're at max capacity.
-	It is theoretically possible that logic will require you to loop Cif's Domain (or some other subset of floors) more times than reasonable in order to grind up locusts.
+	- Collecting a locust chest containing a Max Locust Up gives you the locusts first and then upgrades your capacity, wasting locusts if you're at max capacity.
+	- It is theoretically possible that logic will require you to loop Cif's Domain (or some other subset of floors) more times than reasonable in order to grind up locusts.
 
 
+v0.11.3
+	Fix:
+		Fixed a typo causing Beehole Reward Chest 1 always being in logic
+
+v0.11.2
+	Fix:
+		Fixed Idolsanity generating too many locations
+
+v0.11.1
+	Fix:
+		Fixed Short Dis options being labeled backwards
+		Fixed Short Dis Progress resetting if you closed the game inside DIS
+
+v0.11.0
+	New:
+		Short Dis is now an option
+			Replaces the full dungeon with 12 random floors between the Burden Check and the Statue Check rooms
+		Beehole dungeon has been added, which if enabled:
+			Adds two new chests to the final room of the dungeon, which do not give locusts
+			Includes the two chests in the entrance room of the dungeon, which do not give locusts
+			The "slay the lord of sloth" check is moved to the Gor Cube at the end of the dungeon
+				You must first show Gor the Void Rod, as in vanilla
+				Killing Gor outside of the dungeon is disabled
+		
+		Whitevoid dungeon has been added
+			Dying or getting caught inside now ejects you instead of closing the game
+			Leaving / being ejected now puts you wherever you were when you entered
+			The statue at the end has been reworked and can no longer delete your savefile under any circumstances
+				If the dungeon is disabled, the statue will ignore you
+				If the dungeon is enabled, interacting will spawn 5 chests and clear the dungeon
+				Stepping away from the statue now resets the bonk counter in case you bonk too much
+			As a bonus, clearing the dungeon will remove the vanishing floor effect from the White Void
+		
+		Deadend dungeon has been added
+			The entrance has been moved to a new hole on B255
+				The same hole will let you leave the dungeon
+			To actually enter the dungeon, you need the new Void Fruit item
+				This item replaces the requirement of being VOID
+			Inside the dungeon:
+				Your status is VOID
+				The AP Menu is disabled
+				Hold Escape to exit early
+			Completing the dungeon or leaving early will return you to the entrance
+			The mural in the entrance room is now a check
+				This check does not require the Void Fruit
+			The nine accessible chests are now checks
+				These chests are in the first nine rooms of the dungeon (not counting the entrance or the empty effigy room at the start)
+				There are no other accessible chests in later rooms after the teleports start
+				It is possible to get all nine in a single run with no burdens or endless void rod
+					This is logically expected, although there is very little room for error
+					Optimal solutions can be viewed here:
+					It is recommended to memorize the optimal solutions
+		The chest in Lev's Room is now a check
+		The chest in Cif's Room is now a check
+			This chest no longer gives 99 locusts
+		Added "Seal of Greed" as an item
+			Currently this does nothing
+	
+	Change:
+		Brandsanity is always on and is no longer an option
+			This is to prevent virtually the entire game from being sphere 1
+		Removed "Consult the Idol of X" checks from Idolsanity
+			These locations were added when we need somewhere to put the new items, however now we have an abundance of checks
+			Additionally, these checks were causing logical issues with other new options
+		Esc exit speed has been lowered to prevent accidental closes
+			This can be reverted if unpopular
+		You can no longer use Waypoints in the White Void or Dead End dungeons or in BR Null
+		Empty chests, locusts, and lucky locusts no longer give dialogue
+		The two chests at the Beehole entrance no longer give locusts even when Beehole is disabled
+		Floor 255 now always behaves as though you were Cif (The version with the single Atoner)
+		Renamed "Seal of Lust Broken" and "Seal of Sloth Broken" to simply "Seal of Lust" and "Seal of Sloth"
+		Interface Voiders have been removed
+			Instead, the interface has an dark border with invisible collision until you recieve the Interface
+			The defunct "Visible Interface" setting has been removed
+		Mural room Voiders have been removed
+			Instead, the stairs are closed if you don't have the appropriate brand to proceed
+			Previous changes made to the rooms (to accomodate the old Voiders) have been reverted
+		Mural rooms now require that murals' brand for the stairs to spawn (Instead of the subsequent brand)
+			B001 is an exception and is always open
+		Locusts now show on the interface by default
+		You can no longer gameover
+		Updates to Mon Bank:
+			Now functions regardless of your AP connection
+			Cannot be used in the Bee fight room
+			Cannot be used in the White Void
+			Slight text additions and misc backend changes in preparation for future updates to Mon's dialogue
+			Room dialogue for dead end entrance
+			Add one-time room dialogue
+		Dream Trees are disabled
+			This is temporary until we determine what to do with them
+		Renamed some locations:
+			Burden 3 is now "Slay the Lord of Wrath"
+			The chests in Add's, Bee's, Lev's, and Cif's brand rooms are now "Void Lord Chest 1-4"
+		Removed code and options relating to locust capacity amounts
+			Locust capacity ups will always give +3 capacity
+			(These settings were mostly DoA already, so this just formalizes that)
+		Gor Cube stinklines no longer require the Void Sword to spawn
+		Adjusted Bee's secret room to always spawn a glassfloor, more akin to vanilla
+		Removed the Voider blocking Tail's weak spot
+			Now you no longer have to wait and wait and wait and wait...
+			This may be reimplemented and adjusted in the future if/when Voiders are randomized
+	
+	Fix:
+		Killing Tail and Gor no longer set their vanilla Seal of Lust/Sloth flags
+		Fixed the major crash that could happen if one object had multiple textboxes
+		Added timeouts to the connection network before disconnecting on failure
+			This should hopefully prevent false negatives when connecting to custom servers
+		Import and Export queues are now reset on End Run
+		Improved restrictions on when you can open the AP Menu
+		There is no longer a broken tile in Bee's Secret Room under very specific circumstances
+		Fixed a minor issue with Endless Void Rod chest logic
+		Fixed the vanilla bug where you could kill Tail while paused
+		You can no longer use the Mon Bank during the Bee boss fight
+
+-------------------------------------------------------------------------
 
 v0.10.2
 	Fix:
 		Fixed Mon Bank shutting down if you are connected to AP instead of if you are not.
-
-
 
 v0.10.1
 	Change:
@@ -23,8 +136,6 @@ v0.10.1
 		End Run now disconnects you from AP
 		Receiving a shortcut from AP in the room with that shortcut no longer requires reloading to room to use it
 		Fixed status line on Connection Menu not showing the proper connection status
-
-
 
 v0.10.0
 

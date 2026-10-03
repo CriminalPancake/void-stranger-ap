@@ -18,7 +18,9 @@ class VoidStrangerLocationData(NamedTuple):
 burden_location_data_table: Dict[str, VoidStrangerLocationData] = {
     LocationNames.burden_chest1: VoidStrangerLocationData("Void", void_stranger_base_id + 0),
     LocationNames.burden_chest2: VoidStrangerLocationData("Void", void_stranger_base_id + 1),
-    LocationNames.burden_chest3: VoidStrangerLocationData("Void", void_stranger_base_id + 93)
+    LocationNames.burden_chest3: VoidStrangerLocationData("Void", void_stranger_base_id + 93),
+    LocationNames.burden_chest4: VoidStrangerLocationData("Void", void_stranger_base_id + 120),
+    LocationNames.burden_chest5: VoidStrangerLocationData("Void", void_stranger_base_id + 121)
 }
 
 misc_location_data_table: Dict[str, VoidStrangerLocationData] = {
@@ -38,15 +40,6 @@ mural_location_data_table: Dict[str, VoidStrangerLocationData] = {
     LocationNames.mural_lev: VoidStrangerLocationData("Void", void_stranger_base_id + 10),
     LocationNames.mural_cif: VoidStrangerLocationData("Void", void_stranger_base_id + 11),
     LocationNames.mural_dis: VoidStrangerLocationData("Void", void_stranger_base_id + 12)
-}
-
-statue_location_data_table: Dict[str, VoidStrangerLocationData] = {
-    LocationNames.statue_lover: VoidStrangerLocationData("Void", void_stranger_base_id + 13),
-    LocationNames.statue_smiler: VoidStrangerLocationData("Void", void_stranger_base_id + 14),
-    LocationNames.statue_killer: VoidStrangerLocationData("Void", void_stranger_base_id + 15)
-    # LocationNames.statue_greeder: VoidStrangerLocationData("Void", void_stranger_base_id + 16),
-    # LocationNames.statue_slower: VoidStrangerLocationData("Void", void_stranger_base_id + 17),
-    # LocationNames.statue_watcher: VoidStrangerLocationData("Void", void_stranger_base_id + 18),
 }
 
 shortcut_location_data_table: Dict[str, VoidStrangerLocationData] = {
@@ -146,14 +139,46 @@ greed_chest_location_data_table: Dict[str, VoidStrangerLocationData] = {
     LocationNames.m15_chest12: VoidStrangerLocationData("Void", void_stranger_base_id + 110)
 }
 
+beehole_chest_location_data_table: Dict[str, VoidStrangerLocationData] = {
+    LocationNames.bee1_chest1: VoidStrangerLocationData("Void", void_stranger_base_id + 111),
+    LocationNames.bee1_chest2: VoidStrangerLocationData("Void", void_stranger_base_id + 112),
+    LocationNames.bee15_chest1: VoidStrangerLocationData("Void", void_stranger_base_id + 113),
+    LocationNames.bee15_chest2: VoidStrangerLocationData("Void", void_stranger_base_id + 114)
+}
+
+whitevoid_location_data_table: Dict[str, VoidStrangerLocationData] = {
+    LocationNames.whitevoid_chest1: VoidStrangerLocationData("Void", void_stranger_base_id + 115),
+    LocationNames.whitevoid_chest2: VoidStrangerLocationData("Void", void_stranger_base_id + 116),
+    LocationNames.whitevoid_chest3: VoidStrangerLocationData("Void", void_stranger_base_id + 117),
+    LocationNames.whitevoid_chest4: VoidStrangerLocationData("Void", void_stranger_base_id + 118),
+    LocationNames.whitevoid_chest5: VoidStrangerLocationData("Void", void_stranger_base_id + 119)
+}
+
+deadend_location_data_table: Dict[str, VoidStrangerLocationData] = {
+    LocationNames.deadend_mural: VoidStrangerLocationData("Void", void_stranger_base_id + 122),
+    LocationNames.deadend_chest1: VoidStrangerLocationData("Void", void_stranger_base_id + 123),
+    LocationNames.deadend_chest2: VoidStrangerLocationData("Void", void_stranger_base_id + 124),
+    LocationNames.deadend_chest3: VoidStrangerLocationData("Void", void_stranger_base_id + 125),
+    LocationNames.deadend_chest4: VoidStrangerLocationData("Void", void_stranger_base_id + 126),
+    LocationNames.deadend_chest5: VoidStrangerLocationData("Void", void_stranger_base_id + 127),
+    LocationNames.deadend_chest6: VoidStrangerLocationData("Void", void_stranger_base_id + 128),
+    LocationNames.deadend_chest7: VoidStrangerLocationData("Void", void_stranger_base_id + 129),
+    LocationNames.deadend_chest8: VoidStrangerLocationData("Void", void_stranger_base_id + 130),
+    LocationNames.deadend_chest9: VoidStrangerLocationData("Void", void_stranger_base_id + 131),
+}
+
+
+
 location_data_table: Dict[str, VoidStrangerLocationData] = {
     **burden_location_data_table,
     **misc_location_data_table,
     **mural_location_data_table,
-    **statue_location_data_table,
     **shortcut_location_data_table,
     **chest_location_data_table,
-    **greed_chest_location_data_table
+    **greed_chest_location_data_table,
+    **beehole_chest_location_data_table,
+    **whitevoid_location_data_table,
+    **deadend_location_data_table
 }
 
 location_table = {name: data.address for name, data in location_data_table.items() if data.address is not None}

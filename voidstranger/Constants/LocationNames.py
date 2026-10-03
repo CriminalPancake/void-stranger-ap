@@ -1,7 +1,9 @@
 #Burden Chests
-burden_chest1 = "Burden Chest 1"
-burden_chest2 = "Burden Chest 2"
-burden_chest3 = "Burden Chest 3"
+burden_chest1 = "Void Lord Chest 1"
+burden_chest2 = "Void Lord Chest 2"
+burden_chest3 = "Slay the Lord of Wrath"
+burden_chest4 = "Void Lord Chest 3"
+burden_chest5 = "Void Lord Chest 4"
 
 #Miscellaneous
 endless_void_rod_chest = "Unseal the Key"
@@ -107,7 +109,7 @@ b200_chest = "B200 Chest"
 b209_chest = "B209 Chest"
 b210_chest = "B210 Chest"
 
-#Mon Chests
+#Greedzone Chests
 m14_chest1 = "G14 Chest 1"
 m14_chest2 = "G14 Chest 2"
 m14_chest3 = "G14 Chest 3"
@@ -123,6 +125,31 @@ m15_chest9 = "G15 Chest 9"
 m15_chest10 = "G15 Chest 10"
 m15_chest11 = "G15 Chest 11"
 m15_chest12 = "G15 Chest 12"
+
+#Beehole
+bee1_chest1 = "Beehole Entrance Chest 1"
+bee1_chest2 = "Beehole Entrance Chest 2"
+bee15_chest1 = "Beehole Reward Chest 1"
+bee15_chest2 = "Beehole Reward Chest 2"
+
+#Whitevoid
+whitevoid_chest1 = "White Void Reward 1"
+whitevoid_chest2 = "White Void Reward 2"
+whitevoid_chest3 = "White Void Reward 3"
+whitevoid_chest4 = "White Void Reward 4"
+whitevoid_chest5 = "White Void Reward 5"
+
+#Deadend
+deadend_mural = "Mural of the Lost"
+deadend_chest1 = "Dead End Chest 1"
+deadend_chest2 = "Dead End Chest 2"
+deadend_chest3 = "Dead End Chest 3"
+deadend_chest4 = "Dead End Chest 4"
+deadend_chest5 = "Dead End Chest 5"
+deadend_chest6 = "Dead End Chest 6"
+deadend_chest7 = "Dead End Chest 7"
+deadend_chest8 = "Dead End Chest 8"
+deadend_chest9 = "Dead End Chest 9"
 
 #Goal
 ending_dis = "Finale"

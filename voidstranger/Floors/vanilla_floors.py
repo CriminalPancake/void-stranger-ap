@@ -35,6 +35,42 @@ VanillaBraneOrder = [
         "B240","B241","B242","B243","B244","B245","B246","B247","B248","B249","B250","B251","B252","B253","B254","B255"]
 
 
+# Two shuffle settings. One for which floors: Side, All, etc. The other setting for If Side: Shortcut, Include Brands, Include Dungeons
+# copy first N entries to shuffle list, shuffle it, then append the remaining ones in order at the endswith
+# then go through mains and if side index, reassign with corrosponding shuffled side
+# need to re-order dungeons to end for easier grouping
+
+# use a different system entirely for pools and true random sides, since there will be more sides to choose from and all are random
+# no need to combine methods because there is no compeltely random + some vanilla
+
+# for full random sides (and mains) make a list, include all required, then randomly add optional until a certain total is reached
+# side exits are a different matter entirely and will be handled in a separate phase as needed
+# may need to make sides link to further sides if there are too many
+# basically each side entrance slot will have an ordered list of all sides it goes through before the exit
+# will need to make list of all slots
+
+# all side slot arrays contain the final destination as the final entry. So Slot 1 Entry 1 points to Slot 1 Entry 2 which may be another side, or if not, is the main brane exit
+# Replace shortcuts with tuple ("index", #, Vanilla_Exit_Brane)
+
+
+VanillaSideMap = [
+        "mon_shortcut_1",
+        "mon_shortcut_2",
+        "mon_shortcut_3",
+        "mon_shortcut_4",
+        "mon_shortcut_5",
+        "beehole_entrance",
+        "greedzone_entrance",
+        "room_add",
+        "room_eus",
+        "room_bee",
+        "room_mon",
+        "room_tan",
+        "room_gor",
+        "room_lev",
+        "room_cif",
+        "room_dis"]
+
 # for adding new brand rooms and carvings:
 # if key exists in brand_dictionary, append the new carve (from a table of all carves of this new brand) to it's list of possible carves
 
@@ -105,334 +141,589 @@ VanillaBrandCarving = {
         }
 
 RequiredMainBranes = {
-        "B000": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B001": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B030": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B143": {"Chest_Score": 0, "Smiler": [[("idol","smiler")]], "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"smiler":[[]]}},
+        "B000": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B002": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B030": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B143": {"Chest_Score": 0, "Stairs": ("next",[[]]),
+                 "Smiler":      [
+                                [("idol","smiler")]]},
         # murals
-        "B029": {"Chest_Score": 0, "Smiler": [[("idol","smiler")]], "Interface": False, "Brand_Room": False, "Stairs": ("next",[[("brand","add")]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"smiler":[[]]}},
-        "B057": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[("brand","eus")]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B085": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[("brand","bee")]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B113": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[("brand","mon")]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B141": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[("brand","tan")]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B169": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[("brand","gor")]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B197": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[("brand","lev")]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B225": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[("brand","cif")]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
+        "B001": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B029": {"Chest_Score": 0,
+                 "Stairs":      ("next",[
+                                    [("brand","eus")]]),
+                 "Smiler":      [
+                                    [("idol","smiler")]]},
+        "B057": {"Chest_Score": 0,
+                "Stairs":       ("next",[
+                                    [("brand","bee")]])},
+        "B085": {"Chest_Score": 0,
+                "Stairs":       ("next",[
+                                    [("brand","mon")]])},
+        "B113": {"Chest_Score": 0,
+                "Stairs":       ("next",[
+                                    [("brand","tan")]])},
+        "B141": {"Chest_Score": 0,
+                "Stairs":       ("next",[
+                                    [("brand","gor")]])},
+        "B169": {"Chest_Score": 0,
+                "Stairs":       ("next",[
+                                    [("brand","lev")]])},
+        "B197": {"Chest_Score": 0,
+                "Stairs":       ("next",[
+                                    [("brand","cif")]])},
+        "B225": {"Chest_Score": 0,
+                "Stairs":       ("next",[
+                                    [("brand","dis")]]),
+                "Shortcut":     [("deadend_entrance",[[]])]},
+        
         # trees
-        "B028": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B056": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B084": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B112": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B140": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B168": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B196": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}}, # also a mon floor
-        "B224": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
+        "B028": {"Chest_Score": 0, "Stairs": ("next",[[]]),
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B056": {"Chest_Score": 0, "Stairs": ("next",[[]]),
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B084": {"Chest_Score": 0, "Stairs": ("next",[[]]),
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B112": {"Chest_Score": 0, "Stairs": ("next",[[]]),
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B140": {"Chest_Score": 0, "Stairs": ("next",[[]]),
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B168": {"Chest_Score": 0, "Stairs": ("next",[[]]),
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B196": {"Chest_Score": 0, "Stairs": ("next",[[]]), # also a mon floor
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B224": {"Chest_Score": 0, "Stairs": ("next",[[]]),
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
         # brand rooms
-        "B023": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": True,  "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B053": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": True,  "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B067": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": True,  "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"smiler":[[]]}},
-        "B089": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": True,  "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B137": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": True,  "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"killer":[[]]}},
-        "B157": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": True,  "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B179": {"Chest_Score": 1, "Smiler": False, "Interface": False, "Brand_Room": True,  "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"watcher":[[]]}},
-        "B223": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": True,  "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": True , "Statues": {}},
-        "B227": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": True,  "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
+        "B023": {"Chest_Score": 0, "Stairs": ("next",[[]]), "Brand_Room": True},
+        "B053": {"Chest_Score": 0, "Stairs": ("next",[[]]), "Brand_Room": True},
+        "B067": {"Chest_Score": 0, "Stairs": ("next",[[]]), "Brand_Room": True},
+        "B089": {"Chest_Score": 0, "Stairs": ("next",[[]]), "Brand_Room": True},
+        "B137": {"Chest_Score": 0, "Stairs": ("next",[[]]), "Brand_Room": True},
+        "B157": {"Chest_Score": 0, "Stairs": ("next",[[]]), "Brand_Room": True},
+        "B179": {"Chest_Score": 1, "Stairs": ("next",[[]]), "Brand_Room": True},
+        "B223": {"Chest_Score": 0, "Stairs": ("next",[[]]), "Brand_Room": True, "Skipped": True},
+        "B227": {"Chest_Score": 0, "Stairs": ("next",[[]]), "Brand_Room": True},
         # mon floors
-        "B004": {"Chest_Score": 1, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B044": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B086": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B124": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
+        "B004": {"Chest_Score": 1, "Stairs": ("next",[[]])},
+        "B044": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B086": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B124": {"Chest_Score": 0, "Stairs": ("next",[[]])},
         }
 
 # B077's locust chest can be tripled and obtained without burdens, but then the exit cannot be reached.
 # Thus, logic expects you to triple it and then die, resulting in a chest_score of 2.
 OptionalMainBranes = {
-        "B002": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B003": {"Chest_Score": 3, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B005": {"Chest_Score": 3, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B006": {"Chest_Score": 3, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B007": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": [("mon_shortcut_1",[[("shortcut","mon1")]])], "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B008": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B009": {"Chest_Score": 1, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B010": {"Chest_Score": 1, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B011": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B012": {"Chest_Score": 3, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B013": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B014": {"Chest_Score": 1, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B015": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B016": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B017": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B018": {"Chest_Score": 1, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B019": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B020": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B021": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B022": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B024": {"Chest_Score": 3, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B025": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B026": {"Chest_Score": 3, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B027": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B031": {"Chest_Score": 0, "Smiler": [[("idol","smiler")]], "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"smiler":[[]]}},
-        "B032": {"Chest_Score": 3, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B033": {"Chest_Score": 3, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B034": {"Chest_Score": 3, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B035": {"Chest_Score": 1, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B036": {"Chest_Score": 3, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B037": {"Chest_Score": 3, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": [("mon_shortcut_2",[[("shortcut","mon2")]])], "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B038": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B039": {"Chest_Score": 0, "Smiler": [[("idol","smiler")]], "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"smiler":[[("item",ItemNames.void_wings)]]}},
-        "B040": {"Chest_Score": 1, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B041": {"Chest_Score": 1, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B042": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B043": {"Chest_Score": 1, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B045": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B046": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B047": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B048": {"Chest_Score": 3, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B049": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B050": {"Chest_Score": 1, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B051": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B052": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B054": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B055": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B058": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B059": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B060": {"Chest_Score": 3, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B061": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B062": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B063": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B064": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B065": {"Chest_Score": 3, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B066": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B068": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B069": {"Chest_Score": 3, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B070": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B071": {"Chest_Score": 0, "Smiler": [[("idol","smiler")]], "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"smiler":[[]]}},
-        "B072": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B073": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B074": {"Chest_Score": 3, "Smiler": [[("idol","smiler")]], "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"smiler":[[]]}},
-        "B075": {"Chest_Score": 0, "Smiler": [[("idol","smiler")]], "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"smiler":[[]]}},
-        "B076": {"Chest_Score": 3, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B077": {"Chest_Score": 3, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B078": {"Chest_Score": 1, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B079": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B080": {"Chest_Score": 1, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B081": {"Chest_Score": 1, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B082": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B083": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": [("mon_shortcut_3",[[("shortcut","mon3")]])], "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B087": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B088": {"Chest_Score": 1, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B090": {"Chest_Score": 0, "Smiler": [[("idol","smiler")]], "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"smiler":[[]]}},
-        "B091": {"Chest_Score": 1, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B092": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B093": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip),("item",ItemNames.void_wings)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B094": {"Chest_Score": 1, "Smiler": [[("idol","smiler")]], "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"smiler":[[]]}},
-        "B095": {"Chest_Score": 0, "Smiler": [[("idol","smiler")]], "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"smiler":[[]]}},
-        "B096": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B097": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B098": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B099": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B100": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B101": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B102": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B103": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B104": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B105": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B106": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B107": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B108": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B109": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B110": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B111": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B114": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B115": {"Chest_Score": 1, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B116": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"killer":[[]]}},
-        "B117": {"Chest_Score": 1, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip),("item",ItemNames.void_wings)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"killer":[[("item",ItemNames.void_wings)]]}},
-        "B118": {"Chest_Score": 1, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"killer":[[]]}},
-        "B119": {"Chest_Score": 0, "Smiler": [[("idol","smiler")]], "Interface": False, "Brand_Room": False, "Stairs": ("next",[[("idol","killer")]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}, "Statues": {"smiler":[[]],"killer":[[]]}},
-        "B120": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[("idol","killer")]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"killer":[[]]}},
-        "B121": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[("idol","killer")]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"killer":[[]]}},
-        "B122": {"Chest_Score": 1, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"killer":[[]]}},
-        "B123": {"Chest_Score": 1, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[("idol","killer")]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"killer":[[]]}},
-        "B125": {"Chest_Score": 0, "Smiler": [[("idol","smiler")]], "Interface": False, "Brand_Room": False, "Stairs": ("next",[[("idol","killer")]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"smiler":[[]],"killer":[[]]}},
-        "B126": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"killer":[[]]}},
-        "B127": {"Chest_Score": 1, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"killer":[[]]}},
-        "B128": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[("idol","killer")]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"killer":[[]]}},
-        "B129": {"Chest_Score": 0, "Smiler": [[("idol","smiler")]], "Interface": False, "Brand_Room": False, "Stairs": ("next",[[("idol","killer")]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"smiler":[[]],"killer":[[]]}},
-        "B130": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[("idol","killer")]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"killer":[[]]}},
-        "B131": {"Chest_Score": 0, "Brand_Room": False, "Skipped": False,
-            "Stairs": ("next",[[("idol","killer")]]),
-            "Shortcut": [("mon_shortcut_4",[[("shortcut","mon4"),("idol","killer")]])],
-            "Smiler": False,
-            "Interface": False,
-            "Dungeon": False,
-            "Statues": {"killer":[[]]}},
-        "B132": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[("idol","killer")]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"killer":[[]]}},
-        "B133": {"Chest_Score": 1, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"killer":[[]]}},
-        "B134": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"killer":[[]]}},
-        "B135": {"Chest_Score": 1, "Smiler": [[("idol","smiler")]], "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"smiler":[[]],"killer":[[]]}},
-        "B136": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"killer":[[]]}},
-        "B138": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"killer":[[]]}},
-        "B139": {"Chest_Score": 0, "Smiler": [[("idol","smiler")]], "Interface": False, "Brand_Room": False, "Stairs": ("next",[[("idol","killer")]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"smiler":[[]],"killer":[[]]}},
-        "B142": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B144": {"Chest_Score": 1, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B145": {"Chest_Score": 3, "Smiler": [[("idol","smiler")]], "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"smiler":[[]]}},
-        "B146": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[("idol","killer")]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"killer":[[]]}},
-        "B147": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B148": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B149": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B150": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B151": {"Chest_Score": 1, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B152": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B153": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[("idol","killer")]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"killer":[[]]}},
-        "B154": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B155": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B156": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B158": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B159": {"Chest_Score": 3, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B160": {"Chest_Score": 2, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B161": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"killer":[[]]}},
-        "B162": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B163": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": [("mon_shortcut_5",[[("shortcut","mon5")]])], "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B164": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[("idol","killer")]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"killer":[[]]}},
-        "B165": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B166": {"Chest_Score": 1, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"killer":[[]]}},
-        "B167": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B170": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B171": {"Chest_Score": 3, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B172": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B173": {"Chest_Score": 1, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B174": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B175": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B176": {"Chest_Score": 1, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B177": {"Chest_Score": 3, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B178": {"Chest_Score": 2, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"watcher":[[]]}},
-        "B180": {"Chest_Score": 1, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B181": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[("idol","killer")]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"killer":[[]]}},
-        "B182": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"killer":[[]]}},
-        "B183": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B184": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"watcher":[[]]}},
-        "B185": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"watcher":[[]]}},
-        "B186": {"Chest_Score": 0, "Smiler": [[("idol","smiler")]], "Interface": False, "Brand_Room": False, "Stairs": ("next",[[("idol","watcher")],[("item",ItemNames.void_wings)],[("item",ItemNames.void_sword)]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"smiler":[[]],"watcher":[[]]}},
-        "B187": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[("idol","watcher")]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B188": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[("idol","killer")],[("item",ItemNames.void_wings)]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"killer":[[]],"watcher":[[("item",ItemNames.void_wings)]]}},
-        "B189": {"Chest_Score": 3, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"smiler":[[]],"watcher":[[]]}},
-        "B190": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B191": {"Chest_Score": 1, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"watcher":[[]]}},
-        "B192": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B193": {"Chest_Score": 0, "Smiler": [[("idol","smiler")]], "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"smiler":[[]],"watcher":[[]]}},
-        "B194": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[("idol","watcher")]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"watcher":[[]]}},
-        "B195": {"Chest_Score": 4, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"watcher":[[]]}},
-        "B198": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B199": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip),("item",ItemNames.void_wings)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B200": {"Chest_Score": 3, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B201": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B202": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B203": {"Chest_Score": 0, "Brand_Room": False, "Skipped": False,
-            "Stairs":       ("next",[[("idol","watcher")]]),
-            "Shortcut":     False,
-            "Smiler":       False,
-            "Interface":    [[("item",ItemNames.interface_manip),("idol","watcher"),("item",ItemNames.void_wings)],
-                             [("item",ItemNames.interface_manip),("idol","watcher"),("item",ItemNames.endless_void_rod)]],
-            "Dungeon":      False,
-            "Statues":      {"watcher":[[]]}},
-        "B204": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B205": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B206": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B207": {"Chest_Score": 0, "Brand_Room": False, "Skipped": False,
-            "Stairs":       ("next",[[]]),
-            "Shortcut":     False,
-            "Smiler":       False,
-            "Interface":    [[("item",ItemNames.interface_manip),("item",ItemNames.void_wings)]],
-            "Dungeon":      False,
-            "Statues":      {}},
-        "B208": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B209": {"Chest_Score": 3, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"killer":[[]]}},
-        "B210": {"Chest_Score": 3, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B211": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[("idol","killer")]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"killer":[[]]}},
-        "B212": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B213": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B214": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B215": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B216": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B217": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[("idol","killer")]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"killer":[[]]}},
-        "B218": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B219": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B220": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B221": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B222": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip),("item",ItemNames.void_wings)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B226": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B228": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B229": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B230": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B231": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B232": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B233": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B234": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B235": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B236": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B237": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B238": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B239": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B240": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B241": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B242": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B243": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B244": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B245": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B246": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B247": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B248": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B249": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B250": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B251": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B252": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B253": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B254": {"Chest_Score": 0, "Smiler": False, "Interface": [[("item",ItemNames.interface_manip)]], "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "B255": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
+        "B003": {"Chest_Score": 3, "Stairs": ("next",[[]])},
+        "B005": {"Chest_Score": 3, "Stairs": ("next",[[]])},
+        "B006": {"Chest_Score": 3, "Stairs": ("next",[[]])},
+        "B007": {"Chest_Score": 3, "Stairs": ("next",[[]]),
+                 "Shortcut":    [("mon_shortcut_1",[
+                                    [("shortcut","mon1")]])]},
+        "B008": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B009": {"Chest_Score": 1, "Stairs": ("next",[[]])},
+        "B010": {"Chest_Score": 1, "Stairs": ("next",[[]])},
+        "B011": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B012": {"Chest_Score": 3, "Stairs": ("next",[[]])},
+        "B013": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B014": {"Chest_Score": 1, "Stairs": ("next",[[]])},
+        "B015": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B016": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B017": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B018": {"Chest_Score": 1, "Stairs": ("next",[[]])},
+        "B019": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B020": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B021": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B022": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B024": {"Chest_Score": 3, "Stairs": ("next",[[]])},
+        "B025": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B026": {"Chest_Score": 3, "Stairs": ("next",[[]])},
+        "B027": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B031": {"Chest_Score": 0, "Stairs": ("next",[[]]),
+                 "Smiler":      [
+                                    [("idol","smiler")]]},
+        "B032": {"Chest_Score": 3, "Stairs": ("next",[[]])},
+        "B033": {"Chest_Score": 3, "Stairs": ("next",[[]])},
+        "B034": {"Chest_Score": 3, "Stairs": ("next",[[]])},
+        "B035": {"Chest_Score": 1, "Stairs": ("next",[[]])},
+        "B036": {"Chest_Score": 3, "Stairs": ("next",[[]]),
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B037": {"Chest_Score": 3, "Stairs": ("next",[[]]),
+                 "Shortcut":    [("mon_shortcut_2",[
+                                    [("shortcut","mon2")]])]},
+        "B038": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B039": {"Chest_Score": 0, "Stairs": ("next",[[]]),
+                 "Smiler":      [
+                                    [("idol","smiler")]],
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B040": {"Chest_Score": 1, "Stairs": ("next",[[]])},
+        "B041": {"Chest_Score": 1, "Stairs": ("next",[[]])},
+        "B042": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B043": {"Chest_Score": 1, "Stairs": ("next",[[]])},
+        "B045": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B046": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B047": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B048": {"Chest_Score": 3, "Stairs": ("next",[[]]),
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B049": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B050": {"Chest_Score": 1, "Stairs": ("next",[[]])},
+        "B051": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B052": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B054": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B055": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B058": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B059": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B060": {"Chest_Score": 3, "Stairs": ("next",[[]])},
+        "B061": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B062": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B063": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B064": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B065": {"Chest_Score": 3, "Stairs": ("next",[[]])},
+        "B066": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B068": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B069": {"Chest_Score": 3, "Stairs": ("next",[[]])},
+        "B070": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B071": {"Chest_Score": 0, "Stairs": ("next",[[]]),
+                 "Smiler":      [
+                                    [("idol","smiler")]]},
+        "B072": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B073": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B074": {"Chest_Score": 3, "Stairs": ("next",[[]]),
+                 "Smiler":      [
+                                    [("idol","smiler")]],
+                 "Statues":     {"smiler":[[]]}},
+        "B075": {"Chest_Score": 0, "Stairs": ("next",[[]]),
+                 "Smiler":      [
+                                    [("idol","smiler")]]},
+        "B076": {"Chest_Score": 3, "Stairs": ("next",[[]])},
+        "B077": {"Chest_Score": 3, "Stairs": ("next",[[]])},
+        "B078": {"Chest_Score": 1, "Stairs": ("next",[[]])},
+        "B079": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B080": {"Chest_Score": 1, "Stairs": ("next",[[]])},
+        "B081": {"Chest_Score": 1, "Stairs": ("next",[[]])},
+        "B082": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B083": {"Chest_Score": 0, "Stairs": ("next",[[]]),
+                 "Shortcut":    [("mon_shortcut_3",[
+                                    [("shortcut","mon3")]])]},
+        "B087": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B088": {"Chest_Score": 1, "Stairs": ("next",[[]])},
+        "B090": {"Chest_Score": 0, "Stairs": ("next",[[]]),
+                 "Smiler":      [
+                                    [("idol","smiler")]]},
+        "B091": {"Chest_Score": 1, "Stairs": ("next",[[]])},
+        "B092": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B093": {"Chest_Score": 0, "Stairs": ("next",[[]]),
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip),("item",ItemNames.void_wings)]]},
+        "B094": {"Chest_Score": 1, "Stairs": ("next",[[]]),
+                 "Smiler":      [
+                                    [("idol","smiler")]],
+                 "Statues":     {"smiler":[[]]}},
+        "B095": {"Chest_Score": 0, "Stairs": ("next",[[]]),
+                 "Smiler":      [
+                                    [("idol","smiler")]]},
+        "B096": {"Chest_Score": 0, "Stairs": ("next",[[]]),
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B097": {"Chest_Score": 0, "Stairs": ("next",[[]]),
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B098": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B099": {"Chest_Score": 0, "Stairs": ("next",[[]]),
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B100": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B101": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B102": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B103": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B104": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B105": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B106": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B107": {"Chest_Score": 0, "Stairs": ("next",[[]]),
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B108": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B109": {"Chest_Score": 0, "Stairs": ("next",[[]]),
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B110": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B111": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B114": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B115": {"Chest_Score": 1, "Stairs": ("next",[[]])},
+        "B116": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B117": {"Chest_Score": 1, "Stairs": ("next",[[]]),
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip),("item",ItemNames.void_wings)]]},
+        "B118": {"Chest_Score": 1, "Stairs": ("next",[[]])},
+        "B119": {"Chest_Score": 0,
+                 "Stairs":      ("next",[
+                                    [("idol","killer")]]),
+                 "Smiler":      [
+                                    [("idol","smiler")]]},
+        "B120": {"Chest_Score": 0,
+                 "Stairs":      ("next",[
+                                    [("idol","killer")]])},
+        "B121": {"Chest_Score": 0,
+                 "Stairs":      ("next",[
+                                    [("idol","killer")]])},
+        "B122": {"Chest_Score": 1, "Stairs": ("next",[[]])},
+        "B123": {"Chest_Score": 1,
+                 "Stairs":      ("next",[
+                                    [("idol","killer")]])},
+        "B125": {"Chest_Score": 0,
+                 "Stairs":      ("next",[
+                                    [("idol","killer")]]),
+                 "Smiler":      [
+                                    [("idol","smiler")]]},
+        "B126": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B127": {"Chest_Score": 1, "Stairs": ("next",[[]])},
+        "B128": {"Chest_Score": 0,
+                 "Stairs":      ("next",[
+                                    [("idol","killer")]])},
+        "B129": {"Chest_Score": 0,
+                 "Stairs":      ("next",[
+                                    [("idol","killer")]]),
+                 "Smiler":      [
+                                    [("idol","smiler")]]},
+        "B130": {"Chest_Score": 0,
+                 "Stairs":      ("next",[
+                                    [("idol","killer")]]),
+                 "Statues":     {"killer":[[]]}},
+        "B131": {"Chest_Score": 0,
+                 "Stairs":      ("next",[
+                                    [("idol","killer")]]),
+                 "Shortcut":    [("mon_shortcut_4",[
+                                    [("shortcut","mon4"),("idol","killer")]])],
+                 "Statues":     {"killer":[[]]}},
+        "B132": {"Chest_Score": 0,
+                 "Stairs":      ("next",[
+                                    [("idol","killer")]])},
+        "B133": {"Chest_Score": 1, "Stairs": ("next",[[]])},
+        "B134": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B135": {"Chest_Score": 1, "Stairs": ("next",[[]]),
+                 "Smiler":      [
+                                    [("idol","smiler")]]},
+        "B136": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B138": {"Chest_Score": 0, "Stairs": ("next",[[]]),
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B139": {"Chest_Score": 0,
+                 "Stairs":      ("next",[
+                                    [("idol","killer")]]),
+                 "Smiler":      [
+                                    [("idol","smiler")]]},
+        "B142": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B144": {"Chest_Score": 1, "Stairs": ("next",[[]]),
+                 "Shortcut":    [("beehole_entrance",[[]])]},
+        "B145": {"Chest_Score": 3, "Stairs": ("next",[[]]),
+                 "Smiler":      [
+                                [("idol","smiler")]]},
+        "B146": {"Chest_Score": 0,
+                 "Stairs":      ("next",[
+                                    [("idol","killer")]])},
+        "B147": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B148": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B149": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B150": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B151": {"Chest_Score": 1, "Stairs": ("next",[[]])},
+        "B152": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B153": {"Chest_Score": 0, 
+                 "Stairs":      ("next",[
+                                    [("idol","killer")]])},
+        "B154": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B155": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B156": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B158": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B159": {"Chest_Score": 3, "Stairs": ("next",[[]])},
+        "B160": {"Chest_Score": 2, "Stairs": ("next",[[]])},
+        "B161": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B162": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B163": {"Chest_Score": 0, "Stairs": ("next",[[]]),
+                 "Shortcut":    [("mon_shortcut_5",[
+                                    [("shortcut","mon5")]])]},
+        "B164": {"Chest_Score": 0,
+                 "Stairs":      ("next",[
+                                    [("idol","killer")]])},
+        "B165": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B166": {"Chest_Score": 1, "Stairs": ("next",[[]])},
+        "B167": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B170": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B171": {"Chest_Score": 3, "Stairs": ("next",[[]])},
+        "B172": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B173": {"Chest_Score": 1, "Stairs": ("next",[[]])},
+        "B174": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B175": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B176": {"Chest_Score": 1, "Stairs": ("next",[[]])},
+        "B177": {"Chest_Score": 3, "Stairs": ("next",[[]])},
+        "B178": {"Chest_Score": 2, "Stairs": ("next",[[]])},
+        "B180": {"Chest_Score": 1, "Stairs": ("next",[[]])},
+        "B181": {"Chest_Score": 0,
+                 "Stairs":      ("next",[
+                                    [("idol","killer")]])},
+        "B182": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B183": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B184": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B185": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B186": {"Chest_Score": 0,
+                 "Stairs":      ("next",[
+                                    [("idol","watcher")],
+                                    [("item",ItemNames.void_wings)],
+                                    [("item",ItemNames.void_sword)]]),
+                 "Smiler":      [
+                                    [("idol","smiler")]]},
+        "B187": {"Chest_Score": 0,
+                 "Stairs":      ("next",[
+                                    [("idol","watcher")]])},
+        "B188": {"Chest_Score": 0,
+                 "Stairs":      ("next",[
+                                    [("idol","killer")],[("item",ItemNames.void_wings)]])},
+        "B189": {"Chest_Score": 3, "Stairs": ("next",[[]])},
+        "B190": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B191": {"Chest_Score": 1, "Stairs": ("next",[[]])},
+        "B192": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B193": {"Chest_Score": 0, "Stairs": ("next",[[]]),
+                 "Shortcut":    [("greedzone_entrance",[[]])],
+                 "Smiler":      [
+                                    [("idol","smiler")]]},
+        "B194": {"Chest_Score": 0,
+                 "Stairs":      ("next",
+                                    [[("idol","watcher")]])},
+        "B195": {"Chest_Score": 4, "Stairs": ("next",[[]])},
+        "B198": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B199": {"Chest_Score": 0, "Stairs": ("next",[[]]),
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip),("item",ItemNames.void_wings)]]},
+        "B200": {"Chest_Score": 3, "Stairs": ("next",[[]]),
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B201": {"Chest_Score": 0, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B202": {"Chest_Score": 0, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B203": {"Chest_Score": 0,
+                 "Stairs":      ("next",[
+                                    [("idol","watcher")]]),
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip),("idol","watcher"),("item",ItemNames.void_wings)],
+                                    [("item",ItemNames.interface_manip),("idol","watcher"),("item",ItemNames.endless_void_rod)]]},
+        "B204": {"Chest_Score": 0, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B205": {"Chest_Score": 0, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B206": {"Chest_Score": 0, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B207": {"Chest_Score": 0, "Stairs": ("next",[[]]),
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip),("item",ItemNames.void_wings)]]},
+        "B208": {"Chest_Score": 0, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B209": {"Chest_Score": 3, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]],
+                 "Statues":     {"killer":[[]]}},
+        "B210": {"Chest_Score": 3, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B211": {"Chest_Score": 0,
+                 "Stairs":      ("next",[
+                                    [("idol","killer")]]),
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B212": {"Chest_Score": 0, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B213": {"Chest_Score": 0, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B214": {"Chest_Score": 0, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B215": {"Chest_Score": 0, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B216": {"Chest_Score": 0, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B217": {"Chest_Score": 0,
+                 "Stairs":      ("next",[
+                                    [("idol","killer")]]),
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B218": {"Chest_Score": 0, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B219": {"Chest_Score": 0, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B220": {"Chest_Score": 0, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B221": {"Chest_Score": 0, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B222": {"Chest_Score": 0, "Stairs": ("next",[[]]),
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip),("item",ItemNames.void_wings)]]},
+        "B226": {"Chest_Score": 0, "Stairs": ("next",[[]])},
+        "B228": {"Chest_Score": 0, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B229": {"Chest_Score": 0, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B230": {"Chest_Score": 0, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B231": {"Chest_Score": 0, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B232": {"Chest_Score": 0, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B233": {"Chest_Score": 0, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B234": {"Chest_Score": 0, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B235": {"Chest_Score": 0, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B236": {"Chest_Score": 0, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B237": {"Chest_Score": 0, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B238": {"Chest_Score": 0, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B239": {"Chest_Score": 0, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B240": {"Chest_Score": 0, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B241": {"Chest_Score": 0, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B242": {"Chest_Score": 0, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B243": {"Chest_Score": 0, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B244": {"Chest_Score": 0, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B245": {"Chest_Score": 0, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B246": {"Chest_Score": 0, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B247": {"Chest_Score": 0, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B248": {"Chest_Score": 0, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B249": {"Chest_Score": 0, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B250": {"Chest_Score": 0, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B251": {"Chest_Score": 0, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B252": {"Chest_Score": 0, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B253": {"Chest_Score": 0, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B254": {"Chest_Score": 0, "Stairs": ("next",[[]]),         
+                 "Interface":   [
+                                    [("item",ItemNames.interface_manip)]]},
+        "B255": {"Chest_Score": 0,
+                 "Stairs":      ("next",[
+                                    [("item",ItemNames.void_wings)]])},
         }
 
 RequiredSideBranes = {
-        "room_add": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("B025",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "room_eus": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("B055",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}, "Statues": {"lover":[[("item",ItemNames.void_wings)],[("item",ItemNames.endless_void_rod)]]}},
-        "room_bee": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("B071",[[("item",ItemNames.void_wings)]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "room_mon": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("B111",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "room_tan": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("B140",[[("item",ItemNames.void_sword),("idol","killer")]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"killer":[[]]}},
-        "room_gor": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("B162",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"slower":[[("item",ItemNames.void_wings)]]}},
-        "room_lev": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("B181",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"watcher":[[]]}},
-        "room_cif": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("B224",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {"lover":[[]],"slower":[[]],"watcher":[[]]}},
+        "room_add": {"Chest_Score": 0, "Stairs": ("B025",[[]])},
+        "room_eus": {"Chest_Score": 0, "Stairs": ("B055",[[]])},
+        "room_bee": {"Chest_Score": 0, "Stairs": ("B071",[[]])},
+        "room_mon": {"Chest_Score": 0, "Stairs": ("B111",[[]])},
+        "room_tan": {"Chest_Score": 0,
+                     "Stairs":      ("B140",[
+                                        [("item",ItemNames.void_sword),("idol","killer")]])},
+        "room_gor": {"Chest_Score": 0, "Stairs": ("B162",[[]])},
+        "room_lev": {"Chest_Score": 0,
+                     "Stairs":      ("B181",[
+                                        [("item",ItemNames.void_wings)],
+                                        [("idol","watcher")]])},
+        "room_cif": {"Chest_Score": 0, "Stairs": ("B224",[[]])},
         }
 
 OptionalSideBranes = {
-        "mon_shortcut_1": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("B023",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}, "Statues": {}},
-        "mon_shortcut_2": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("B053",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "mon_shortcut_3": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("B109",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "mon_shortcut_4": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("B167",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "mon_shortcut_5": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("B197",[[]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
-        "room_dis": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("dis_entrance",[[("item",ItemNames.void_wings),("item",ItemNames.void_sword)]]), "Shortcut": False, "Dungeon": False, "Skipped": False, "Statues": {}},
+        "mon_shortcut_1": {"Chest_Score": 0, "Stairs": ("B023",[[]])},
+        "mon_shortcut_2": {"Chest_Score": 0, "Stairs": ("B053",[[]])},
+        "mon_shortcut_3": {"Chest_Score": 0, "Stairs": ("B109",[[]])},
+        "mon_shortcut_4": {"Chest_Score": 0, "Stairs": ("B167",[[]])},
+        "mon_shortcut_5": {"Chest_Score": 0, "Stairs": ("B197",[[]])},
+        "room_dis": {"Chest_Score": 0,
+                     "Stairs":      ("dis",[
+                                        [("item",ItemNames.void_wings),("item",ItemNames.void_sword)]])},
         }
         
-        #dungeon dicts use the format {dungeon_name: [(brane_type, {floor_data}),(other_required_floor_for_dungeon_access)]}
 Dungeons = {
-        "Bee's Hole": [
-            ("side", {"beehole_entrance": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": ("Bee's Hole", "B161"), "Skipped": False, "Statues": {}}})
-            ],
-        "Greed Zone": [
-            ("side", {"greedzone_entrance": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": "Greed Zone", "Skipped": False, "Statues": {}}})
-            ],
-        "DIS": [
-            ("side", {"dis_entrance": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": False, "Shortcut": False, "Dungeon": "DIS", "Skipped": False, "Statues": {}}})
-            ]
+        "deadend_entrance": {"Chest_Score": 0,
+                 "Stairs":      ("deadend",[
+                                    [("item",ItemNames.void_orange)]]),
+                 "Dungeon": "deadend"},
+        "deadend": {"Chest_Score": 0, "Stairs": False,
+                 "Dungeon": "deadend"},
+        "whitevoid": {"Chest_Score": 0, "Stairs": False,
+                 "Dungeon": "include"},
+        "beehole_entrance": {"Chest_Score": 0, "Stairs": ("B146",[[]]),
+                 "Shortcut":    [("beehole",[
+                                    [("item",ItemNames.void_sword)]])],
+                 "Dungeon": "beehole"},
+        "beehole": {"Chest_Score": 0, "Stairs": False,
+                 "Dungeon": "beehole"},
+        "greedzone_entrance": {"Chest_Score": 0, "Stairs": ("B195",[[]]),
+                 "Shortcut":    [("greedzone",[
+                                    [("item",ItemNames.void_wings),("item",ItemNames.void_sword)]])],
+                 "Dungeon":     "greedzone"},
+        "greedzone": {"Chest_Score": 0, "Stairs": False,
+                 "Dungeon": "greedzone"},
+        "dis": {"Chest_Score": 0, "Stairs": False,
+                 "Dungeon": "dis"},
         }
 
-# for convenience, this is laoded instead of the normal Dungeons dict if shuffle floors is off
-VanillaDungeonEntrances = {
-        "beehole_entrance": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": ("Bee's Hole", "B161"), "Skipped": False, "Statues": {}},
-        "greedzone_entrance": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": ("next",[[]]), "Shortcut": False, "Dungeon": "Greed Zone", "Skipped": False, "Statues": {}},
-        "dis_entrance": {"Chest_Score": 0, "Smiler": False, "Interface": False, "Brand_Room": False, "Stairs": False, "Shortcut": False, "Dungeon": "DIS", "Skipped": False,
-            "Statues": {"lover":[[]],
-            "watcher":[[("item",ItemNames.void_wings),("idol","watcher")],[("item",ItemNames.void_memory),("item",ItemNames.void_wings),("item",ItemNames.void_sword),("item",ItemNames.interface_manip),("idol","lover"),("idol","killer"),("idol","greeder")]],
-            "killer":[[("item",ItemNames.void_memory),("item",ItemNames.void_wings),("item",ItemNames.void_sword),("item",ItemNames.interface_manip),("idol","lover"),("idol","greeder")]]}}
-        }
-# vanilla dungeons: Beehole, Greedzone, DIS, Hunter, Ninnie, White Void, Voided, Black Void, Elysium, Dev room, Lev's mind?
-
-# dungeons required for the goal will be included regardless of exclusion settings
+# 1) include all dungeons "floors"
+# 2) if vanilla dungeon exists or if shuffle floors is off, include the vanilla entrance floor
+# 3) new dungeons need shuffle floors anyway
+# 4) if shuffle true, check "dungeon" tag in entrances list, and if dungeon in dungeon list, include, else exclude
+# 5) if "dungeon" tag is "include", always include it
+# 6) put entrances in with dungeons list
+# 7) may need to move dungeon entrance connection from "shortcut" tag to new tag after shuffle floors inplemented

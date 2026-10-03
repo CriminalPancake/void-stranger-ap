@@ -135,7 +135,14 @@ vs_location_groups = {
         LocationNames.m15_chest11,
         LocationNames.m15_chest12
     },
-
+    
+    "Bee's Hole": {
+        LocationNames.bee1_chest1,
+        LocationNames.bee1_chest2,
+        LocationNames.bee15_chest1,
+        LocationNames.bee15_chest2
+    },
+    
     "Shop Checks": {
         LocationNames.buy_shortcut1,
         LocationNames.buy_shortcut2,

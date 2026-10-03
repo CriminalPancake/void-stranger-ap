@@ -22,7 +22,9 @@ misc_item_data_table: Dict[str, VoidStrangerItemData] = {
     ItemNames.endless_void_rod: VoidStrangerItemData(void_stranger_base_id + 3, ItemClassification.progression),
     ItemNames.interface_manip: VoidStrangerItemData(void_stranger_base_id + 4, ItemClassification.progression),
     ItemNames.lust_seal: VoidStrangerItemData(void_stranger_base_id + 27, ItemClassification.progression),
-    ItemNames.sloth_seal: VoidStrangerItemData(void_stranger_base_id + 28, ItemClassification.progression)
+    ItemNames.sloth_seal: VoidStrangerItemData(void_stranger_base_id + 28, ItemClassification.progression),
+    ItemNames.greed_seal: VoidStrangerItemData(void_stranger_base_id + 29, ItemClassification.useful),
+    ItemNames.void_orange: VoidStrangerItemData(void_stranger_base_id + 31, ItemClassification.progression)
 }
 
 brand_item_data_table: Dict[str, VoidStrangerItemData] = {
@@ -56,7 +58,7 @@ shortcut_item_data_table: Dict[str, VoidStrangerItemData] = {
 
 locust_item_table: Dict[str, VoidStrangerItemData] = {
     ItemNames.bonus_locust: VoidStrangerItemData(void_stranger_base_id + 25, ItemClassification.filler),
-    ItemNames.locust_capacity_up: VoidStrangerItemData(void_stranger_base_id + 26, ItemClassification.progression)
+    ItemNames.locust_capacity_up: VoidStrangerItemData(void_stranger_base_id + 26, ItemClassification.progression_skip_balancing)
 }
 
 greed_coin_item_table: Dict[str, VoidStrangerItemData] = {

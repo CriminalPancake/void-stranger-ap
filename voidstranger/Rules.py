@@ -25,21 +25,11 @@ def can_access_floor(world: VoidStrangerWorld, state: CollectionState, floor: st
 # checks if a floor was tagged as accessible and also has a certain locust score or better
 def can_access_floor_with_locusts(world: VoidStrangerWorld, state: CollectionState, floor: str, locust_count: int) -> bool:
     if can_access_floor(world, state, floor):
+        #return True
         if state.vs_brane_accessibility[world.player][floor]["Locust_Score"] >= locust_count:
             return True
     else:
         return False
-
-# high-level: runs the pathfinder if it's stale
-# checks if any floors are accessible on a pre-generated list of floors that contain the specified statue and if that statue is reachable
-def can_access_idol(world: VoidStrangerWorld, state: CollectionState, statue: str) -> bool:
-    if state.vs_stale_pathfinding[world.player]:
-        world.calculate_accessibility(state)
-    if state.has(ItemNames.void_memory, world.player) and has_idol(world, state, statue): #remove this check if we change how idol locations work
-        for floor in world.vs_statue_floors[statue]:
-            if can_access_floor(world, state, floor) and check_item_tuples(world, state, world.vs_brane_list[floor]["Statues"][statue]):
-                return True
-    return False
 
 # checks lists of item combinations and returns true if any of the combinations is collected
 # item tuple format: [[(item_category,item),(other item tuple)],[other valid item combination]]
@@ -67,7 +57,8 @@ def has_item_by_type(world: VoidStrangerWorld, state: CollectionState, type: str
 
 # checks if brandsanity is on, and if so, whether the specified brand is collected
 def has_brand(world: VoidStrangerWorld, state: CollectionState, brand: str) -> bool:
-    if world.options.brandsanity:
+    #if world.options.brandsanity:
+    if True:
         if brand == "add":
             return state.has(ItemNames.brand_add, world.player)
         elif brand == "eus":
@@ -133,57 +124,49 @@ def set_rules(world: VoidStrangerWorld):
     # goal logic decision
     world.multiworld.completion_condition[world.player] = \
         lambda state: ((state.has_all({ItemNames.interface_manip, ItemNames.void_memory, ItemNames.void_wings, ItemNames.void_sword, ItemNames.endless_void_rod}, world.player) and
-                        can_access_floor(world, state, "dis_entrance") and
+                        can_access_floor(world, state, "dis") and
                         has_idol(world, state, "lover") and has_idol(world, state, "smiler") and has_idol(world, state, "greeder") and has_idol(world, state, "killer") and has_idol(world, state, "watcher")))
-
+                        # reformat this line later ^
     #Forbid item rules
-    if world.options.brandsanity:
-        forbid_item(world.multiworld.get_location(LocationNames.mural_add, world.player),
+    forbid_item(world.multiworld.get_location(LocationNames.mural_add, world.player),
                     ItemNames.endless_void_rod,world.player)
 
     if world.options.greedzone:
-        forbid_item(world.multiworld.get_location(LocationNames.m14_chest1, world.player), ItemNames.greed_coin,
-                    world.player)
-        forbid_item(world.multiworld.get_location(LocationNames.m14_chest2, world.player), ItemNames.greed_coin,
-                    world.player)
-        forbid_item(world.multiworld.get_location(LocationNames.m14_chest3, world.player), ItemNames.greed_coin,
-                    world.player)
-        forbid_item(world.multiworld.get_location(LocationNames.m15_chest1, world.player), ItemNames.greed_coin,
-                    world.player)
-        forbid_item(world.multiworld.get_location(LocationNames.m15_chest2, world.player), ItemNames.greed_coin,
-                    world.player)
-        forbid_item(world.multiworld.get_location(LocationNames.m15_chest3, world.player), ItemNames.greed_coin,
-                    world.player)
-        forbid_item(world.multiworld.get_location(LocationNames.m15_chest4, world.player), ItemNames.greed_coin,
-                    world.player)
-        forbid_item(world.multiworld.get_location(LocationNames.m15_chest5, world.player), ItemNames.greed_coin,
-                    world.player)
-        forbid_item(world.multiworld.get_location(LocationNames.m15_chest6, world.player), ItemNames.greed_coin,
-                    world.player)
-        forbid_item(world.multiworld.get_location(LocationNames.m15_chest7, world.player), ItemNames.greed_coin,
-                    world.player)
-        forbid_item(world.multiworld.get_location(LocationNames.m15_chest8, world.player), ItemNames.greed_coin,
-                    world.player)
-        forbid_item(world.multiworld.get_location(LocationNames.m15_chest9, world.player), ItemNames.greed_coin,
-                    world.player)
-        forbid_item(world.multiworld.get_location(LocationNames.m15_chest10, world.player), ItemNames.greed_coin,
-                    world.player)
-        forbid_item(world.multiworld.get_location(LocationNames.m15_chest11, world.player), ItemNames.greed_coin,
-                    world.player)
-        forbid_item(world.multiworld.get_location(LocationNames.m15_chest12, world.player), ItemNames.greed_coin,
-                    world.player)
+        forbid_item(world.multiworld.get_location(LocationNames.m14_chest1, world.player), ItemNames.greed_coin, world.player)
+        forbid_item(world.multiworld.get_location(LocationNames.m14_chest2, world.player), ItemNames.greed_coin, world.player)
+        forbid_item(world.multiworld.get_location(LocationNames.m14_chest3, world.player), ItemNames.greed_coin, world.player)
+        forbid_item(world.multiworld.get_location(LocationNames.m15_chest1, world.player), ItemNames.greed_coin, world.player)
+        forbid_item(world.multiworld.get_location(LocationNames.m15_chest2, world.player), ItemNames.greed_coin, world.player)
+        forbid_item(world.multiworld.get_location(LocationNames.m15_chest3, world.player), ItemNames.greed_coin, world.player)
+        forbid_item(world.multiworld.get_location(LocationNames.m15_chest4, world.player), ItemNames.greed_coin, world.player)
+        forbid_item(world.multiworld.get_location(LocationNames.m15_chest5, world.player), ItemNames.greed_coin, world.player)
+        forbid_item(world.multiworld.get_location(LocationNames.m15_chest6, world.player), ItemNames.greed_coin, world.player)
+        forbid_item(world.multiworld.get_location(LocationNames.m15_chest7, world.player), ItemNames.greed_coin, world.player)
+        forbid_item(world.multiworld.get_location(LocationNames.m15_chest8, world.player), ItemNames.greed_coin, world.player)
+        forbid_item(world.multiworld.get_location(LocationNames.m15_chest9, world.player), ItemNames.greed_coin, world.player)
+        forbid_item(world.multiworld.get_location(LocationNames.m15_chest10, world.player), ItemNames.greed_coin, world.player)
+        forbid_item(world.multiworld.get_location(LocationNames.m15_chest11, world.player), ItemNames.greed_coin, world.player)
+        forbid_item(world.multiworld.get_location(LocationNames.m15_chest12, world.player), ItemNames.greed_coin, world.player)
 
     #base locations
-    set_rule(world.multiworld.get_location(LocationNames.endless_void_rod_chest, world.player),
-             lambda state: can_access_floor(world, state, "B028") and # change floor to B000 after UI manip added
-                           state.has_all({ItemNames.lust_seal, ItemNames.sloth_seal, ItemNames.interface_manip}, world.player))
-
+    if world.options.logiccomplexity:
+        set_rule(world.multiworld.get_location(LocationNames.endless_void_rod_chest, world.player),
+                 lambda state: can_access_floor(world, state, "B000") and state.has_all({ItemNames.lust_seal, ItemNames.sloth_seal}, world.player))
+    else:
+        set_rule(world.multiworld.get_location(LocationNames.endless_void_rod_chest, world.player),
+                 lambda state: can_access_floor(world, state, "B028") and state.has_all({ItemNames.lust_seal, ItemNames.sloth_seal, ItemNames.interface_manip}, world.player))
+    
     add_rule(world.multiworld.get_location(LocationNames.lust_slain, world.player),
              lambda state: can_access_floor(world, state, "B030") and state.has_all({ItemNames.void_wings, ItemNames.void_sword}, world.player))
-
-    add_rule(world.multiworld.get_location(LocationNames.sloth_slain, world.player),
-             lambda state: can_access_floor(world, state, "B143") and state.has(ItemNames.void_sword, world.player))
-             
+    
+    if world.options.beehole:
+        add_rule(world.multiworld.get_location(LocationNames.sloth_slain, world.player),
+                 lambda state: can_access_floor(world, state, "B143") and can_access_floor(world, state, "beehole") and
+                 state.has(ItemNames.void_sword, world.player) and has_idol(world, state, "watcher"))
+    else:
+        add_rule(world.multiworld.get_location(LocationNames.sloth_slain, world.player),
+                 lambda state: can_access_floor(world, state, "B143") and state.has(ItemNames.void_sword, world.player))
+    
     add_rule(world.multiworld.get_location(LocationNames.burden_chest1, world.player),
              lambda state: can_access_floor(world, state, "room_add"))
     
@@ -195,61 +178,47 @@ def set_rules(world: VoidStrangerWorld):
     
     add_rule(world.multiworld.get_location(LocationNames.interface_manip_hint, world.player),
              lambda state: can_access_floor(world, state, "room_gor") and state.has(ItemNames.void_memory, world.player))
-
-    #brandsanity locations
-    if world.options.brandsanity:
-        add_rule(world.multiworld.get_location(LocationNames.mural_add, world.player),
-                 lambda state: can_access_floor(world, state, "B001"))
-                 
-        add_rule(world.multiworld.get_location(LocationNames.mural_eus, world.player),
-                 lambda state: can_access_floor(world, state, "B029"))
-
-        add_rule(world.multiworld.get_location(LocationNames.mural_bee, world.player),
-                 lambda state: can_access_floor(world, state, "B057"))
-
-        add_rule(world.multiworld.get_location(LocationNames.mural_mon, world.player),
-                 lambda state: can_access_floor(world, state, "B085"))
-
-        add_rule(world.multiworld.get_location(LocationNames.mural_tan, world.player),
-                 lambda state: can_access_floor(world, state, "B113"))
-
-        add_rule(world.multiworld.get_location(LocationNames.mural_gor, world.player),
-                 lambda state: can_access_floor(world, state, "B141"))
-
-        add_rule(world.multiworld.get_location(LocationNames.mural_lev, world.player),
-                 lambda state: can_access_floor(world, state, "B169"))
-
-        add_rule(world.multiworld.get_location(LocationNames.mural_cif, world.player),
-                 lambda state: can_access_floor(world, state, "B197") and state.has(ItemNames.void_memory, world.player))
-
-        add_rule(world.multiworld.get_location(LocationNames.mural_dis, world.player),
-                 lambda state: can_access_floor(world, state, "B225"))
-
-    #idolsanity locations
-    if world.options.idolsanity:
-        add_rule(world.multiworld.get_location(LocationNames.statue_lover, world.player),
-                 lambda state: can_access_idol(world, state, "lover"))
-
-        add_rule(world.multiworld.get_location(LocationNames.statue_smiler, world.player),
-                 lambda state: can_access_idol(world, state, "smiler"))
     
-        add_rule(world.multiworld.get_location(LocationNames.statue_killer, world.player),
-                 lambda state: can_access_idol(world, state, "killer"))
+    add_rule(world.multiworld.get_location(LocationNames.burden_chest4, world.player),
+             lambda state: can_access_floor(world, state, "room_lev"))
+    
+    if world.options.logiccomplexity:
+        add_rule(world.multiworld.get_location(LocationNames.burden_chest5, world.player),
+                 lambda state: can_access_floor(world, state, "room_cif"))
+    else:
+        add_rule(world.multiworld.get_location(LocationNames.burden_chest5, world.player),
+                 lambda state: can_access_floor(world, state, "B202") and state.has_all_counts({ItemNames.locust_capacity_up: 8, ItemNames.interface_manip: 1}, world.player))
+
+    #murals
+    add_rule(world.multiworld.get_location(LocationNames.mural_add, world.player),
+             lambda state: can_access_floor(world, state, "B001"))
+    add_rule(world.multiworld.get_location(LocationNames.mural_eus, world.player),
+             lambda state: can_access_floor(world, state, "B029"))
+    add_rule(world.multiworld.get_location(LocationNames.mural_bee, world.player),
+             lambda state: can_access_floor(world, state, "B057"))
+    add_rule(world.multiworld.get_location(LocationNames.mural_mon, world.player),
+             lambda state: can_access_floor(world, state, "B085"))
+    add_rule(world.multiworld.get_location(LocationNames.mural_tan, world.player),
+             lambda state: can_access_floor(world, state, "B113"))
+    add_rule(world.multiworld.get_location(LocationNames.mural_gor, world.player),
+             lambda state: can_access_floor(world, state, "B141"))
+    add_rule(world.multiworld.get_location(LocationNames.mural_lev, world.player),
+             lambda state: can_access_floor(world, state, "B169"))
+    add_rule(world.multiworld.get_location(LocationNames.mural_cif, world.player),
+             lambda state: can_access_floor(world, state, "B197") and state.has(ItemNames.void_memory, world.player))
+    add_rule(world.multiworld.get_location(LocationNames.mural_dis, world.player),
+             lambda state: can_access_floor(world, state, "B225"))
 
     #shortcutsanity locations
     if world.options.shortcutsanity:
         add_rule(world.multiworld.get_location(LocationNames.buy_shortcut1, world.player),
                  lambda state: can_access_floor_with_locusts(world, state, "B004", 3))
-                 
         add_rule(world.multiworld.get_location(LocationNames.buy_shortcut2, world.player),
                  lambda state: can_access_floor_with_locusts(world, state, "B044", 21))
-        
         add_rule(world.multiworld.get_location(LocationNames.buy_shortcut3, world.player),
                  lambda state: can_access_floor_with_locusts(world, state, "B086", 49))
-
         add_rule(world.multiworld.get_location(LocationNames.buy_shortcut4, world.player),
                  lambda state: can_access_floor_with_locusts(world, state, "B124", 56))
-    
         add_rule(world.multiworld.get_location(LocationNames.buy_shortcut5, world.player),
                  lambda state: can_access_floor_with_locusts(world, state, "B196", 77))
         
@@ -421,8 +390,55 @@ def set_rules(world: VoidStrangerWorld):
 
     add_rule(world.multiworld.get_location(LocationNames.b210_chest, world.player),
              lambda state: can_access_floor(world, state, "B210"))
-                               
-    #greed zone locations
+    
+    #deadend locations
+    if world.options.deadend:
+        add_rule(world.multiworld.get_location(LocationNames.deadend_mural, world.player),
+             lambda state: can_access_floor(world, state, "deadend_entrance"))
+        add_rule(world.multiworld.get_location(LocationNames.deadend_chest1, world.player),
+             lambda state: can_access_floor(world, state, "deadend"))
+        add_rule(world.multiworld.get_location(LocationNames.deadend_chest2, world.player),
+             lambda state: can_access_floor(world, state, "deadend"))
+        add_rule(world.multiworld.get_location(LocationNames.deadend_chest3, world.player),
+             lambda state: can_access_floor(world, state, "deadend"))
+        add_rule(world.multiworld.get_location(LocationNames.deadend_chest4, world.player),
+             lambda state: can_access_floor(world, state, "deadend"))
+        add_rule(world.multiworld.get_location(LocationNames.deadend_chest5, world.player),
+             lambda state: can_access_floor(world, state, "deadend"))
+        add_rule(world.multiworld.get_location(LocationNames.deadend_chest6, world.player),
+             lambda state: can_access_floor(world, state, "deadend"))
+        add_rule(world.multiworld.get_location(LocationNames.deadend_chest7, world.player),
+             lambda state: can_access_floor(world, state, "deadend"))
+        add_rule(world.multiworld.get_location(LocationNames.deadend_chest8, world.player),
+             lambda state: can_access_floor(world, state, "deadend"))
+        add_rule(world.multiworld.get_location(LocationNames.deadend_chest9, world.player),
+             lambda state: can_access_floor(world, state, "deadend"))
+    
+    #whitevoid locations
+    if world.options.whitevoid != 0:
+        add_rule(world.multiworld.get_location(LocationNames.whitevoid_chest1, world.player),
+             lambda state: can_access_floor(world, state, "whitevoid"))
+        add_rule(world.multiworld.get_location(LocationNames.whitevoid_chest2, world.player),
+             lambda state: can_access_floor(world, state, "whitevoid"))
+        add_rule(world.multiworld.get_location(LocationNames.whitevoid_chest3, world.player),
+             lambda state: can_access_floor(world, state, "whitevoid"))
+        add_rule(world.multiworld.get_location(LocationNames.whitevoid_chest4, world.player),
+             lambda state: can_access_floor(world, state, "whitevoid"))
+        add_rule(world.multiworld.get_location(LocationNames.whitevoid_chest5, world.player),
+             lambda state: can_access_floor(world, state, "whitevoid"))
+    
+    #beehole locations
+    if world.options.beehole:
+        add_rule(world.multiworld.get_location(LocationNames.bee1_chest1, world.player),
+             lambda state: can_access_floor(world, state, "beehole_entrance") and state.has(ItemNames.void_sword, world.player))
+        add_rule(world.multiworld.get_location(LocationNames.bee1_chest2, world.player),
+             lambda state: can_access_floor(world, state, "beehole_entrance") and state.has(ItemNames.void_sword, world.player))
+        add_rule(world.multiworld.get_location(LocationNames.bee15_chest1, world.player),
+             lambda state: can_access_floor(world, state, "beehole") and state.has(ItemNames.void_sword, world.player) and has_idol(world, state, "watcher"))
+        add_rule(world.multiworld.get_location(LocationNames.bee15_chest2, world.player),
+             lambda state: can_access_floor(world, state, "beehole") and state.has(ItemNames.void_sword, world.player) and has_idol(world, state, "watcher"))
+    
+    #greedzone locations
     # will rewrite these rules once we migrate to the Dungeon system
     if world.options.greedzone:
         add_rule(world.multiworld.get_location(LocationNames.m14_chest1, world.player),
