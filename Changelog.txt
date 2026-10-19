@@ -3,6 +3,11 @@ Known Issues:
 	- It is theoretically possible that logic will require you to loop Cif's Domain (or some other subset of floors) more times than reasonable in order to grind up locusts.
 
 
+v0.11.4
+	Fix:
+		Fixed mural room stairs forgetting their blockade if moved
+		Removed defunct Idol Checks from location groups
+
 v0.11.3
 	Fix:
 		Fixed a typo causing Beehole Reward Chest 1 always being in logic

@@ -94,12 +94,6 @@ vs_location_groups = {
         LocationNames.b210_chest
     },
 
-    "Idol Checks": {
-        LocationNames.statue_lover,
-        LocationNames.statue_smiler,
-        LocationNames.statue_killer
-    },
-
     "Mural Checks": {
         LocationNames.mural_add,
         LocationNames.mural_eus,
